@@ -1,0 +1,25 @@
+#  Babel skeleton
+## 🎉 Features
+>  Babel skeleton for native app
+* [Es6](https://www.npmjs.com/package/babel-cli)  watch
+* [Sass](https://www.npmjs.com/package/node-sass)  watch
+
+## 📦 Installation
+Install package
+```
+npm install babel-skeleton
+```
+## 🚀 Serve
+Run the application
+```
+npm run serve
+```
+## ⛏ Test
+Pass the tests
+```
+npm run test
+```
+Generate report
+```
+npm run coverage
+```
