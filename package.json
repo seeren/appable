@@ -16,14 +16,14 @@
     "babel": "./node_modules/.bin/watchify ./src/index.js -t [babelify] -o ./dist/index.js",
     "sass": "./node_modules/.bin/node-sass --watch ./src/index.scss ./dist/index.css",
     "coverage": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive test/unit",
-    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Cyril Ichti",
   "license": "MIT",
   "devDependencies": {
     "babelify": "latest",
     "babel-plugin-istanbul": "latest",
+    "babel-plugin-transform-html-import-to-string": "latest",
     "babel-preset-env": "latest",
     "babel-register": "latest",
     "browser-sync": "latest",
