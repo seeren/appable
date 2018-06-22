@@ -9,10 +9,15 @@
 * [Sass](https://www.npmjs.com/package/node-sass)  watch
 
 ## 📦 Installation
-Install package
+Clone repository
 ```
-npm install babel-skeleton
+git clone https://github.com/seeren/babel-skeleton.git
 ```
+Install packages from babel-skeleton directory
+```
+npm install
+```
+
 ## 🚀 Serve
 Run the application
 ```
