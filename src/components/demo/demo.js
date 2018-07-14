@@ -3,18 +3,18 @@ import template from './demo.html';
 export class Demo {
 
     constructor() {
+        window.document.createElement("demo");
         this.status = "is ready";
     }
 
     render() {
         for (var prop in this) {
             eval("var " + prop + ";");
-            eval(prop + "=this[prop];");
+            eval(prop + " = this[prop];");
         }
-        window
-        .document
-        .querySelector("demo")
-        .innerHTML = eval("`" + template + "`");
+        window.document.querySelector("demo").innerHTML = eval(
+            "`" + template + "`"
+        );
     }
 
 }
