@@ -1,3 +1,3 @@
-import { Demo } from "./components/demo/demo";
+import { Demo } from './demo/demo.component';
 
 (new Demo).render();
