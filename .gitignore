@@ -1,6 +1,6 @@
 /.nyc_output/
 /.vscode/
 /coverage/
-/dist/
+/dist/index.*
 /node_modules/
 package-lock.json
