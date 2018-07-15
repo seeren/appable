@@ -20,7 +20,6 @@
     "test-coverage": "./node_modules/.bin/cross-env NODE_ENV=test ./node_modules/.bin/nyc ./node_modules/.bin/mocha --recursive test/unit",
     "test-coveralls": "npm run coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
-  "style": "dist/index.css",
   "sass": "src/index.scss",
   "main": "src/index.js",
   "repository": {
