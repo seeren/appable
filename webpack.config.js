@@ -1,14 +1,14 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const bundleName = 'index';
 
 module.exports = {
     entry: [
-        './src/' + bundleName,
-        './src/' + bundleName + '.scss'
+        './src/index.js',
+        './src/index.scss'
     ],
     output: {
-        filename: bundleName + '.js'
+		path:  __dirname + "/www/dist",
+        filename: 'index.js'
     },
     module: {
         rules: [
@@ -21,6 +21,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
                     'css-loader',
@@ -39,7 +40,7 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin(
             {
-                filename: bundleName + '.css',
+                filename: 'index.css',
             }
         ),
         new BrowserSyncPlugin({
@@ -47,7 +48,7 @@ module.exports = {
             port: 3000,
             server: {
                 baseDir: [
-                    '.'
+                    'www'
                 ]
             }
         })
