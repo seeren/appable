@@ -11,6 +11,8 @@
   "homepage": "https://github.com/seeren/webgl-device-skeleton",
   "author": "Cyril Ichti",
   "scripts": {
+    "foo": "webpack --mode development",
+    "bar": "webpack --mode production",
     "start": "npm run serve",
     "serve": "npm run sync | npm run sync-babel | npm run sync-sass",
     "sync": "./node_modules/.bin/browser-sync start --server --files ./dist/index.*",
@@ -28,22 +30,28 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "babelify": "latest",
+    "babel-core": "latest",
+    "babel-loader": "latest",
     "babel-plugin-istanbul": "latest",
     "babel-plugin-transform-html-import-to-string": "latest",
     "babel-preset-env": "latest",
-    "babel-register": "latest",
     "browser-sync": "latest",
+    "browser-sync-webpack-plugin": "latest",
     "chai": "latest",
-    "cross-env": "latest",
     "coveralls": "latest",
+    "cross-env": "latest",
+    "css-loader": "latest",
     "jsdom": "latest",
+    "mini-css-extract-plugin": "latest",
     "mocha": "latest",
     "mocha-lcov-reporter": "latest",
     "node-sass": "latest",
     "nyc": "latest",
+    "sass-loader": "latest",
     "sinon": "latest",
-    "watchify": "latest"
+    "style-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
   },
   "engines": {
     "node": ">=8"
