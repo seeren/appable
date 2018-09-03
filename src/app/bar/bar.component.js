@@ -1,4 +1,4 @@
-import { Component } from '../../../core/core.component';
+import { Component } from '../../../core/component';
 import bar from './bar.component.html';
 
 export class BarComponent extends Component {

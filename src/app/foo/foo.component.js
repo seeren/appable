@@ -1,4 +1,4 @@
-import { Component } from '../../../core/core.component';
+import { Component } from '../../../core/component';
 import foo from './foo.component.html';
 
 export class FooComponent extends Component {
