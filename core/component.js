@@ -20,21 +20,24 @@ export class Component {
     }
 
     /**
-     * @param {Component}
+     * @param {Component} component
+     * @param {bool} reset
      * @returns {this}
      */
     attach(component, replace) {
-        let endTag = `</${component.selector}>`;
+        this.detach(component);
         let attribute = `data-${this.selector}="${this.row}"`;
-        let container = `<${component.selector} ${attribute}>${endTag}`;
+        let selector = component.selector.split(`[`)[0];
+        let endTag = `</${selector}>`;
+        let container = `<${selector} ${attribute}>${endTag}`;
+        this.components.push(component);
+        this.row++;
         if (replace) {
-            this.template = this.template.replace(`<${component.selector}>${endTag}`, container);
+            this.template = this.template.replace(`<${selector}>${endTag}`, container);
         } else {
             this.template += container;
         }
-        this.components.push(component);
-        this.row++;
-        component.selector = `${component.selector}[${attribute}]`;
+        component.selector = `${selector}[${attribute}]`;
         return this;
     }
 
@@ -45,13 +48,20 @@ export class Component {
     detach(component) {
         let index = this.components.indexOf(component);
         if (index > -1) {
-            this.components.splice(index, 1);
             let selectorSplit = component.selector.split(`[`);
             let selector = selectorSplit[0];
             let attributes = ` ${selectorSplit[1].replace(`]`, ``)}`;
+            this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, ``);
         }
         return this;
+    }
+
+    /**
+     * @returns {void}
+     */
+    clear() {
+        this.components.forEach(component => this.detach(component));
     }
 
     /**
@@ -59,9 +69,9 @@ export class Component {
      */
     update() {
         let vars = ``;
-        let methodsName = window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1);
+        let methods = window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1);
         let htmlElement = window.document.querySelector(this.selector);
-        window.Object.getOwnPropertyNames(this).slice(5).concat(methodsName).forEach(
+        window.Object.getOwnPropertyNames(this).slice(5).concat(methods).forEach(
             varName => {
                 vars += `var ${varName} = this["${varName}"]`;
                 if (this[varName] instanceof window.Function) {
@@ -72,27 +82,37 @@ export class Component {
         );
         htmlElement.innerHTML = eval(vars + '`' + this.template + '`');
         this.components.forEach(component => component.update());
-        this.updateEvents(htmlElement, methodsName);
+        this.updateEvents(htmlElement, methods);
         return htmlElement;
     }
 
-    updateEvents(htmlElement, methodsName) {
-        methodsName.forEach(
-            methodName => {
-                let match;
-                let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${methodName}\\((\.*)\\)"`, 'g');
+    /**
+     * @param {HTMLElement} htmlElement 
+     * @param {Array} methods 
+     */
+    updateEvents(htmlElement, methods) {
+        let match;
+        methods.forEach(
+            method => {
+                let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${method}\\((\.*)\\)"`, 'g');
                 while (match = regExp.exec(htmlElement.innerHTML)) {
                     window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
-                        child => this.registerEvent(child, match[1], methodName, match[2].split(", "))
+                        child => this.registerEvent(child, match[1], method, match[2].split(", "))
                     );
                 }
             }
         );
     }
 
-    registerEvent(htmlElement, type, methodName, args) {
+    /**
+     * @param {HTMLElement} htmlElement 
+     * @param {string} type 
+     * @param {string} method 
+     * @param {Array} args 
+     */
+    registerEvent(htmlElement, type, method, args) {
         htmlElement[type] = () => {
-            if(undefined !== this.toogle(eval(args.toString()))) {
+            if (undefined !== this[method](eval(args.toString()))) {
                 this.update();
             }
         };
