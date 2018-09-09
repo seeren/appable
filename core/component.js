@@ -26,17 +26,17 @@ export class Component {
      */
     attach(component, replace) {
         this.detach(component);
-        let attribute = `data-${this.selector}="${this.row}"`;
+        let attribute = `data-${this.selector.split(`[`)[0]}="${this.row}"`;
         let selector = component.selector.split(`[`)[0];
         let endTag = `</${selector}>`;
         let container = `<${selector} ${attribute}>${endTag}`;
-        this.components.push(component);
-        this.row++;
         if (replace) {
             this.template = this.template.replace(`<${selector}>${endTag}`, container);
         } else {
             this.template += container;
         }
+        this.components.push(component);
+        this.row++;
         component.selector = `${selector}[${attribute}]`;
         return this;
     }
@@ -53,15 +53,10 @@ export class Component {
             let attributes = ` ${selectorSplit[1].replace(`]`, ``)}`;
             this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, ``);
+            this.row--;
+            component.selector = `${selector}`;
         }
         return this;
-    }
-
-    /**
-     * @returns {void}
-     */
-    clear() {
-        this.components.forEach(component => this.detach(component));
     }
 
     /**
@@ -69,50 +64,48 @@ export class Component {
      */
     update() {
         let vars = ``;
-        let methods = window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1);
         let htmlElement = window.document.querySelector(this.selector);
-        window.Object.getOwnPropertyNames(this).slice(5).concat(methods).forEach(
-            varName => {
-                vars += `var ${varName} = this["${varName}"]`;
-                if (this[varName] instanceof window.Function) {
-                    vars += `.bind(this)`;
-                }
-                vars += `;`;
-            }
+        let properties = window.Object.getOwnPropertyNames(this).slice(5).concat(
+            window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1)
         );
+        properties.forEach(varName => {
+            vars += `var ${varName} = this["${varName}"]`;
+            if (this[varName] instanceof window.Function) {
+                vars += `.bind(this)`;
+            }
+            vars += `;`;
+        });
         htmlElement.innerHTML = eval(vars + '`' + this.template + '`');
         this.components.forEach(component => component.update());
-        this.updateEvents(htmlElement, methods);
+        this.updateEvents(htmlElement, properties);
         return htmlElement;
     }
 
     /**
      * @param {HTMLElement} htmlElement 
-     * @param {Array} methods 
+     * @param {Array} properties 
      */
-    updateEvents(htmlElement, methods) {
+    updateEvents(htmlElement, properties) {
         let match;
-        methods.forEach(
-            method => {
-                let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${method}\\((\.*)\\)"`, 'g');
-                while (match = regExp.exec(htmlElement.innerHTML)) {
-                    window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
-                        child => this.registerEvent(child, match[1], method, match[2].split(", "))
-                    );
-                }
+        properties.forEach(propertie => {
+            let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, 'g');
+            while (match = regExp.exec(htmlElement.innerHTML)) {
+                window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
+                    child => this.registerEvent(child, match[1], propertie, match[2].split(", "))
+                );
             }
-        );
+        });
     }
 
     /**
      * @param {HTMLElement} htmlElement 
      * @param {string} type 
-     * @param {string} method 
+     * @param {string} propertie 
      * @param {Array} args 
      */
-    registerEvent(htmlElement, type, method, args) {
+    registerEvent(htmlElement, type, propertie, args) {
         htmlElement[type] = () => {
-            if (undefined !== this[method](eval(args.toString()))) {
+            if (undefined !== this[propertie](eval(args.toString()))) {
                 this.update();
             }
         };
