@@ -15,15 +15,23 @@ export let RouterComponent = (() => {
      * @param {Object} route 
      * @param {boolean} push 
      */
-    const state = (route, push) => {
+    const state = (route, param, push) => {
+        let stateObj = { name: route.name };
+        let path = route.path;
         if (route.component instanceof window.Function) {
             route.component = new route.component;
         }
         RouterComponent.attach(route.component);
+        if (param) {
+            stateObj.param = param
+            for (let prop in param) {
+                path = path.replace(`:${prop}`, param[prop])
+            }
+        }
         window.history[(push ? `pushState` : `replaceState`)](
-            { name: route.name },
+            stateObj,
             route.name,
-            route.path
+            path
         );
     };
 
@@ -37,20 +45,7 @@ export let RouterComponent = (() => {
                 selector: `router`,
                 template: template
             });
-            window.onpopstate = (e) => {
-                this.detach(this.components[0]);
-                if (e.state) {
-                    state(routes.find(route => e.state.name === route.name));
-                }
-                this.update();
-            };
-        }
-
-        /**
-         * @returns {void}
-         */
-        back() {
-            window.history.back();
+            window.onpopstate = this.onpopstate.bind(this);
         }
 
         /**
@@ -62,25 +57,40 @@ export let RouterComponent = (() => {
             let route = routes.find(route => name === route.name);
             if (route.component !== this.components[0]) {
                 this.detach(this.components[0]);
-                state(route, true);
+                state(route, param, true);
                 this.update();
             }
         }
 
+        /**
+         * @returns {void}
+         */
+        back() {
+            window.history.back();
+        }
+
+        onpopstate(e) {
+            this.detach(this.components[0]);
+            if (e.state) {
+                state(
+                    routes.find(route => e.state.name === route.name),
+                    e.state.param
+                );
+            }
+            this.update();
+        }
 
         /**
          * @param {string} path 
          * @param {string} name 
          * @param {Function} component 
-         * @param {Object} param
          * @returns {this}
          */
-        add(path, name, component, param) {
+        add(path, name, component) {
             routes.push({
                 name: name,
                 path: path,
-                component: component,
-                param: param || {}
+                component: component
             });
             return this;
         }
