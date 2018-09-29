@@ -76,8 +76,8 @@ export class Component {
             vars += `;`;
         });
         htmlElement.innerHTML = eval(vars + '`' + this.template + '`');
-        this.components.forEach(component => component.update());
         this.updateEvents(htmlElement, properties);
+        this.components.forEach(component => component.update(component));
         return htmlElement;
     }
 
