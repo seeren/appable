@@ -1,0 +1,17 @@
+$yellow:#f5da55;
+$grey:#323330;
+app {
+    .mdl-layout {
+        background: $yellow;
+    }
+    .mdl-layout__header.is-casting-shadow {
+        background: $grey;
+    }
+    .mdl-layout__header.is-casting-shadow * {
+        color: $yellow !important;
+    }
+    .mdl-layout__header *,
+    .mdl-layout__drawer * {
+        color: $grey !important;
+    }
+}
