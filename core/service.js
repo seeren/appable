@@ -19,6 +19,11 @@ export class Service {
         this.attach = callable => callback.push(callable);
 
         /**
+         * @returns {void}
+         */
+        this.notify = () => callback.forEach(callable => callable(this));
+
+        /**
          * @param {Function} callable 
          */
         this.detach = (callable) => {
@@ -29,17 +34,6 @@ export class Service {
                 }
             }
         }
-
-        /**
-         * @returns {void}
-         */
-        this.notify = () => {
-            for (
-                let i = 0, l = callback.length;
-                i < l;
-                callback[i](this), i++
-            );
-        };
 
     }
 
