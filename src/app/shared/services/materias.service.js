@@ -5,7 +5,6 @@ export const MateriasService = new class MateriasService extends Service {
 
     constructor() {
         super();
-        this.materia;
         this.materias = [
             new Materia(
                 1,
@@ -39,12 +38,8 @@ export const MateriasService = new class MateriasService extends Service {
         this.materias.push(materia)
     }
 
-    selected() {
-        return this.materia;
+    find(id){
+        return this.materias.find(materia => id === materia.id);
     }
 
-    select(id) {
-        this.materia = this.materias.find(materia => id === materia.id)
-        this.notify();
-    }
 }
