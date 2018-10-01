@@ -3,6 +3,7 @@ import template from './materias.component.html';
 import { MateriasService } from '../shared/services/materias.service';
 import { MateriaPreviewComponent } from './materia-preview/materia-preview.component';
 import { MateriaDescriptionComponent } from './materia-description/materia-description.component';
+import { MateriaService } from '../shared/services/materia.service';
 
 export class MateriasComponent extends Component {
 
@@ -15,11 +16,14 @@ export class MateriasComponent extends Component {
                 new MateriaDescriptionComponent
             ]
         });
+    }
+
+    onInit() {
         this.materias = MateriasService.get()
     }
 
     select(id) {
-        MateriasService.select(id)
+        MateriaService.post(MateriasService.find(id))
     }
 
 }
