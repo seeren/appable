@@ -9,7 +9,6 @@ export class Component {
      */
     constructor(options) {
         this.row = 0;
-        this.models = [];
         this.components = [];
         this.selector = options.selector;
         this.template = options.template;
@@ -17,6 +16,13 @@ export class Component {
             options.components.forEach(component => this.attach(component, true));
         }
         window.document.createElement(options.selector);
+    }
+
+    lifeCycle(hook) {
+        if (this[hook]) {
+            this[hook]()
+        }
+        this.components.forEach(component => component.lifeCycle(hook));
     }
 
     /**
@@ -30,14 +36,15 @@ export class Component {
         let selector = component.selector.split(`[`)[0];
         let endTag = `</${selector}>`;
         let container = `<${selector} ${attribute}>${endTag}`;
+        component.selector = `${selector}[${attribute}]`;
+        this.components.push(component);
+        this.row++;
         if (replace) {
             this.template = this.template.replace(`<${selector}>${endTag}`, container);
         } else {
             this.template += container;
+            this.lifeCycle("onInit");
         }
-        this.components.push(component);
-        this.row++;
-        component.selector = `${selector}[${attribute}]`;
         return this;
     }
 
@@ -51,6 +58,7 @@ export class Component {
             let selectorSplit = component.selector.split(`[`);
             let selector = selectorSplit[0];
             let attributes = ` ${selectorSplit[1].replace(`]`, ``)}`;
+            this.lifeCycle("onDestroy");
             this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, ``);
             this.row--;
@@ -60,12 +68,12 @@ export class Component {
     }
 
     /**
-     * @returns {HTMLElement}
+     * @returns {this}
      */
     update() {
         let vars = ``;
         let htmlElement = window.document.querySelector(this.selector);
-        let properties = window.Object.getOwnPropertyNames(this).slice(5).concat(
+        let properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
             window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1)
         );
         properties.forEach(varName => {
@@ -78,7 +86,10 @@ export class Component {
         htmlElement.innerHTML = eval(vars + '`' + this.template + '`');
         this.updateEvents(htmlElement, properties);
         this.components.forEach(component => component.update(component));
-        return htmlElement;
+        if (this.onUpdate) {
+            this.onUpdate(htmlElement)
+        }
+        return this;
     }
 
     /**
