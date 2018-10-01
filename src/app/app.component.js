@@ -16,8 +16,7 @@ export class AppComponent extends Component {
         });
     }
 
-    update() {
-        super.update();
+    onUpdate() {
         window.componentHandler.upgradeDom();
     }
 
