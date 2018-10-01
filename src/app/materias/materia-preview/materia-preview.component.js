@@ -1,6 +1,6 @@
 import { Component } from '../../../../core/component';
 import template from './materia-preview.component.html';
-import { MateriasService } from '../../shared/services/materias.service';
+import { MateriaService } from '../../shared/services/materia.service';
 
 export class MateriaPreviewComponent extends Component {
 
@@ -9,10 +9,12 @@ export class MateriaPreviewComponent extends Component {
             selector: 'materia-preview',
             template: template,
         });
-        MateriasService.attach((service) => {
-            this.materia = service.selected();
+        let observer = (service) => {
+            this.materia = service.get();
             this.update();
-        })
+        }
+        this.onInit = () => MateriaService.attach(observer);
+        this.onDestroy = () =>  MateriaService.detach(observer);
     }
-
+    
 }
