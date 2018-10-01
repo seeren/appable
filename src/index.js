@@ -11,6 +11,6 @@ import { MateriaEditorComponent } from "./app/materia-editor/materia-editor.comp
     RouterComponent
         .add("/", "materias", MateriasComponent)
         .add("/materias/:id", "materia-editor", MateriaEditorComponent)
-        .to(new AppComponent)
+        .run(new AppComponent)
 
 );
