@@ -8,24 +8,52 @@ export const MateriasService = new class MateriasService extends Service {
         this.materias = [
             new Materia(
                 1,
-                "Foo attaque",
-                "Description",
-                Materia.MAGIC,
-                4
+                "Comet",
+                "Use a Comet",
+                "magic",
+                3
             ),
             new Materia(
                 2,
-                "Bar attaque",
-                "Description",
-                Materia.MAGIC,
-                4
+                "Restore",
+                "Restore HP",
+                "magic",
+                5
             ),
             new Materia(
                 3,
-                "Baz attaque",
-                "Description",
-                Materia.MAGIC,
-                4
+                "Knights of Round",
+                "Heavy non-elemental damage",
+                "summon",
+                5
+            ),
+            new Materia(
+                4,
+                "Double Cut",
+                "Attacks consecutively",
+                "command",
+                3
+            ),
+            new Materia(
+                5,
+                "Slash-All",
+                "Attack all opponents ",
+                "command",
+                3
+            ),
+            new Materia(
+                6,
+                "All",
+                "Allows linked Magic Materia to target all allies or enemies",
+                "support",
+                5
+            ),
+            new Materia(
+                7,
+                "HP Plus",
+                "Increases HP",
+                "independent",
+                5
             )
         ];
     }
