@@ -4,7 +4,7 @@ export const MateriaService = new class MateriaService extends Service {
 
     constructor() {
         super();
-        this.materia;
+        this.materia = null;
     }
 
     get() {
