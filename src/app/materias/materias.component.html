@@ -1,28 +1,30 @@
+<div class="mdl-grid border">
+    <div class="mdl-cell mdl-cell--12-col">
+
+        <materia-description></materia-description>
+
+    </div>
+</div>
+
 <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-    <div class="mdl-color-text--grey-800 mdl-cell mdl-cell--10-col">
-        <h2 class="mdl-typography--display-2">
+    <div class="mdl-cell mdl-cell--6-col">
 
-            <materia-description></materia-description>
+        <materia-preview></materia-preview>
 
-        </h2>
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
-            <div class="mdl-cell mdl-cell--5-col">
+    </div>
+    <div class="mdl-cell mdl-cell--4-col">
+        <ul class="mdl-list mdl-color-text--grey-50">
 
-                <materia-preview></materia-preview>
+            ${ materias.map(item => `
+            <li class="pointer mdl-list__item ${materia == item ? 'border' : ''}" onclick="onClick(` + item.id + `)">
+                <span class="mdl-list__item-primary-content mdl-typography--title">
+                    <i class="material-icons mdl-list__item-icon ${item.type}">fiber_manual_record</i>
+                    <span class="mdl-color-text--grey-50">${item.name}</span>
+                </span>
+            </li>
+            `).join(``)}
 
-            </div>
-            <div class="mdl-cell mdl-cell--5-col">
-
-                ${ materias.map((materia) => `
-                <div onclick="select(` + materia.id + `)">
-                    <i class="material-icons">fiber_manual_record</i>
-                    ${materia.name}
-                </div>
-                `).join(``)}
-
-            </div>
-        </div>
+        </ul>
     </div>
 </div>
