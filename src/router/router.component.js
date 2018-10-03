@@ -1,4 +1,4 @@
-import { Component } from "../component";
+import { Component } from "../../src/component";
 import { template } from './router.component.html';
 
 /**
@@ -111,9 +111,30 @@ export let RouterComponent = new class extends Component {
      * @returns {void}
      */
     run(component) {
-        let route = routes.find(route => route.path === window.location.pathname);
+        let param = {}
+        let route = routes.find(route => {
+            if (route.path === window.location.pathname) {
+                return true;
+            }
+            let explosedPath = window.location.pathname.split('/');
+            let explosedRoute = route.path.split('/');
+            if (explosedPath.length !== explosedRoute.length) {
+                return false;
+            }
+            for(let key in explosedPath) {
+                if (':' === explosedRoute[key][0]) {
+                    param[explosedRoute[key].replace(':', '')] = explosedPath[key]
+                } else if (explosedPath[key] !== explosedRoute[key]) {
+                    param = {};
+                    return false;
+                }
+            }
+            return true;
+        });
         if (route) {
-            setState(route);
+            setState(route, param);
+        } else if (routes){
+            setState(routes[0]);
         }
         component.attach(this, true).update();
     }
