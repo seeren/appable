@@ -1,4 +1,4 @@
-import { Component } from '../../../core/component';
+import { Component } from '../../component';
 import template from './materias.component.html';
 import { MateriasService } from '../shared/services/materias.service';
 import { MateriaPreviewComponent } from './materia-preview/materia-preview.component';
@@ -19,11 +19,14 @@ export class MateriasComponent extends Component {
     }
 
     onInit() {
+        this.materia = MateriaService.get()
         this.materias = MateriasService.get()
     }
 
-    select(id) {
-        MateriaService.post(MateriasService.find(id))
+    onClick(id) {
+        this.materia = MateriasService.find(id);
+        MateriaService.post(this.materia);
+        return id;
     }
 
 }
