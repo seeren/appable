@@ -19,10 +19,10 @@ if (!args.length) {
     } else if (!/^[0-9a-zA-Z\.\/-]{1,}$/.test(args[2])) {
         return console.error('\x1b[31m', `Invalid file name`);
     } else if (args[1] === 'service') {
-        file.write(args[2], 'service.js', service(file.className(args[2])));
+        file.write(`src/${args[2]}`, 'service.js', service(file.className(args[2])));
     } else if (args[1] === 'component') {
-        file.write(args[2], 'component.js', component(args[2].split('/').pop(), file.className(args[2])));
-        file.write(args[2], 'component.html', componentHTML(args[2].split('/').pop()));
-        file.write(args[2], 'component.scss', componentSass(args[2].split('/').pop()));
+        file.write(`src/${args[2]}`, 'component.js', component(args[2].split('/').pop(), file.className(args[2])));
+        file.write(`src/${args[2]}`, 'component.html', componentHTML(args[2].split('/').pop()));
+        file.write(`src/${args[2]}`, 'component.scss', componentSass(args[2].split('/').pop()));
     }
 }
