@@ -1,12 +1,12 @@
 {
   "name": "babel-skeleton",
-  "description": "Babel skeleton for build es6 JavaScript in the browser",
-  "version": "1.0.4",
+  "description": "JavaScript starter with Babel and es6 helper",
+  "version": "1.0.5",
   "keywords": [
-    "babel",
     "es6",
-    "javascript",
-    "skeleton"
+    "webpack",
+    "babel",
+    "javascript"
   ],
   "homepage": "https://github.com/seeren/babelskeleton",
   "author": "Cyril Ichti",
@@ -14,7 +14,7 @@
     "start": "npm run dev",
     "dev": "webpack --mode development",
     "prod": "webpack --mode production",
-    "test": "mocha --require babel-register --recursive test/unit",
+    "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
@@ -25,12 +25,16 @@
     "url": "https://github.com/seeren/babel-skeleton"
   },
   "license": "MIT",
+  "bin": {
+    "babel-skeleton": "cli/index.js"
+  },
   "devDependencies": {
-    "babel-core": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/register": "latest",
     "babel-loader": "latest",
     "babel-plugin-istanbul": "latest",
     "babel-plugin-transform-html-import-to-string": "latest",
-    "babel-preset-env": "latest",
     "browser-sync": "latest",
     "browser-sync-webpack-plugin": "latest",
     "chai": "latest",
