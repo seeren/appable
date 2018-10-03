@@ -1,5 +1,5 @@
 import { Materia } from './../models/materia.model'
-import { Service } from '../../../../core/service';
+import { Service } from '../../../service';
 
 export const MateriasService = new class MateriasService extends Service {
 
@@ -23,7 +23,7 @@ export const MateriasService = new class MateriasService extends Service {
             new Materia(
                 3,
                 "Knights of Round",
-                "Heavy non-elemental damage",
+                "Non-elemental damage",
                 "summon",
                 5
             ),
@@ -44,7 +44,7 @@ export const MateriasService = new class MateriasService extends Service {
             new Materia(
                 6,
                 "All",
-                "Allows linked Magic Materia to target all allies or enemies",
+                "Target all allies or enemies",
                 "support",
                 5
             ),
@@ -67,7 +67,7 @@ export const MateriasService = new class MateriasService extends Service {
     }
 
     find(id){
-        return this.materias.find(materia => id === materia.id);
+        return this.materias.find(materia => id == materia.id);
     }
 
 }

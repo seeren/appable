@@ -1,6 +1,6 @@
-import { Component } from '../../../core/component';
+import { Component } from '../../component';
 import template from './navigation.component.html';
-import { RouterComponent } from '../../../core/router/router.component';
+import { RouterComponent } from '../../router/router.component';
 
 export class NavigationComponent extends Component {
 
