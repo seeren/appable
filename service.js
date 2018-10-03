@@ -1,0 +1,1 @@
+export { Service } from './src/service';
