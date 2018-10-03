@@ -1,26 +1,41 @@
-import { Component } from '../../../core/component';
+import { Component } from '../../component';
 import template from './materia-editor.component.html';
-import { Materia } from '../shared/models/materia.model';
-import { RouterComponent } from '../../../core/router/router.component';
+import { RouterComponent } from '../../router/router.component';
 import { MateriasService } from '../shared/services/materias.service';
-import { MateriaService } from '../shared/services/materia.service';
 
 export class MateriaEditorComponent extends Component {
 
     constructor() {
         super({
-            selector: 'materias-editor',
+            selector: 'materia-editor',
             template: template
         });
     }
 
     onInit() {
         this.materia = MateriasService.find(RouterComponent.get(`id`))
-        MateriaService.post(this.materia);
     }
 
-    onDestroy() {
-        console.log("MateriaEditorComponent");
+    onUpdate() {
+        window.componentHandler.upgradeDom();
+    }
+
+    onDescriptionBlur(input) {
+        if (input.value) {
+            return this.materia.description = input.value;
+        }
+    }
+
+    onTypeClick(type) {
+        return this.materia.type = type;
+    }
+
+    onStarClick(level) {
+        return this.materia.level = level;
+    }
+
+    back() {
+        RouterComponent.navigate("materias")
     }
 
 }
