@@ -1,0 +1,64 @@
+{
+  "name": "project-name",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "webpack --mode development --watch",
+    "prod": "webpack --mode production --watch",
+    "build": "webpack --mode production",
+    "device": "npm run build | npm run deploy",
+    "deploy": "cordova run android --device",
+    "test": "mocha --require @babel/register --recursive test/unit",
+    "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
+    "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+  },
+  "sass": "src/index.scss",
+  "main": "src/index.js",
+  "private": true,
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-globalization": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {}
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@babel/register": "latest",
+    "babel-loader": "latest",
+    "babel-plugin-istanbul": "latest",
+    "babel-plugin-transform-html-import-to-string": "latest",
+    "babel-skeleton": "latest",
+    "browser-sync": "latest",
+    "browser-sync-webpack-plugin": "latest",
+    "chai": "latest",
+    "cordova": "latest",
+    "coveralls": "latest",
+    "cross-env": "latest",
+    "css-loader": "latest",
+    "jsdom": "latest",
+    "mini-css-extract-plugin": "latest",
+    "mocha": "latest",
+    "mocha-lcov-reporter": "latest",
+    "node-sass": "latest",
+    "nyc": "latest",
+    "sass-loader": "latest",
+    "sinon": "latest",
+    "style-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {
+    "cordova-android": "^6.3.0"
+  }
+}
