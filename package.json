@@ -74,6 +74,5 @@
   },
   "engines": {
     "node": ">=8"
-  }rdova-plugin-whitelist": "^1.3.3"
   }
 }
