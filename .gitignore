@@ -2,5 +2,6 @@
 /.vscode/
 /coverage/
 /node_modules/
-/www/dist/index.*
+/platforms/
+/plugins/
 package-lock.json
