@@ -1,6 +1,6 @@
 import { Component } from '../../../component';
 import template from './materia-description.component.html';
-import { RouterComponent } from '../../../router/router.component';
+import { RouterComponent } from '../../../router';
 import { MateriaService } from '../../shared/services/materia.service';
 
 export class MateriaDescriptionComponent extends Component {
