@@ -3,18 +3,28 @@ const path = require('path');
 
 module.exports = {
 
-    write(filename, ext, output) {
+    write(filename, output) {
         if (!this.createDirs(filename.split('/'))) {
             return false;
         }
         try {
-            fs.writeFileSync(`${filename}.${ext}`, output);
+            fs.writeFileSync(filename, output);
         } catch (e) {
             console.error('\x1b[31m', `Generation error: ${e.message}`);
             return false;
         }
-        console.log('\x1b[32m', `${filename}.${ext} is generated`);
+        console.log('\x1b[32m', `${filename} is generated`);
         return true;
+    },
+
+    read(filename) {
+        let output;
+        try {
+            output = fs.readFileSync(filename);
+        } catch (e) {
+            console.error('\x1b[31m', `Read error: ${e.message}`);
+        }
+        return output;
     },
 
     createDirs(dirs) {
