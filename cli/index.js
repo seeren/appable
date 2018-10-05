@@ -6,23 +6,64 @@ const service = require('./template/service');
 const component = require('./template/component');
 const componentHTML = require('./template/component.html');
 const componentSass = require('./template/component.scss');
+const GENERATE = `generate`;
+const NEW = `new`;
+const COMPONENT = `component`;
+const SERVICE = `service`;
 
-if (!args.length) {
-    console.log('\x1b[32m', 'Available Commands:');
-    console.log('\x1b[0m', '- generate');
-    console.log('\x1b[0m', '- new');
-} else if (args[0] === `generate`) {
-    if (!args[1] || (args[1] !== 'component' && args[1] !== 'service')) {
-        return console.warn('\x1b[31m', `You must select component or service`);
+if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
+    console.log("\x1b[34m", 'Available Commands:');
+    console.log('\x1b[0m', `- ${GENERATE}`);
+    console.log('\x1b[0m', `- ${NEW}`);
+} else if (args[0] === GENERATE) {
+    if (!args[1] || (args[1] !== COMPONENT && args[1] !== SERVICE)) {
+        console.log("\x1b[34m", 'You can generate:');
+        console.log('\x1b[0m', `- ${COMPONENT}`);
+        console.log('\x1b[0m', `- ${SERVICE}`);
+        return;
     } else if (!args[2]) {
         return console.error('\x1b[31m', `You must provide a file name`);
     } else if (!/^[0-9a-zA-Z\.\/-]{1,}$/.test(args[2])) {
         return console.error('\x1b[31m', `Invalid file name`);
-    } else if (args[1] === 'service') {
-        file.write(`src/${args[2]}`, 'service.js', service(file.className(args[2])));
-    } else if (args[1] === 'component') {
-        file.write(`src/${args[2]}`, 'component.js', component(args[2].split('/').pop(), file.className(args[2])));
-        file.write(`src/${args[2]}`, 'component.html', componentHTML(args[2].split('/').pop()));
-        file.write(`src/${args[2]}`, 'component.scss', componentSass(args[2].split('/').pop()));
+    } else if (args[1] === SERVICE) {
+        file.write(`src/${args[2]}.${SERVICE}.js`, service(file.className(args[2])));
+    } else if (args[1] === COMPONENT) {
+        file.write(`src/${args[2]}.${COMPONENT}.js`, component(args[2].split('/').pop(), file.className(args[2])));
+        file.write(`src/${args[2]}.${COMPONENT}.html`, componentHTML(args[2].split('/').pop()));
+        file.write(`src/${args[2]}.${COMPONENT}.scss`, componentSass(args[2].split('/').pop()));
+    }
+} else if (args[0] === NEW) {
+    if (!args[1]) {
+        return console.error('\x1b[31m', `You must provide a project name`);
+    } else if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
+        return console.error('\x1b[31m', `Invalid project name`);
+    } else {
+        [
+            `src/app/app.component.html`,
+            `src/app/app.component.js`,
+            `src/app/app.component.scss`,
+            `src/index.js`,
+            `src/index.scss`,
+            `test/unit/app-component.spec.js`,
+            `test/window.js`,
+            `www/assets/.gitkeep`,
+            `www/dist/.gitkeep`,
+            `www/index.html`,
+            `.babelrc`, ,
+            `.gitignore`,
+            `.nycrc`,
+            `.travis.yml`,
+            `config.xml`,
+            `package.json`,
+            `README.md`,
+            `webpack.config.js`
+        ].forEach((filename) => {
+            let output = file.read(`cli/skeleton/${filename}`) || ``
+            file.write(
+                `${args[1]}/${filename}`,
+                output.toString().replace('project-name', args[1])
+            )
+        })
+        console.log("\x1b[0m", `${args[1]} is ready`);
     }
 }
