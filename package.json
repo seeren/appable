@@ -6,14 +6,18 @@
     "es6",
     "webpack",
     "babel",
-    "javascript"
+    "javascript",
+    "hybrid-app"
   ],
   "homepage": "https://github.com/seeren/babelskeleton",
   "author": "Cyril Ichti",
   "scripts": {
     "start": "npm run dev",
-    "dev": "webpack --mode development",
-    "prod": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "prod": "webpack --mode production --watch",
+    "build": "webpack --mode production",
+    "device": "cordova run android --device",
+    "publish": "babel ./src/service.js --out-file service.js | babel ./src/component.js --out-file component.js | babel ./src/router.js --out-file router.js",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
@@ -28,7 +32,21 @@
   "bin": {
     "babel-skeleton": "cli/index.js"
   },
+  "cordova": {
+    "platforms": [
+      "android"
+    ],
+    "plugins": {
+      "cordova-plugin-device": {},
+      "cordova-plugin-globalization": {},
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-network-information": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-whitelist": {}
+    }
+  },
   "devDependencies": {
+    "@babel/cli": "latest",
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "@babel/register": "latest",
@@ -38,6 +56,7 @@
     "browser-sync": "latest",
     "browser-sync-webpack-plugin": "latest",
     "chai": "latest",
+    "cordova": "latest",
     "coveralls": "latest",
     "cross-env": "latest",
     "css-loader": "latest",
@@ -55,5 +74,6 @@
   },
   "engines": {
     "node": ">=8"
+  }rdova-plugin-whitelist": "^1.3.3"
   }
 }
