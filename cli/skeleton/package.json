@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "start": "npm run dev",
+    "generate": "babel-skeleton generate",
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production --watch",
     "build": "webpack --mode production",
