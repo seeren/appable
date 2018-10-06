@@ -13,7 +13,7 @@ module.exports = {
             console.error('\x1b[31m', '\u00D7', '\x1b[0m',`Generate error: ${e.message}`);
             return false;
         }
-        console.log('\x1b[32m', '\u2713', '\x1b[0m', `${filename} is generated`);
+        console.log('\x1b[32m', '\u2713', '\x1b[0m', filename);
         return true;
     },
 
