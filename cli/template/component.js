@@ -12,10 +12,6 @@ export class ${className} extends Component {
         });
     }
 
-    onInit() {
-        this.title = \`${filename}\`
-    }
-
 }`;
 
 }
