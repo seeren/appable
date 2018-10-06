@@ -39,6 +39,10 @@ function () {
 
     window.document.createElement(options.selector);
   }
+  /**
+   * @param {string} hook 
+   */
+
 
   _createClass(Component, [{
     key: "lifeCycle",
@@ -53,7 +57,7 @@ function () {
     }
     /**
      * @param {Component} component
-     * @param {bool} reset
+     * @param {bool} replace
      * @returns {this}
      */
 

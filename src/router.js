@@ -11,7 +11,8 @@ const routes = [];
 const state = {};
 
 /**
- * @param {Object} route 
+ * @param {Object} route
+ * @param {Object} param
  * @param {boolean} push 
  */
 const setState = (route, param, push) => {

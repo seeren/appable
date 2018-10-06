@@ -18,6 +18,9 @@ export class Component {
         window.document.createElement(options.selector);
     }
 
+    /**
+     * @param {string} hook 
+     */
     lifeCycle(hook) {
         if (this[hook]) {
             this[hook]()
@@ -27,7 +30,7 @@ export class Component {
 
     /**
      * @param {Component} component
-     * @param {bool} reset
+     * @param {bool} replace
      * @returns {this}
      */
     attach(component, replace) {
