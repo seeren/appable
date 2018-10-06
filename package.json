@@ -31,7 +31,7 @@
   },
   "license": "MIT",
   "bin": {
-    "babel-skeleton": "cli/index.js"
+    "skeleton": "cli/index.js"
   },
   "cordova": {
     "platforms": [
