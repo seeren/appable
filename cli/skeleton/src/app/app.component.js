@@ -8,7 +8,7 @@ export class AppComponent extends Component {
             selector: `app`,
             template: template
         });
-        this.status = `Is ready`
+        this.status = `Is ready`;
     }
 
 }

@@ -14,7 +14,7 @@ describe('Service', () => {
             let callable = () => called = true;
             service.attach(callable);
             service.notify();
-            assert.isTrue(called)
+            assert.isTrue(called);
         });
     });
 
@@ -25,7 +25,7 @@ describe('Service', () => {
             service.attach(callable);
             service.attach(callable);
             service.notify();
-            assert.equal(called, 2)
+            assert.equal(called, 2);
         });
     });
 
@@ -36,7 +36,7 @@ describe('Service', () => {
             service.attach(callable);
             service.detach(callable);
             service.notify();
-            assert.isFalse(called)
+            assert.isFalse(called);
         });
     });
 

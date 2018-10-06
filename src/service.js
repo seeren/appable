@@ -33,7 +33,7 @@ export class Service {
                     break;
                 }
             }
-        }
+        };
 
     }
 

@@ -19,8 +19,8 @@ export class MateriasComponent extends Component {
     }
 
     onInit() {
-        this.materia = MateriaService.get()
-        this.materias = MateriasService.get()
+        this.materia = MateriaService.get();
+        this.materias = MateriasService.get();
     }
 
     onClick(id) {
