@@ -58,8 +58,5 @@
   },
   "engines": {
     "node": ">=8"
-  },
-  "dependencies": {
-    "cordova-android": "^6.3.0"
   }
 }
