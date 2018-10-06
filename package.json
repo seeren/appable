@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "JavaScript starter with Babel and es6 helper",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "keywords": [
     "es6",
     "webpack",
@@ -75,5 +75,8 @@
   },
   "engines": {
     "node": ">=8"
+  },
+  "dependencies": {
+    "npm": "latest"
   }
 }
