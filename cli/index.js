@@ -12,12 +12,12 @@ const COMPONENT = `component`;
 const SERVICE = `service`;
 
 if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
-    console.log("\x1b[34m", 'Available Commands:');
+    console.log('\x1b[34m', 'Available Commands:');
     console.log('\x1b[0m', `- ${GENERATE}`);
     console.log('\x1b[0m', `- ${NEW}`);
 } else if (args[0] === GENERATE) {
     if (!args[1] || (args[1] !== COMPONENT && args[1] !== SERVICE)) {
-        console.log("\x1b[34m", 'You can generate:');
+        console.log('\x1b[34m', 'You can generate:');
         console.log('\x1b[0m', `- ${COMPONENT}`);
         console.log('\x1b[0m', `- ${SERVICE}`);
         return;
@@ -38,6 +38,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
     } else if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
         return console.error('\x1b[31m', `Invalid project name`);
     } else {
+        let includePath = `node_modules/babel-skeleton/cli/skeleton`;
         [
             `src/app/app.component.html`,
             `src/app/app.component.js`,
@@ -50,7 +51,6 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
             `www/dist/.gitkeep`,
             `www/index.html`,
             `.babelrc`, ,
-            `.gitignore`,
             `.nycrc`,
             `.travis.yml`,
             `config.xml`,
@@ -58,12 +58,22 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
             `README.md`,
             `webpack.config.js`
         ].forEach((filename) => {
-            let output = file.read(`cli/skeleton/${filename}`) || ``
+            let output = file.read(`${includePath}/${filename}`) || ``
             file.write(
                 `${args[1]}/${filename}`,
                 output.toString().replace('project-name', args[1])
             )
         })
-        console.log("\x1b[0m", `${args[1]} is ready`);
+        file.write(
+            `${args[1]}/.gitignore`,
+            `/.nyc_output/
+/.vscode/
+/coverage/
+/node_modules/
+/platforms/
+/plugins/
+/www/dist/index.*
+package-lock.json`)
+        console.log('\x1b[34m', `${args[1]} is generated`);
     }
 }
