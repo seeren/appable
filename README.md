@@ -61,7 +61,7 @@ npm run android
 <img src="ressources/demo/demo.gif" align="right">
 
 The demo make the proof of concept of how to wire components, views, shared data and pages together as an usage example.
-[Try it](https://seeren.github.io/babel-skeleton/www/) and view the [source code](tree/master/src/app/).
+[Try it](https://seeren.github.io/babel-skeleton/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/src/app).
 
 The skeleton provide three classes, `Component` for manage dynamic view without DOM manipulation, `Service` for share data with simple notification mechanism and `RouterComponent` for page navigation.
 
@@ -70,7 +70,7 @@ You can generate components.
 ```
 skeleton generate component my-component
 ```
-A **class** for the given name is generated. Life cycle can be handled with with hooks:  `onInit` when the component turn on, `onDestroy` when the component turn off, `onUpdate` when the template refresh. A component can be updated manually invoking `update` method.
+A **class** for the given name is generated. Life cycle provide hooks: `onInit` when the component turn on, `onDestroy` when the component turn off, `onUpdate` when the template is updated. A component can be updated manually invoking `update` method.
 ```js
 import { Component } from 'babel-skeleton/component';
 import { template } from './app.component.html';
@@ -101,7 +101,7 @@ A **template** is generated and attached to the component.
 ```html
 <h2>${title}</h2>
 ```
-Template have access to the component methods and trigger `update` if method return something.
+Template have access to the component methods and trigger `update` if method return a non empty value.
 ```html
 <a onclick="componentMethod()">Hello</a>
 ```
@@ -143,17 +143,21 @@ MyService.attach(service => this.update())
 You can associate a `Component` and an URL using the `RouterComponent`. The default app declare the router tag, this tag contain the component rendering of the associated URL.
 ```js
 RouterComponent
-    .add("/foo", "foo", FooComponent)
-    .add("/bar", "bar", BarComponent)
-    .add("/baz/:id", "baz", BazComponent)
+    .add('/foo', 'foo', FooComponent)
+    .add('/bar', 'bar', BarComponent)
+    .add('/baz/:id', 'baz', BazComponent)
     .run(new AppComponent)
+```
+You can trigger components and push URL with `navigate`
+```js
+RouterComponent.navigate('baz', { id: 7 });
 ```
 
 ## ➰ Integration
 
 <img src="ressources/test/test.jpg" align="right">
 
-The skeleton provide [`Travis`](https://travis-ci.org/) configuration for pass tests and push report to [`Coveralls`](https://coveralls.io/) after the build success.
+The skeleton provide [`Travis`](https://travis-ci.org/) configuration for pass tests and push report to [`Coveralls`](https://coveralls.io/) after a build success.
 
 *Active your project on `Travis` and `Coveralls` for enjoy the feature.*
 
