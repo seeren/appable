@@ -4,7 +4,7 @@
         Babel skeleton
     </name>
     <description>
-        JavaScript starter with Babel and es6 helper
+        Build modern JavaScript with productive environment
     </description>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
