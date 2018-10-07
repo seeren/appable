@@ -69,8 +69,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
         return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Invalid project name`);
     } else {
         let package = [];
-        // let includePath = `node_modules/babel-skeleton/cli/skeleton`;
-        let includePath = `cli/skeleton`;
+        let includePath = `node_modules/babel-skeleton/cli/skeleton`;
         for (let key in JSON.parse(file.read(`${includePath}/package.json`).toString()).devDependencie) {
             package.push(key)
         }
