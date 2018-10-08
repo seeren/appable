@@ -9,7 +9,7 @@
     "javascript",
     "hybrid-app"
   ],
-  "homepage": "https://github.com/seeren/babelskeleton",
+  "homepage": "https://seeren.github.io/babel-skeleton/www/index.html",
   "author": "Cyril Ichti",
   "scripts": {
     "start": "npm run dev",
