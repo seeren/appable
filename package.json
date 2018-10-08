@@ -80,7 +80,6 @@
     "node": ">=8"
   },
   "dependencies": {
-    "npm": "latest",
-    "cordova-android": "^6.3.0"
+    "npm": "latest"
   }
 }
