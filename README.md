@@ -101,7 +101,7 @@ A **template** is generated and attached to the component.
 ```html
 <h2>${title}</h2>
 ```
-Template have access to the component methods and trigger `update` if method return a non empty value.
+Template have access to the component properties and methods. `Component` trigger `update` if the method return a non empty value when a method is binded.
 ```html
 <a onclick="componentMethod()">Hello</a>
 ```
