@@ -10,7 +10,7 @@ module.exports = {
         try {
             fs.writeFileSync(filename, output);
         } catch (e) {
-            console.error('\x1b[31m', '\u00D7', '\x1b[0m',`Generate error: ${e.message}`);
+            console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`);
             return false;
         }
         console.log('\x1b[32m', '\u2713', '\x1b[0m', filename);
@@ -36,7 +36,7 @@ module.exports = {
                     fs.mkdirSync(currentDir)
                 }
             } catch (e) {
-                console.error('\x1b[31m', '\u00D7', '\x1b[0m',`Generate error: ${e.message}`);
+                console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`);
                 return false;
             }
         }
