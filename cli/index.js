@@ -68,6 +68,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
     } else if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
         return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Invalid project name`);
     } else {
+        let projectName = args[1];
         let package = [];
         let includePath = `node_modules/babel-skeleton/cli/skeleton`;
         for (let key in JSON.parse(file.read(`${includePath}/package.json`).toString()).devDependencie) {
@@ -75,17 +76,19 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
         }
         console.log('\x1b[36m', 'Generate files');
         DEPLOY.forEach((filename) => {
-            let output = file.read(`${includePath}/${filename}`) || ``
+            let output = file.read(`${includePath}/${filename}`) || ``;
             file.write(
-                `${args[1]}/${filename}`,
-                output.toString().replace('project-name', args[1])
+                `${projectName}/${filename}`,
+                output.toString().replace(
+                    /project-name/g,
+                    `config.xml` !== filename ? projectName : projectName.replace(`-`, ``))
             )
         })
-        file.write(`${args[1]}/.gitignore`, IGNORE)
+        file.write(`${projectName}/.gitignore`, IGNORE)
         console.log('\x1b[36m', 'Installing packages');
         npm.load({ loaded: false }, (err) => {
-            npm.prefix = args[1]
-            npm.commands.install(package, ()=>{});
+            npm.prefix = projectName;
+            npm.commands.install(package, () => { });
         });
     }
 }
