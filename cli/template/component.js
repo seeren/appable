@@ -1,6 +1,4 @@
-module.exports = (filename, className) => {
-
-    return `import { Component } from 'babel-skeleton/component';
+module.exports = (filename, className) => `import { Component } from 'babel-skeleton/component';
 import { template } from './${filename}.component.html';
     
 export class ${className} extends Component {
@@ -13,5 +11,3 @@ export class ${className} extends Component {
     }
 
 }`;
-
-};
