@@ -8,7 +8,7 @@
 
 <img src="ressources/install/install.gif" align="right">
 
-This project is a starter for deal with modern native JavaScript in a productive environment. You can use it for quickly bootstrap a JavaScript web-app, a mobile-app and the environment of development.
+This package is a starter for deal with modern native JavaScript in a productive environment. You can use it for bootstrap a JavaScript web-app, a mobile-app and the environment of development.
 
 The skeleton contain pre configured environment for watch, compile and test source code with continuous integration.
 
@@ -32,7 +32,7 @@ Create a new application.
 ```
 skeleton new my-project
 ```
-Move the current directory.
+Move the current directory for be ready to start.
 ```
 cd my-project
 ```
@@ -52,6 +52,7 @@ Install target platform.
 npm run android:install
 ```
 Run the application on installed and detected device.
+> [Gradle](https://gradle.org/install/) must be installed and SDK build tool licenses must be accepted: `ANDROID_HOME/tools/bin/sdkmanager --licenses`.
 ```
 npm run android
 ```
@@ -101,7 +102,7 @@ A **template** is generated and attached to the component.
 ```html
 <h2>${title}</h2>
 ```
-Template have access to the component properties and methods. `Component` trigger `update` if the method return a non empty value when a method is binded.
+Template have access to the component properties and methods. `Component` trigger `update` if a method return a non empty value when is binded and the event emmitted.
 ```html
 <a onclick="componentMethod()">Hello</a>
 ```
