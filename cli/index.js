@@ -27,6 +27,7 @@ const DEPLOY = [
     `.travis.yml`,
     `config.xml`,
     `package.json`,
+    `POLICY`,
     `README.md`,
     `webpack.config.js`
 ];
@@ -50,28 +51,51 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
         console.log('\x1b[36m', '>', '\x1b[0m', SERVICE);
         return;
     } else if (!args[2]) {
-        return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a file name`);
+        return console.error(
+            '\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a file name`
+        );
     } else if (!/^[0-9a-zA-Z\.\/-]{1,}$/.test(args[2])) {
-        return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Invalid file name`);
+        return console.error(
+            '\x1b[31m', '\u00D7', '\x1b[0m', `Invalid file name`
+        );
     } else if (args[1] === SERVICE) {
         console.log('\x1b[36m', `Generate ${SERVICE}`);
-        file.write(`src/${args[2]}.${SERVICE}.js`, service(file.className(args[2])));
+        file.write(
+            `src/${args[2]}.${SERVICE}.js`,
+            service(file.className(args[2]))
+        );
     } else if (args[1] === COMPONENT) {
         console.log('\x1b[36m', `Generate ${COMPONENT}`);
-        file.write(`src/${args[2]}.${COMPONENT}.js`, component(args[2].split('/').pop(), file.className(args[2])));
-        file.write(`src/${args[2]}.${COMPONENT}.html`, componentHTML(args[2].split('/').pop()));
-        file.write(`src/${args[2]}.${COMPONENT}.scss`, componentSass(args[2].split('/').pop()));
+        file.write(
+            `src/${args[2]}.${COMPONENT}.js`,
+            component(args[2].split('/').pop(),
+                file.className(args[2]))
+        );
+        file.write(
+            `src/${args[2]}.${COMPONENT}.html`,
+            componentHTML(args[2].split('/').pop())
+        );
+        file.write(
+            `src/${args[2]}.${COMPONENT}.scss`,
+            componentSass(args[2].split('/').pop())
+        );
     }
 } else if (args[0] === NEW) {
     if (!args[1]) {
-        return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a project name`);
+        return console.error(
+            '\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a project name`
+        );
     } else if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
-        return console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Invalid project name`);
+        return console.error(
+            '\x1b[31m', '\u00D7', '\x1b[0m', `Invalid project name`
+        );
     } else {
         let projectName = args[1];
         let package = [];
         let includePath = `node_modules/babel-skeleton/cli/skeleton`;
-        for (let key in JSON.parse(file.read(`${includePath}/package.json`).toString()).devDependencie) {
+        for (let key in JSON.parse(
+            file.read(`${includePath}/package.json`).toString()
+        ).devDependencie) {
             package.push(key)
         }
         console.log('\x1b[36m', 'Generate files');
@@ -81,7 +105,9 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
                 `${projectName}/${filename}`,
                 output.toString().replace(
                     /project-name/g,
-                    `config.xml` !== filename ? projectName : projectName.replace(`-`, ``))
+                    `config.xml` !== filename
+                        ? projectName
+                        : projectName.replace(`-`, ``))
             )
         })
         file.write(`${projectName}/.gitignore`, IGNORE)
