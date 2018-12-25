@@ -7,6 +7,7 @@
     "prod": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "android": "cordova run android --device",
+    "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
     "ios": "cordova run ios --device",
     "ios:install": "cordova platform add ios",
