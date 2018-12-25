@@ -17,6 +17,7 @@
     "prod": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "android": "cordova run android --device",
+    "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
     "ios": "cordova run ios --device",
     "ios:install": "cordova platform add ios",
@@ -42,9 +43,6 @@
     ],
     "plugins": {
       "cordova-plugin-device": {},
-      "cordova-plugin-globalization": {},
-      "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-network-information": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {}
     }
@@ -64,6 +62,7 @@
     "coveralls": "latest",
     "cross-env": "latest",
     "css-loader": "latest",
+    "file-loader": "latest",
     "jsdom": "latest",
     "mini-css-extract-plugin": "latest",
     "mocha": "latest",
