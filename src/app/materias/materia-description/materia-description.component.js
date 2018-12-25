@@ -1,13 +1,13 @@
-import { Component } from '../../../component';
-import template from './materia-description.component.html';
-import { RouterComponent } from '../../../router';
-import { MateriaService } from '../../shared/services/materia.service';
+import { Component } from "../../../component";
+import template from "./materia-description.component.html";
+import { RouterComponent } from "../../../router";
+import { MateriaService } from "../../shared/services/materia.service";
 
 export class MateriaDescriptionComponent extends Component {
 
     constructor() {
         super({
-            selector: 'materia-description',
+            selector: "materia-description",
             template: template,
         });
         let observer = (service) => this.materia = service.get();
@@ -17,7 +17,7 @@ export class MateriaDescriptionComponent extends Component {
     }
 
     navigate() {
-        RouterComponent.navigate('materia-editor', {
+        RouterComponent.navigate("materia-editor", {
             id: this.materia.id
         });
     }

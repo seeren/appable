@@ -35,8 +35,8 @@ export class Component {
      */
     attach(component, replace) {
         this.detach(component);
-        let attribute = `data-${this.selector.split(`[`)[0]}="${this.row}"`;
-        let selector = component.selector.split(`[`)[0];
+        let attribute = `data-${this.selector.split("[")[0]}="${this.row}"`;
+        let selector = component.selector.split("[")[0];
         let endTag = `</${selector}>`;
         let container = `<${selector} ${attribute}>${endTag}`;
         component.selector = `${selector}[${attribute}]`;
@@ -58,12 +58,12 @@ export class Component {
     detach(component) {
         let index = this.components.indexOf(component);
         if (index > -1) {
-            let selectorSplit = component.selector.split(`[`);
+            let selectorSplit = component.selector.split("[");
             let selector = selectorSplit[0];
-            let attributes = ` ${selectorSplit[1].replace(`]`, ``)}`;
+            let attributes = ` ${selectorSplit[1].replace("]", "")}`;
             this.lifeCycle("onDestroy");
             this.components.splice(index, 1);
-            this.template = this.template.replace(`<${selector + attributes}></${selector}>`, ``);
+            this.template = this.template.replace(`<${selector + attributes}></${selector}>`, "");
             this.row--;
             component.selector = `${selector}`;
         }
@@ -74,7 +74,7 @@ export class Component {
      * @returns {this}
      */
     update() {
-        let vars = ``;
+        let vars = "";
         let htmlElement = window.document.querySelector(this.selector);
         let properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
             window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1)
@@ -82,9 +82,9 @@ export class Component {
         properties.forEach(varName => {
             vars += `var ${varName} = this["${varName}"]`;
             if (this[varName] instanceof window.Function) {
-                vars += `.bind(this)`;
+                vars += ".bind(this)";
             }
-            vars += `;`;
+            vars += ";";
         });
         htmlElement.innerHTML = eval(vars + '`' + this.template + '`');
         this.updateEvents(htmlElement, properties);
@@ -102,7 +102,7 @@ export class Component {
     updateEvents(htmlElement, properties) {
         let match;
         properties.forEach(propertie => {
-            let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, 'g');
+            let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g");
             while (match = regExp.exec(htmlElement.innerHTML)) {
                 window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
                     child => this.registerEvent(child, match[1], propertie, match[2].split(", "))

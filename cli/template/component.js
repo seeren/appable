@@ -1,5 +1,5 @@
-module.exports = (filename, className) => `import { Component } from 'babel-skeleton/component';
-import { template } from './${filename}.component.html';
+module.exports = (filename, className) => `import { Component } from "babel-skeleton/component";
+import { template } from "./${filename}.component.html";
     
 export class ${className} extends Component {
 

@@ -1,12 +1,12 @@
-import { Component } from '../../component';
-import template from './navigation.component.html';
-import { RouterComponent } from '../../router';
+import { Component } from "../../component";
+import template from "./navigation.component.html";
+import { RouterComponent } from "../../router";
 
 export class NavigationComponent extends Component {
 
     constructor() {
         super({
-            selector: 'navigation',
+            selector: "navigation",
             template: template
         });
     }

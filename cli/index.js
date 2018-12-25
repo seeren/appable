@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 const [, , ...args] = process.argv
-const npm = require('npm');
-const file = require('./file/file');
-const service = require('./template/service');
-const component = require('./template/component');
-const componentHTML = require('./template/component.html');
-const componentSass = require('./template/component.scss');
+const npm = require("npm");
+const file = require("./file/file");
+const service = require("./template/service");
+const component = require("./template/component");
+const componentHTML = require("./template/component.html");
+const componentSass = require("./template/component.scss");
 const GENERATE = `generate`;
 const NEW = `new`;
 const COMPONENT = `component`;
@@ -41,53 +41,53 @@ const IGNORE = `/.nyc_output/
 package-lock.json`;
 
 if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
-    console.log('\x1b[36m', 'Available Commands:');
-    console.log('\x1b[36m', '>', '\x1b[0m', GENERATE);
-    console.log('\x1b[36m', '>', '\x1b[0m', NEW);
+    console.log("\x1b[36m", "Available Commands:");
+    console.log("\x1b[36m", ">", "\x1b[0m", GENERATE);
+    console.log("\x1b[36m", ">", "\x1b[0m", NEW);
 } else if (args[0] === GENERATE) {
     if (!args[1] || (args[1] !== COMPONENT && args[1] !== SERVICE)) {
-        console.log('\x1b[36m', 'You can generate:');
-        console.log('\x1b[36m', '>', '\x1b[0m', COMPONENT);
-        console.log('\x1b[36m', '>', '\x1b[0m', SERVICE);
+        console.log("\x1b[36m", "You can generate:");
+        console.log("\x1b[36m", ">", "\x1b[0m", COMPONENT);
+        console.log("\x1b[36m", ">", "\x1b[0m", SERVICE);
         return;
     } else if (!args[2]) {
         return console.error(
-            '\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a file name`
+            "\x1b[31m", "\u00D7", "\x1b[0m", `You must provide a file name`
         );
     } else if (!/^[0-9a-zA-Z\.\/-]{1,}$/.test(args[2])) {
         return console.error(
-            '\x1b[31m', '\u00D7', '\x1b[0m', `Invalid file name`
+            "\x1b[31m", "\u00D7", "\x1b[0m", `Invalid file name`
         );
     } else if (args[1] === SERVICE) {
-        console.log('\x1b[36m', `Generate ${SERVICE}`);
+        console.log("\x1b[36m", `Generate ${SERVICE}`);
         file.write(
             `src/${args[2]}.${SERVICE}.js`,
             service(file.className(args[2]))
         );
     } else if (args[1] === COMPONENT) {
-        console.log('\x1b[36m', `Generate ${COMPONENT}`);
+        console.log("\x1b[36m", `Generate ${COMPONENT}`);
         file.write(
             `src/${args[2]}.${COMPONENT}.js`,
-            component(args[2].split('/').pop(),
+            component(args[2].split("/").pop(),
                 file.className(args[2]))
         );
         file.write(
             `src/${args[2]}.${COMPONENT}.html`,
-            componentHTML(args[2].split('/').pop())
+            componentHTML(args[2].split("/").pop())
         );
         file.write(
             `src/${args[2]}.${COMPONENT}.scss`,
-            componentSass(args[2].split('/').pop())
+            componentSass(args[2].split("/").pop())
         );
     }
 } else if (args[0] === NEW) {
     if (!args[1]) {
         return console.error(
-            '\x1b[31m', '\u00D7', '\x1b[0m', `You must provide a project name`
+            "\x1b[31m", "\u00D7", "\x1b[0m", `You must provide a project name`
         );
     } else if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
         return console.error(
-            '\x1b[31m', '\u00D7', '\x1b[0m', `Invalid project name`
+            "\x1b[31m", "\u00D7", "\x1b[0m", `Invalid project name`
         );
     } else {
         let projectName = args[1];
@@ -98,7 +98,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
         ).devDependencie) {
             package.push(key)
         }
-        console.log('\x1b[36m', 'Generate files');
+        console.log("\x1b[36m", "Generate files");
         DEPLOY.forEach((filename) => {
             let output = file.read(`${includePath}/${filename}`) || ``;
             file.write(
@@ -111,7 +111,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
             )
         })
         file.write(`${projectName}/.gitignore`, IGNORE)
-        console.log('\x1b[36m', 'Installing packages');
+        console.log("\x1b[36m", "Installing packages");
         npm.load({ loaded: false }, (err) => {
             npm.prefix = projectName;
             npm.commands.install(package, () => { });

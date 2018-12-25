@@ -1,13 +1,13 @@
-import { Component } from '../../component';
-import template from './materia-editor.component.html';
-import { RouterComponent } from '../../router';
-import { MateriasService } from '../shared/services/materias.service';
+import { Component } from "../../component";
+import template from "./materia-editor.component.html";
+import { RouterComponent } from "../../router";
+import { MateriasService } from "../shared/services/materias.service";
 
 export class MateriaEditorComponent extends Component {
 
     constructor() {
         super({
-            selector: 'materia-editor',
+            selector: "materia-editor",
             template: template
         });
     }

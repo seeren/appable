@@ -20,13 +20,13 @@ const setState = (route, param, push) => {
     state.name = route.name;
     state.param = param || {}
     for (let prop in state.param) {
-        path = path.replace(`:${prop}`, state.param[prop])
+        path = path.replace(":${prop}", state.param[prop])
     }
     if (route.component instanceof window.Function) {
         route.component = new route.component;
     }
     RouterComponent.attach(route.component);
-    window.history[(push ? `pushState` : `replaceState`)](
+    window.history[(push ? "pushState" : "replaceState")](
         state,
         route.name,
         path
@@ -43,8 +43,8 @@ export let RouterComponent = new class extends Component {
      */
     constructor() {
         super({
-            selector: `router`,
-            template: ``
+            selector: "router",
+            template: ""
         });
         window.onpopstate = this.onpopstate.bind(this);
     }
@@ -116,14 +116,14 @@ export let RouterComponent = new class extends Component {
             if (route.path === window.location.pathname) {
                 return true;
             }
-            let explosedPath = window.location.pathname.split('/');
-            let explosedRoute = route.path.split('/');
+            let explosedPath = window.location.pathname.split("/");
+            let explosedRoute = route.path.split("/");
             if (explosedPath.length !== explosedRoute.length) {
                 return false;
             }
             for (let key in explosedPath) {
-                if (':' === explosedRoute[key][0]) {
-                    param[explosedRoute[key].replace(':', '')] = explosedPath[key]
+                if (":" === explosedRoute[key][0]) {
+                    param[explosedRoute[key].replace(":", "")] = explosedPath[key]
                 } else if (explosedPath[key] !== explosedRoute[key]) {
                     param = {};
                     return false;
