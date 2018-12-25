@@ -25,9 +25,6 @@
     ],
     "plugins": {
       "cordova-plugin-device": {},
-      "cordova-plugin-globalization": {},
-      "cordova-plugin-inappbrowser": {},
-      "cordova-plugin-network-information": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-whitelist": {}
     }
