@@ -35,10 +35,10 @@ export class Component {
      */
     attach(component, replace) {
         this.detach(component);
-        let attribute = `data-${this.selector.split("[")[0]}="${this.row}"`;
-        let selector = component.selector.split("[")[0];
-        let endTag = `</${selector}>`;
-        let container = `<${selector} ${attribute}>${endTag}`;
+        const attribute = `data-${this.selector.split("[")[0]}="${this.row}"`;
+        const selector = component.selector.split("[")[0];
+        const endTag = `</${selector}>`;
+        const container = `<${selector} ${attribute}>${endTag}`;
         component.selector = `${selector}[${attribute}]`;
         this.components.push(component);
         this.row++;
@@ -56,11 +56,11 @@ export class Component {
      * @returns {this}
      */
     detach(component) {
-        let index = this.components.indexOf(component);
+        const index = this.components.indexOf(component);
         if (index > -1) {
-            let selectorSplit = component.selector.split("[");
-            let selector = selectorSplit[0];
-            let attributes = ` ${selectorSplit[1].replace("]", "")}`;
+            const selectorSplit = component.selector.split("[");
+            const selector = selectorSplit[0];
+            const attributes = ` ${selectorSplit[1].replace("]", "")}`;
             this.lifeCycle("onDestroy");
             this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, "");
@@ -75,8 +75,8 @@ export class Component {
      */
     update() {
         let vars = "";
-        let htmlElement = window.document.querySelector(this.selector);
-        let properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
+        const htmlElement = window.document.querySelector(this.selector);
+        const properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
             window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1)
         );
         properties.forEach(varName => {
@@ -102,10 +102,16 @@ export class Component {
     updateEvents(htmlElement, properties) {
         let match;
         properties.forEach(propertie => {
-            let regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g");
+            const regExp = new window.RegExp(
+                `(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g"
+            );
             while (match = regExp.exec(htmlElement.innerHTML)) {
-                window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
-                    child => this.registerEvent(child, match[1], propertie, match[2].split(", "))
+                window.document.querySelectorAll(
+                    `${this.selector} [${match[0]}]`
+                ).forEach(
+                    child => this.registerEvent(
+                        child, match[1], propertie, match[2].split(", ")
+                    )
                 );
             }
         });
@@ -119,7 +125,11 @@ export class Component {
      */
     registerEvent(htmlElement, type, propertie, args) {
         htmlElement[type] = () => {
-            if (undefined !== this[propertie](eval(args.toString()))) {
+            const evaluedArguments = [];
+            for (let key in args) {
+                evaluedArguments[key] = eval(args[key]);
+            }
+            if (undefined !== this[propertie](...evaluedArguments)) {
                 this.update();
             }
         };
