@@ -7,7 +7,7 @@ module.exports = {
         './src/index.scss'
     ],
     output: {
-		path:  __dirname + "/www/dist",
+        path: __dirname + "/www/dist",
         filename: 'index.js'
     },
     module: {
@@ -27,6 +27,10 @@ module.exports = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'file-loader'
             }
         ]
     },
