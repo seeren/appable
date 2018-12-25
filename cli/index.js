@@ -73,8 +73,7 @@ if (!args.length || (args[0] !== GENERATE && args[0] !== NEW)) {
     } else {
         let projectName = args[1];
         let package = [];
-        let includePath = "cli/skeleton";
-        // let includePath = `node_modules/babel-skeleton/cli/skeleton`;
+        let includePath = `node_modules/babel-skeleton/cli/skeleton`;
         for (let key in JSON.parse(file.read(`${includePath}/package.json`).toString()).devDependencie) {
             package.push(key)
         }
