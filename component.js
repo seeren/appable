@@ -150,7 +150,7 @@ function () {
 
       var match;
       properties.forEach(function (propertie) {
-        var regExp = new window.RegExp("(on[a-zA-Z]{4,16})=\"".concat(propertie, "\\((.*)\\)\""), 'g');
+        var regExp = new window.RegExp("(on[a-zA-Z]{4,16})=\"".concat(propertie, "\\((.*)\\)\""), "g");
 
         while (match = regExp.exec(htmlElement.innerHTML)) {
           window.document.querySelectorAll("".concat(_this3.selector, " [").concat(match[0], "]")).forEach(function (child) {
@@ -172,7 +172,13 @@ function () {
       var _this4 = this;
 
       htmlElement[type] = function () {
-        if (undefined !== _this4[propertie](eval(args.toString()))) {
+        var evaluedArguments = [];
+
+        for (var key in args) {
+          evaluedArguments[key] = eval(args[key]);
+        }
+
+        if (undefined !== _this4[propertie].apply(_this4, evaluedArguments)) {
           _this4.update();
         }
       };

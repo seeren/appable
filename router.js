@@ -46,7 +46,7 @@ var setState = function setState(route, param, push) {
   state.param = param || {};
 
   for (var prop in state.param) {
-    path = path.replace(":".concat(prop), state.param[prop]);
+    path = path.replace(":" + prop, state.param[prop]);
   }
 
   if (route.component instanceof window.Function) {
@@ -167,16 +167,16 @@ function (_Component) {
           return true;
         }
 
-        var explosedPath = window.location.pathname.split('/');
-        var explosedRoute = route.path.split('/');
+        var explosedPath = window.location.pathname.split("/");
+        var explosedRoute = route.path.split("/");
 
         if (explosedPath.length !== explosedRoute.length) {
           return false;
         }
 
         for (var key in explosedPath) {
-          if (':' === explosedRoute[key][0]) {
-            param[explosedRoute[key].replace(':', '')] = explosedPath[key];
+          if (":" === explosedRoute[key][0]) {
+            param[explosedRoute[key].replace(":", "")] = explosedPath[key];
           } else if (explosedPath[key] !== explosedRoute[key]) {
             param = {};
             return false;
