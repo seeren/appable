@@ -44,7 +44,7 @@
                 </span>
                 <span class="mdl-list__item-secondary-action">
                     ${ Array(5).join(0).split(0).map((item, key) =>
-                    key < materia.level ? ` <i class="material-icons ${materia.type}" onclick="onStarClick(` + (key + 1) + `)">star</i>
+                    key < materia.level ? ` <i class="pointer material-icons ${materia.type}" onclick="onStarClick(` + (key + 1) + `)">star</i>
                         ` : ` <i class="pointer material-icons ${materia.type}" onclick="onStarClick(` + (key + 1) + `)">star_border</i>
                         `).join(``)}
                 </span>
