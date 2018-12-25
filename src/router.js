@@ -20,7 +20,7 @@ const setState = (route, param, push) => {
     state.name = route.name;
     state.param = param || {}
     for (let prop in state.param) {
-        path = path.replace(":${prop}", state.param[prop])
+        path = path.replace(":" + prop, state.param[prop])
     }
     if (route.component instanceof window.Function) {
         route.component = new route.component;
@@ -76,7 +76,7 @@ export let RouterComponent = new class extends Component {
      * @returns {void}
      */
     navigate(name, param) {
-        let route = routes.find(route => name === route.name);
+        const route = routes.find(route => name === route.name);
         if (route.component !== this.components[0]) {
             this.detach(this.components[0]);
             setState(route, param, true);
@@ -112,7 +112,7 @@ export let RouterComponent = new class extends Component {
      */
     run(component) {
         let param = {}
-        let route = routes.find(route => {
+        const route = routes.find(route => {
             if (route.path === window.location.pathname) {
                 return true;
             }
