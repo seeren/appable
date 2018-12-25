@@ -44,6 +44,7 @@
     "coveralls": "latest",
     "cross-env": "latest",
     "css-loader": "latest",
+    "file-loader": "latest",
     "jsdom": "latest",
     "mini-css-extract-plugin": "latest",
     "mocha": "latest",
