@@ -1,7 +1,6 @@
 import { describe, beforeEach, it } from "mocha";
 import { assert } from "chai";
 import { AppComponent } from "../../src/app/app.component";
-import window from "./../window";
 
 describe("AppComponent", () => {
 
