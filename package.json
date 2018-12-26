@@ -1,13 +1,12 @@
 {
   "name": "babel-skeleton",
   "description": "Build modern JavaScript with productive environment",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "keywords": [
     "es6",
     "webpack",
     "babel",
-    "javascript",
-    "hybrid-app"
+    "cordova"
   ],
   "homepage": "https://seeren.github.io/babel-skeleton/www/index.html",
   "author": "Cyril Ichti",
@@ -16,25 +15,25 @@
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production --watch",
     "build": "webpack --mode production",
+    "build:core": "babel src --out-dir dist",
     "android": "cordova run android --device",
     "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
-    "core": "babel src/core/component.js src/core/*.js --out-file ./dist/index.js",
     "skeleton": "skeleton",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "main": "dist/index.js",
-  "module": "src/core/index.js",
+  "module": "src/index.js",
+  "bin": {
+    "skeleton": "cli/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/seeren/babel-skeleton"
   },
   "license": "MIT",
-  "bin": {
-    "skeleton": "cli/index.js"
-  },
   "cordova": {
     "platforms": [
       "android"
