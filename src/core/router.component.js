@@ -1,37 +1,10 @@
 import { Component } from "./component";
+import { RouterService } from "./router.service";
 
 /**
  * @type {Array}
  */
 const routes = [];
-
-/**
- * @type {Object}
- */
-const state = {};
-
-/**
- * @param {Object} route
- * @param {Object} param
- * @param {boolean} push 
- */
-const setState = (route, param, push) => {
-    let path = route.path;
-    state.name = route.name;
-    state.param = param || {}
-    for (let prop in state.param) {
-        path = path.replace(":" + prop, state.param[prop])
-    }
-    if (route.component instanceof window.Function) {
-        route.component = new route.component;
-    }
-    RouterComponent.attach(route.component);
-    window.history[(push ? "pushState" : "replaceState")](
-        state,
-        route.name,
-        path
-    );
-};
 
 /**
  * @type {Router}
@@ -55,10 +28,9 @@ export let RouterComponent = new class extends Component {
     onpopstate(e) {
         this.detach(this.components[0]);
         if (e.state) {
-            setState(
-                routes.find(route => e.state.name === route.name),
-                e.state.param
-            );
+            RouterService.put(this, routes.find(
+                route => e.state.name === route.name
+            ), e.state.param);
         }
         this.update();
     }
@@ -73,13 +45,12 @@ export let RouterComponent = new class extends Component {
     /**
      * @param {string} name 
      * @param {Object} param 
-     * @returns {void}
      */
     navigate(name, param) {
         const route = routes.find(route => name === route.name);
         if (route.component !== this.components[0]) {
             this.detach(this.components[0]);
-            setState(route, param, true);
+            RouterService.put(this, route, param, true);
             this.update();
         }
     }
@@ -89,7 +60,7 @@ export let RouterComponent = new class extends Component {
      * @returns {mixed} 
      */
     get(name) {
-        return state.param[name]
+        return RouterService.get().param[name]
     }
 
     /**
@@ -108,7 +79,7 @@ export let RouterComponent = new class extends Component {
     }
 
     /**
-     * @returns {void}
+     * @param {Component} component 
      */
     run(component) {
         let param = {}
@@ -132,9 +103,9 @@ export let RouterComponent = new class extends Component {
             return true;
         });
         if (route) {
-            setState(route, param);
+            RouterService.put(this, route, param);
         } else if (routes.length) {
-            setState(routes[0]);
+            RouterService.put(this, routes[0]);
         }
         component.attach(this, true).update();
     }
