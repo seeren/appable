@@ -4,7 +4,7 @@ import { AppComponent } from "../../src/app/app.component";
 
 describe("AppComponent", () => {
 
-    var component;
+    let component;
 
     beforeEach(() => component = new AppComponent);
 
