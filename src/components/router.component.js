@@ -1,5 +1,5 @@
 import { Component } from "./component";
-import { RouterService } from "./router.service";
+import { RouterService } from "../services/router.service";
 
 /**
  * @type {Array}
