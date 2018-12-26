@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "Build modern JavaScript with productive environment",
-  "version": "2.2.1",
+  "version": "2.3.1",
   "keywords": [
     "es6",
     "webpack",
@@ -19,14 +19,14 @@
     "android": "cordova run android --device",
     "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
-    "core": "babel ./src/service.js --out-file service.js | babel ./src/component.js --out-file component.js | babel ./src/router.js --out-file router.js",
+    "core": "babel src/core/component.js src/core/*.js --out-file ./dist/index.js",
     "skeleton": "skeleton",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
-  "sass": "src/index.scss",
-  "main": "src/index.js",
+  "main": "dist/index.js",
+  "module": "src/core/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/seeren/babel-skeleton"
