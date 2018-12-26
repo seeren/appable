@@ -1,5 +1,5 @@
+import { RouterComponent } from "./core/router.component";
 import { AppComponent } from "./app/app.component";
-import { RouterComponent } from "./router";
 import { MateriasComponent } from "./app/materias/materias.component";
 import { MateriaEditorComponent } from "./app/materia-editor/materia-editor.component";
 
