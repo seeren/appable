@@ -1,4 +1,4 @@
-import { Service } from "../../../core/service";
+import { Service } from "../../../../src/services/service";
 
 export const MateriaService = new class MateriaService extends Service {
 

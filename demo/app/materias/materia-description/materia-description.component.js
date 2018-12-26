@@ -1,6 +1,6 @@
-import { Component } from "../../../core/component";
+import { Component } from "../../../../src/components/component";
+import { RouterComponent } from "../../../../src/components/router.component";
 import template from "./materia-description.component.html";
-import { RouterComponent } from "../../../core/router.component";
 import { MateriaService } from "../../shared/services/materia.service";
 
 export class MateriaDescriptionComponent extends Component {

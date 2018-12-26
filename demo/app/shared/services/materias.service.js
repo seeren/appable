@@ -1,5 +1,5 @@
 import { Materia } from "./../models/materia.model"
-import { Service } from "../../../core/service";
+import { Service } from "../../../../src/services/service";
 
 export const MateriasService = new class MateriasService extends Service {
 
