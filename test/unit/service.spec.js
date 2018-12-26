@@ -1,10 +1,10 @@
 import { describe, beforeEach, it } from "mocha";
 import { assert } from "chai";
-import { Service } from "./../../src/service";
+import { Service } from "./../../src/services/service";
 
 describe("Service", () => {
 
-    var service;
+    let service;
 
     beforeEach(() => service = new Service);
 
