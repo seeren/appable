@@ -1,4 +1,4 @@
-import { Component } from "../../../../dist/index";
+import { Component } from "../../../../src/index";
 import template from "./materia-preview.component.html";
 import { MateriaService } from "../../shared/services/materia.service";
 

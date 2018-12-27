@@ -1,4 +1,4 @@
-import { RouterComponent } from "../dist/index";
+import { RouterComponent } from "../src/index";
 import { AppComponent } from "./app/app.component";
 import { MateriasComponent } from "./app/materias/materias.component";
 import { MateriaEditorComponent } from "./app/materia-editor/materia-editor.component";

@@ -1,4 +1,4 @@
-import { Component } from "../../dist/index";
+import { Component } from "../../src/index";
 import { template } from "./app.component.html";
 import { NavigationComponent } from "./navigation/navigation.component";
 

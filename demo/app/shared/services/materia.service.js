@@ -1,4 +1,4 @@
-import { Service } from "../../../../dist/index";
+import { Service } from "../../../../src/index";
 
 export const MateriaService = new class MateriaService extends Service {
 
