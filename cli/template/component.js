@@ -1,11 +1,11 @@
-module.exports = (filename, className) => `import { Component } from "babel-skeleton/component";
+module.exports = (filename, className) => `import { Component } from "babel-skeleton";
 import { template } from "./${filename}.component.html";
     
 export class ${className}Component extends Component {
 
     constructor() {
         super({
-            selector: \`${filename}\`,
+            selector: "${filename}",
             template: template
         });
     }
