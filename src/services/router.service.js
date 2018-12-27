@@ -1,5 +1,8 @@
 import { Service } from "./service";
 
+/**
+ * @type {RouterService}
+ */
 export const RouterService = new class RouterService extends Service {
 
     /**
@@ -37,8 +40,6 @@ export const RouterService = new class RouterService extends Service {
             (push ? "pushState" : "replaceState")
         ](this.state, route.name, path);
         router.attach(route.component);
-        this.notify();
     }
-
 
 }

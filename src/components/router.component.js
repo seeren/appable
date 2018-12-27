@@ -1,4 +1,4 @@
-import { Component } from "./component";
+import { Component } from "./../../src/index";
 import { RouterService } from "../services/router.service";
 
 /**
@@ -7,7 +7,7 @@ import { RouterService } from "../services/router.service";
 const routes = [];
 
 /**
- * @type {Router}
+ * @type {RouterComponent}
  */
 export let RouterComponent = new class extends Component {
 
@@ -19,20 +19,24 @@ export let RouterComponent = new class extends Component {
             selector: "router",
             template: ""
         });
-        window.onpopstate = this.onpopstate.bind(this);
+        window.onpopstate = (event) => {
+            this.detach(this.components[0]);
+            if (event.state) {
+                RouterService.put(this, routes.find(
+                    route => event.state.name === route.name
+                ), event.state.param);
+            }
+            this.update();
+        };
     }
 
     /**
-     * @param {Event} e 
+     * @returns {this}
      */
-    onpopstate(e) {
-        this.detach(this.components[0]);
-        if (e.state) {
-            RouterService.put(this, routes.find(
-                route => e.state.name === route.name
-            ), e.state.param);
-        }
-        this.update();
+    update() {
+        super.update();
+        RouterService.notify();
+        return this;
     }
 
     /**
