@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "Build modern JavaScript with productive environment",
-  "version": "2.4.3",
+  "version": "2.4.4",
   "keywords": [
     "es6",
     "webpack",
@@ -14,7 +14,7 @@
     "start": "npm run dev",
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production --watch",
-    "build": "webpack --mode production",
+    "build": "webpack --mode development",
     "android": "cordova run android --device",
     "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
