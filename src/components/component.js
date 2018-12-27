@@ -20,12 +20,17 @@ export class Component {
 
     /**
      * @param {string} hook 
+     * @param {boolean} capture
      */
-    lifeCycle(hook) {
+    lifeCycle(hook, capture) {
         if (this[hook]) {
             this[hook]()
         }
-        this.components.forEach(component => component.lifeCycle(hook));
+        if (capture) {
+            this.components.forEach(
+                component => component.lifeCycle(hook, capture)
+            );
+        }
     }
 
     /**
@@ -46,7 +51,9 @@ export class Component {
             this.template = this.template.replace(`<${selector}>${endTag}`, container);
         } else {
             this.template += container;
-            this.lifeCycle("onInit");
+        }
+        if (component.onInit) {
+            component.onInit()
         }
         return this;
     }
@@ -61,7 +68,7 @@ export class Component {
             const selectorSplit = component.selector.split("[");
             const selector = selectorSplit[0];
             const attributes = ` ${selectorSplit[1].replace("]", "")}`;
-            this.lifeCycle("onDestroy");
+            this.lifeCycle("onDestroy", true);
             this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, "");
             this.row--;
