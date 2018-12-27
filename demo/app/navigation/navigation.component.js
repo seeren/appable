@@ -1,5 +1,5 @@
-import { Component } from "../../../src/components/component";
-import { RouterComponent } from "../../../src/components/router.component";
+import { Component } from "../../../dist/index";
+import { RouterComponent } from "../../../dist/index";
 import template from "./navigation.component.html";
 
 export class NavigationComponent extends Component {

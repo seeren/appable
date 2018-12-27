@@ -1,5 +1,5 @@
-import { Component } from "../../../src/components/component";
-import { RouterComponent } from "../../../src/components/router.component";
+import { Component } from "../../../dist/index";
+import { RouterComponent } from "../../../dist/index";
 import template from "./materia-editor.component.html";
 import { MateriasService } from "../shared/services/materias.service";
 
