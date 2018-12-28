@@ -12,13 +12,13 @@ This package is a starter for deal with modern JavaScript in a productive enviro
 [`Babel`](https://babeljs.io/) [`BrowserSync`](https://browsersync.io/)  [`Chai`](https://www.chaijs.com/) [`Cordova`](https://cordova.apache.org/) [`Coveralls`](https://coveralls.io/) [`HtmlImport`](https://www.npmjs.com/package/babel-plugin-transform-html-import-to-string) [`Istanbul`](https://istanbul.js.org/)  [`Jsdom`](https://www.npmjs.com/package/jsdom)  [`Mocha`](https://mochajs.org/) [`NodeSass`](https://www.npmjs.com/package/node-sass) [`Sinon`](https://sinonjs.org/) [`Travis`](https://travis-ci.org/) [`Webpack`](https://webpack.js.org/)
 
 **Table of content**
-* [Installation](#📦-installation)
-* [Development](#👨‍💻-development)
-* [Integration](#➰-integration)
+* [Installation](#installation)
+* [Development](#development)
+* [Integration](#integration)
 * [Scripts](#scripts)
 * [CLI](#cli)
 
-<a name="installation"></a>
+<a id="installation"></a>
 ## 📦 Installation
 <img src="ressources/skeleton/skeleton.jpg" align="right">
 
@@ -53,6 +53,7 @@ npm run android
 ```
 [Gradle](https://gradle.org/install/) must be installed and SDK build tool licenses must be accepted: `ANDROID_HOME/tools/bin/sdkmanager --licenses`.
 
+<a id="development"></a>
 ## 👨‍💻 Development
 
 <img src="ressources/demo/demo.gif" align="right">
@@ -166,6 +167,7 @@ Service can `attach` callbacks to trigger when `notify` is called.
 BazService.attach(service => `Notify have been called`);
 ```
 
+<a id="integration"></a>
 ## ➰ Integration
 
 <img src="ressources/test/test.jpg" align="right">
@@ -181,6 +183,7 @@ Generate coverage with [`Istanbul`](https://istanbul.js.org/).
 npm run coverage
 ```
 
+<a id="scripts"></a>
 ## 🔖 Scripts
 
 Following scripts allow you to use the development environment.
@@ -201,6 +204,7 @@ Following scripts allow you to use the development environment.
 | `npm run test:coverage` | Generate report |
 | `npm run test:coveralls` | Send report |
 
+<a id="cli"></a>
 ## 🔖 CLI
 Following commands allow you to generate features.
 
