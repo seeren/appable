@@ -1,5 +1,4 @@
 #  💀 babel skeleton
-
 <img src="ressources/install/install.gif" align="right">
 
 **Build modern JavaScript with productive environment**
@@ -8,73 +7,86 @@
 [![Downloads](https://img.shields.io/npm/dt/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton)
 [![Release](https://img.shields.io/npm/v/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton)
 
-
 This package is a starter for deal with modern JavaScript in a productive environment. You can use this starter for bootstrap a JavaScript hybrid-app and the environment of development for watch, compile and test source code with continuous integration.
 
 [`Babel`](https://babeljs.io/) [`BrowserSync`](https://browsersync.io/)  [`Chai`](https://www.chaijs.com/) [`Cordova`](https://cordova.apache.org/) [`Coveralls`](https://coveralls.io/) [`HtmlImport`](https://www.npmjs.com/package/babel-plugin-transform-html-import-to-string) [`Istanbul`](https://istanbul.js.org/)  [`Jsdom`](https://www.npmjs.com/package/jsdom)  [`Mocha`](https://mochajs.org/) [`NodeSass`](https://www.npmjs.com/package/node-sass) [`Sinon`](https://sinonjs.org/) [`Travis`](https://travis-ci.org/) [`Webpack`](https://webpack.js.org/)
 
+**Table of content**
+* [Installation](#📦-installation)
+* [Development](#👨‍💻-development)
+* [Integration](#➰-integration)
+* [Scripts](#scripts)
+* [CLI](#cli)
 
+<a name="installation"></a>
 ## 📦 Installation
-
 <img src="ressources/skeleton/skeleton.jpg" align="right">
 
 Install with [npm](https://www.npmjs.com/package/babel-skeleton).
-
-```
+```bash
 npm install -g babel-skeleton
 ```
-
 Create a new application.
-
-```
+```bash
 skeleton new my-project
 ```
 Move the current directory.
-```
+```bash
 cd my-project
 ```
 
-## 💻 Web browser
+### 💻 Web browser
 Run the application on a Web Browser with [`Webpack`](https://webpack.js.org/) using hot reload with [`BrowserSync`](https://browsersync.io/).
 ```
 npm run start
 ```
 
-## 📱 Mobile
+### 📱 Mobile
 
-Install target platform.
-
-```
+Install targeted platform.
+```bash
 npm run android:install
 ```
 Run the application on installed and detected device.
-```
+```bash
 npm run android
 ```
 [Gradle](https://gradle.org/install/) must be installed and SDK build tool licenses must be accepted: `ANDROID_HOME/tools/bin/sdkmanager --licenses`.
 
-## 👨‍💻  Development
+## 👨‍💻 Development
 
 <img src="ressources/demo/demo.gif" align="right">
 
+This skeleton allow to develop from scratch with a modern syntax and this is the main goal. But component distribution and communication is provided with some extra classes as a proof of concept.
+
 The skeleton provide `Component` for manage dynamic view, `Service` for share data with simple notification mechanism and `RouterComponent` for page navigation. [Try it](https://seeren.github.io/babel-skeleton/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/demo).
 
-### 🍰 **Component**
+### 🍰 Components
 You can generate components.
+```bash
+skeleton generate component foo
 ```
-skeleton generate component my-component
+A component can be routed and associated to an URL with the `RouterComponent`.
+```js
+RouterComponent
+    .add('/foo', 'foo', FooComponent)
+    .run(new AppComponent)
 ```
-Life cycle provide hooks: `onInit` when the component turn on, `onDestroy` when the component turn off, `onUpdate` when the template is updated. A component can be updated manually invoking `update` method.
+Life cycle provide hooks: `onInit` when a component is routed, `onDestroy` when the component turn off, `onUpdate` when the template is updated. Components can embed childs by declaring them in the  `components` optionnal property.
 ```js
 import { Component } from 'babel-skeleton';
-import { template } from './app.component.html';
+import { BarComponent } from './bar/bar.component.html';
+import { template } from './foo.component.html';
 
-export class AppComponent extends Component {
+export class FooComponent extends Component {
 
     constructor() {
         super({
-            selector: `my-component`,
-            template: template
+            selector: "foo",
+            template: template,
+            components: [
+                new BarComponent,
+            ]
         });
     }
 
@@ -82,57 +94,31 @@ export class AppComponent extends Component {
         this.title = `Hello`;
     }
 
-    onDestroy() { }
-
-    onUpdate() { }
-
 }
 ```
-A **template** with data binding is generated and attached to the component.
 
+#### Template
+A component have a template with data binding using `es6 template strings`.
 ```html
 <h2>${title}</h2>
 ```
-Template have access to the component properties and methods. `Component` trigger `update` if an event handler return a value.
+Event handlers have direct access to component's methods, `update` is triggered if an event handler return a value.
 ```html
-<a onclick="componentMethod()">Hello</a>
+<a onclick="componentMethod()">Click</a>
 ```
-A **sass** file is generated.
+Childs component have to be declared in the template.
+```html
+<bar></bar>
+```
+
+#### Style
+A sass file is generated.
 ```css
-my-component { }
+foo { }
 ```
 
-### 💫 **Service**
-You can generate services.
-```
-skeleton generate service service-name
-```
-Services share data between components and `notify` for changes.
-```js
-export const MyService = new class extends Service {
-
-    constructor() {
-        super();
-        this.sharedData = [];
-    }
-
-    get() {
-        return this.sharedData;
-    }
-
-    post(data){
-        this.sharedData.push(data);
-        this.notify();
-    }
-}
-```
-Service can `attach` callbacks to trigger when `notify` is called.
-```js
-MyService.attach(service => this.update())
-```
-
-### 🚦 **RouterComponent**
-You can associate a `Component` and an URL using the `RouterComponent`.
+### 🚦 Routing
+You can associate a `Component` to an URL using the `RouterComponent`.
 ```js
 RouterComponent
     .add('/foo', 'foo', FooComponent)
@@ -140,14 +126,44 @@ RouterComponent
     .add('/baz/:id', 'baz', BazComponent)
     .run(new AppComponent)
 ```
-You can trigger components and push URL with `navigate`
+You can trigger components and push URL with `navigate`.
 ```js
 RouterComponent.navigate('baz', { id: 7 });
 ```
-### 🚥 **RouterService**
-You can be notified when a navigation append.
+####  RouterService
+With the `RouterService` you can be notified when a navigation occurs. 
 ```js
 RouterService.attach((service) => `Navigate to ${service.get().name}`);
+```
+
+### 💫 **Services**
+You can generate services.
+```bash
+skeleton generate service baz
+```
+Services share data between components and can `notify` for changes.
+```js
+export const BazService = new class extends Service {
+
+    constructor() {
+        super();
+        this.data = [];
+    }
+
+    get() {
+        return this.data;
+    }
+
+    post(data){
+        this.data.push(data);
+        this.notify();
+    }
+
+}
+```
+Service can `attach` callbacks to trigger when `notify` is called.
+```js
+BazService.attach(service => `Notify have been called`);
 ```
 
 ## ➰ Integration
@@ -157,11 +173,11 @@ RouterService.attach((service) => `Navigate to ${service.get().name}`);
 The skeleton provide [`Travis`](https://travis-ci.org/) configuration for pass tests and push report to [`Coveralls`](https://coveralls.io/) after a build success. 
 
 Pass the tests with [`Mocha`](https://mochajs.org/).
-```js
+```bash
 npm run test
 ```
-Generate coverage report with [`Istanbul`](https://istanbul.js.org/).
-```js
+Generate coverage with [`Istanbul`](https://istanbul.js.org/).
+```bash
 npm run coverage
 ```
 
@@ -185,7 +201,7 @@ Following scripts allow you to use the development environment.
 | `npm run test:coverage` | Generate report |
 | `npm run test:coveralls` | Send report |
 
-## 🔖 Cli
+## 🔖 CLI
 Following commands allow you to generate features.
 
 | Command | Description |
