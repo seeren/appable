@@ -20,17 +20,12 @@ export class Component {
 
     /**
      * @param {string} hook 
-     * @param {boolean} capture
      */
-    lifeCycle(hook, capture) {
+    lifeCycle(hook) {
         if (this[hook]) {
             this[hook]()
         }
-        if (capture) {
-            this.components.forEach(
-                component => component.lifeCycle(hook, capture)
-            );
-        }
+        this.components.forEach(component => component.lifeCycle(hook));
     }
 
     /**
@@ -48,12 +43,13 @@ export class Component {
         this.components.push(component);
         this.row++;
         if (replace) {
-            this.template = this.template.replace(`<${selector}>${endTag}`, container);
+            this.template = this.template.replace(
+                `<${selector}>${endTag}`,
+                container
+            );
         } else {
             this.template += container;
-        }
-        if (component.onInit) {
-            component.onInit()
+            this.lifeCycle("onInit")
         }
         return this;
     }
@@ -68,7 +64,7 @@ export class Component {
             const selectorSplit = component.selector.split("[");
             const selector = selectorSplit[0];
             const attributes = ` ${selectorSplit[1].replace("]", "")}`;
-            this.lifeCycle("onDestroy", true);
+            this.lifeCycle("onDestroy");
             this.components.splice(index, 1);
             this.template = this.template.replace(`<${selector + attributes}></${selector}>`, "");
             this.row--;
