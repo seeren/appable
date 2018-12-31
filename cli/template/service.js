@@ -8,6 +8,7 @@ export const ${className}Service = new class extends Service {
         super();
     }
 
-}`;
+}
+`;
 
 }

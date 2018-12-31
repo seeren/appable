@@ -10,4 +10,5 @@ export class ${className}Component extends Component {
         });
     }
 
-}`;
+}
+`;

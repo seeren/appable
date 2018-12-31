@@ -9,7 +9,7 @@ export class MateriaPreviewComponent extends Component {
             selector: "materia-preview",
             template: template,
         });
-        let observer = () => this.materia = MateriaService.get();
+        const observer = () => this.materia = MateriaService.get();
         this.onInit = () => MateriaService.attach(observer);
         this.onDestroy = () => MateriaService.detach(observer);
         this.materia = null;

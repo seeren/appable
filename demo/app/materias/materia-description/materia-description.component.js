@@ -1,7 +1,4 @@
-import {
-    Component,
-    RouterComponent
-} from "../../../../src/index";
+import { Component, RouterComponent } from "../../../../src/index";
 import template from "./materia-description.component.html";
 import { MateriaService } from "../../shared/services/materia.service";
 
@@ -12,7 +9,7 @@ export class MateriaDescriptionComponent extends Component {
             selector: "materia-description",
             template: template,
         });
-        let observer = (service) => this.materia = service.get();
+        const observer = (service) => this.materia = service.get();
         this.onInit = () => MateriaService.attach(observer);
         this.onDestroy = () => MateriaService.detach(observer);
         this.materia = null;
