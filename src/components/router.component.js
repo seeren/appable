@@ -1,8 +1,9 @@
 import { Component } from "./../../src/index";
 import { RouterService } from "../services/router.service";
+import { Route } from "../models/route.model";
 
 /**
- * @type {Array}
+ * @type {Route[]}
  */
 const routes = [];
 
@@ -49,14 +50,21 @@ export let RouterComponent = new class extends Component {
     /**
      * @param {string} name 
      * @param {Object} param 
+     * @throws {Error}
      */
     navigate(name, param) {
-        const route = routes.find(route => name === route.name);
-        if (route.component !== this.components[0]) {
-            this.detach(this.components[0]);
-            RouterService.put(this, route, param, true);
-            this.update();
-        }
+        routes.forEach((route) => {
+            if (name !== route.name) {
+                return;
+            }
+            if (route.component === this.components[0]) {
+                this.detach(this.components[0]);
+                RouterService.put(this, route, param, true);
+                this.update();
+                return;
+            }
+            throw new Error(`Route '${name}' not found`);
+        });
     }
 
     /**
@@ -74,11 +82,7 @@ export let RouterComponent = new class extends Component {
      * @returns {this}
      */
     add(path, name, component) {
-        routes.push({
-            name: name,
-            path: path,
-            component: component
-        });
+        routes.push(new Route(path, name, component));
         return this;
     }
 
