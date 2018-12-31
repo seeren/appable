@@ -16,10 +16,17 @@ export let RouterComponent = new class extends Component {
      * @constructor
      */
     constructor() {
-        super({
-            selector: "router"
-        });
+        super({ selector: "router" });
         window.onpopstate = this.onPopstate.bind(this);
+    }
+
+    /**
+     * @returns {this}
+     */
+    update() {
+        super.update();
+        RouterService.notify();
+        return this;
     }
 
     /**
@@ -39,19 +46,50 @@ export let RouterComponent = new class extends Component {
     }
 
     /**
-     * @returns {this}
-     */
-    update() {
-        super.update();
-        RouterService.notify();
-        return this;
-    }
-
-    /**
      * @returns {void}
      */
     back() {
         window.history.back();
+    }
+
+    /**
+     * @param {String} name
+     * @returns {mixed} 
+     */
+    get(name) {
+        return RouterService.get().param[name]
+    }
+
+    /**
+     * @param {Route} route
+     * @returns {Object|undefined}
+     */
+    getRouteParam(route) {
+        const param = {}
+        const explosedPath = window.location.pathname.split("/");
+        const explosedRoute = route.path.split("/");
+        if (explosedPath.length !== explosedRoute.length) {
+            return;
+        }
+        for (let key in explosedPath) {
+            if (":" === explosedRoute[key][0]) {
+                param[explosedRoute[key].replace(":", "")] = explosedPath[key]
+            } else if (explosedPath[key] !== explosedRoute[key]) {
+                return;
+            }
+        }
+        return param;
+    }
+
+    /**
+     * @param {string} path 
+     * @param {string} name 
+     * @param {Function} component 
+     * @returns {this}
+     */
+    add(path, name, component) {
+        routes.push(new Route(path, name, component));
+        return this;
     }
 
     /**
@@ -75,52 +113,22 @@ export let RouterComponent = new class extends Component {
     }
 
     /**
-     * @param {String} name
-     * @returns {mixed} 
-     */
-    get(name) {
-        return RouterService.get().param[name]
-    }
-
-    /**
-     * @param {string} path 
-     * @param {string} name 
-     * @param {Function} component 
-     * @returns {this}
-     */
-    add(path, name, component) {
-        routes.push(new Route(path, name, component));
-        return this;
-    }
-
-    /**
      * @param {Component} component 
      */
     run(component) {
-        let param = {}
-        const route = routes.find(route => {
-            if (route.path === window.location.pathname) {
-                return true;
-            }
-            let explosedPath = window.location.pathname.split("/");
-            let explosedRoute = route.path.split("/");
-            if (explosedPath.length !== explosedRoute.length) {
-                return false;
-            }
-            for (let key in explosedPath) {
-                if (":" === explosedRoute[key][0]) {
-                    param[explosedRoute[key].replace(":", "")] = explosedPath[key]
-                } else if (explosedPath[key] !== explosedRoute[key]) {
-                    param = {};
-                    return false;
+        let param;
+        try {
+            routes.forEach((route) => {
+                if (route.path === window.location.pathname
+                    || (param = this.getRouteParam(route))) {
+                    throw route;
                 }
+            });
+            if (routes.length) {
+                RouterService.put(this, routes[0]);
             }
-            return true;
-        });
-        if (route) {
+        } catch (route) {
             RouterService.put(this, route, param);
-        } else if (routes.length) {
-            RouterService.put(this, routes[0]);
         }
         component.attach(this, true).update();
     }
