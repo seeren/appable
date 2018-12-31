@@ -30,15 +30,14 @@ export const RouterService = new class RouterService extends Service {
         let path = route.path;
         this.state.name = route.name;
         this.state.param = param || {}
+        const listener = push ? "pushState" : "replaceState";
         for (let prop in this.state.param) {
             path = path.replace(":" + prop, this.state.param[prop])
         }
         if (route.component instanceof window.Function) {
             route.component = new route.component;
         }
-        window.history[
-            (push ? "pushState" : "replaceState")
-        ](this.state, route.name, path);
+        window.history[listener](this.state, route.name, path);
         router.attach(route.component);
     }
 
