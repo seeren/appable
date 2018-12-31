@@ -60,7 +60,9 @@ npm run android
 
 This skeleton allow to develop from scratch with a modern syntax and this is the main goal. But component distribution and communication is provided with some extra classes as a proof of concept.
 
-The skeleton provide `Component` for manage dynamic view, `Service` for share data with simple notification mechanism and `RouterComponent` for page navigation. [Try it](https://seeren.github.io/babel-skeleton/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/demo).
+The skeleton provide `Component` for manage dynamic view, `Service` for share data with simple notification mechanism and `RouterComponent` for page navigation.
+
+*[Try it](https://seeren.github.io/babel-skeleton/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/demo)*.
 
 ### 🍰 Components
 You can generate components.

@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "Build modern JavaScript with productive environment",
-  "version": "2.4.8",
+  "version": "3.0.0",
   "keywords": [
     "es6",
     "webpack",
