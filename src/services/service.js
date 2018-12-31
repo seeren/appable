@@ -11,12 +11,12 @@ export class Service {
         /**
          * @type {Array}
          */
-        let callback = [];
+        const callback = [];
 
         /**
          * @param {Function} callable
          */
-        this.attach = callable => callback.push(callable);
+        this.attach = (callable) => callback.push(callable);
 
         /**
          * @returns {void}
@@ -27,11 +27,9 @@ export class Service {
          * @param {Function} callable 
          */
         this.detach = (callable) => {
-            for (let key in callback) {
-                if (callable === callback[key]) {
-                    callback.splice(key, 1);
-                    break;
-                }
+            const index = callback.indexOf(callable);
+            if (index < 0) {
+                callback.splice(key, 1);
             }
         };
 
