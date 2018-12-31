@@ -36,8 +36,8 @@ export class Service {
          */
         this.detach = (callable) => {
             const index = callback.indexOf(callable);
-            if (index < 0) {
-                callback.splice(key, 1);
+            if (-1 < index) {
+                callback.splice(index, 1);
             }
             return this;
         };
