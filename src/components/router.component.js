@@ -17,18 +17,25 @@ export let RouterComponent = new class extends Component {
      */
     constructor() {
         super({
-            selector: "router",
-            template: ""
+            selector: "router"
         });
-        window.onpopstate = (event) => {
-            this.detach(this.components[0]);
-            if (event.state) {
-                RouterService.put(this, routes.find(
-                    route => event.state.name === route.name
-                ), event.state.param);
-            }
-            this.update();
-        };
+        window.onpopstate = this.onPopstate.bind(this);
+    }
+
+    /**
+     * @param {PopStateEvent} event 
+     */
+    onPopstate(event) {
+        this.detach(this.components[0]);
+        if (event.state) {
+            routes.forEach((route) => {
+                if (event.state.name !== route.name) {
+                    return;
+                }
+                RouterService.put(this, route, event.state.param);
+            });
+        }
+        this.update();
     }
 
     /**
@@ -57,7 +64,7 @@ export let RouterComponent = new class extends Component {
             if (name !== route.name) {
                 return;
             }
-            if (route.component === this.components[0]) {
+            if (route.component !== this.components[0]) {
                 this.detach(this.components[0]);
                 RouterService.put(this, route, param, true);
                 this.update();
