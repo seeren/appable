@@ -9,7 +9,7 @@ export class Service {
     constructor() {
 
         /**
-         * @type {Array}
+         * @type {Function[]}
          */
         const callback = [];
 
