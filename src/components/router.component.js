@@ -95,21 +95,20 @@ export let RouterComponent = new class extends Component {
     /**
      * @param {string} name 
      * @param {Object} param 
-     * @throws {Error}
      */
     navigate(name, param) {
-        routes.forEach((route) => {
-            if (name !== route.name) {
-                return;
-            }
-            if (route.component !== this.components[0]) {
-                this.detach(this.components[0]);
-                RouterService.put(this, route, param, true);
-                this.update();
-                return;
-            }
-            throw new Error(`Route '${name}' not found`);
-        });
+        try {
+            routes.forEach((route) => {
+                if (name === route.name
+                    && route.component !== this.components[0]) {
+                    throw route;
+                }
+            });
+        } catch (route) {
+            this.detach(this.components[0]);
+            RouterService.put(this, route, param, true);
+            this.update();
+        }
     }
 
     /**
