@@ -8,7 +8,7 @@
     "babel",
     "cordova"
   ],
-  "homepage": "https://seeren.github.io/babel-skeleton/www/index.html",
+  "homepage": "https://seeren.github.io/babel-skeleton/demo/www/index.html",
   "author": "Cyril Ichti",
   "scripts": {
     "start": "npm run dev",
