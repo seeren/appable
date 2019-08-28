@@ -122,7 +122,7 @@ export class Component {
     registerEvent(htmlElement, type, propertie, args) {
         htmlElement[type] = () => {
             const evaluedArguments = [];
-            for (let key in args) {
+            for (const key in args) {
                 evaluedArguments[key] = eval(args[key]);
             }
             if (undefined !== this[propertie](...evaluedArguments)) {

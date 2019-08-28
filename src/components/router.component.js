@@ -71,7 +71,7 @@ export let RouterComponent = new class extends Component {
         if (explosedPath.length !== explosedRoute.length) {
             return;
         }
-        for (let key in explosedPath) {
+        for (const key in explosedPath) {
             if (":" === explosedRoute[key][0]) {
                 param[explosedRoute[key].replace(":", "")] = explosedPath[key]
             } else if (explosedPath[key] !== explosedRoute[key]) {
