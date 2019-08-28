@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.js");
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -165,17 +165,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Service\", function() { return Service; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\n/**\r\n * @type {Service}\r\n */\nvar Service =\n/**\r\n * @constructor\r\n */\nfunction Service() {\n  var _this = this;\n\n  _classCallCheck(this, Service);\n\n  /**\r\n   * @type {Function[]}\r\n   */\n  var callback = [];\n  /**\r\n   * @param {Function} callable\r\n   * @returns {this}\r\n   */\n\n  this.attach = function (callable) {\n    callback.push(callable);\n    return _this;\n  };\n  /**\r\n   * @returns {this}\r\n   */\n\n\n  this.notify = function () {\n    callback.forEach(function (callable) {\n      return callable(_this);\n    });\n    return _this;\n  };\n  /**\r\n   * @param {Function} callable \r\n   * @returns {this}\r\n   */\n\n\n  this.detach = function (callable) {\n    var index = callback.indexOf(callable);\n\n    if (-1 < index) {\n      callback.splice(index, 1);\n    }\n\n    return _this;\n  };\n};\n\n//# sourceURL=webpack:///./src/services/service.js?");
-
-/***/ }),
-
-/***/ 0:
-/*!****************************!*\
-  !*** multi ./src/index.js ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("module.exports = __webpack_require__(/*! ./src/index.js */\"./src/index.js\");\n\n\n//# sourceURL=webpack:///multi_./src/index.js?");
 
 /***/ })
 
