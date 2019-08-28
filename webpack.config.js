@@ -4,7 +4,8 @@ module.exports = {
     ],
     output: {
         path: __dirname + "/dist",
-        filename: 'index.js'
+        filename: 'index.js',
+        libraryTarget: 'umd',
     },
     module: {
         rules: [
