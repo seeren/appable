@@ -1,11 +1,9 @@
 module.exports = {
-    entry: [
-        './src/index.js'
-    ],
+    entry: './src/index.js',
     output: {
         path: __dirname + "/dist",
         filename: 'index.js',
-        libraryTarget: 'umd',
+        libraryTarget: 'umd'
     },
     module: {
         rules: [
@@ -17,9 +15,6 @@ module.exports = {
         ]
     },
     watchOptions: {
-        ignored: [
-            /node_modules/,
-            /test/
-        ]
+        ignored: /node_modules/
     }
 };
