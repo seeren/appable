@@ -1,6 +1,6 @@
 import jsdom from "jsdom";
 
-export let window = ((() => {
+export const window = (() => {
 
     const { JSDOM } = jsdom;
     global.window = new JSDOM("<!doctype html>").window;
@@ -12,4 +12,4 @@ export let window = ((() => {
     global.window.parseInt = parseInt;
     return global.window;
 
-})());
+})();
