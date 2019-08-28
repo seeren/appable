@@ -1,23 +1,21 @@
 {
-  "name": "project-name",
+  "name": "{projectName}",
   "version": "0.0.1",
   "scripts": {
-    "start": "npm run dev",
-    "dev": "webpack --mode development --watch",
-    "prod": "webpack --mode production --watch",
-    "build": "webpack --mode production",
     "android": "cordova run android --device",
     "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
-    "ios": "cordova run ios --device",
-    "ios:install": "cordova platform add ios",
+    "build": "webpack --mode production",
+    "dev": "webpack --mode development --watch",
+    "prod": "webpack --mode production --watch",
     "skeleton": "skeleton",
+    "start": "npm run dev",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
-  "sass": "src/index.scss",
-  "main": "src/index.js",
+  "sass": "src/index",
+  "main": "src/index",
   "private": true,
   "cordova": {
     "platforms": [
