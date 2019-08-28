@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "Build modern JavaScript with productive environment",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "keywords": [
     "es6",
     "webpack",
@@ -15,15 +15,11 @@
     "dev": "webpack --mode development --watch",
     "prod": "webpack --mode production --watch",
     "build": "webpack --mode development",
-    "android": "cordova run android --device",
-    "android:build": "npm run build & npm run android",
-    "android:install": "cordova platform add android",
-    "skeleton": "skeleton",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
-  "main": "dist/index.js",
+  "main": "src/index",
   "bin": {
     "skeleton": "cli/index.js"
   },
@@ -32,16 +28,6 @@
     "url": "https://github.com/seeren/babel-skeleton"
   },
   "license": "MIT",
-  "cordova": {
-    "platforms": [
-      "android"
-    ],
-    "plugins": {
-      "cordova-plugin-device": {},
-      "cordova-plugin-statusbar": {},
-      "cordova-plugin-whitelist": {}
-    }
-  },
   "devDependencies": {
     "@babel/cli": "latest",
     "@babel/core": "latest",
@@ -49,24 +35,14 @@
     "@babel/register": "latest",
     "babel-loader": "latest",
     "babel-plugin-istanbul": "latest",
-    "babel-plugin-transform-html-import-to-string": "latest",
-    "browser-sync": "latest",
-    "browser-sync-webpack-plugin": "latest",
     "chai": "latest",
-    "cordova": "latest",
     "coveralls": "latest",
     "cross-env": "latest",
-    "css-loader": "latest",
-    "file-loader": "latest",
     "jsdom": "latest",
-    "mini-css-extract-plugin": "latest",
     "mocha": "latest",
     "mocha-lcov-reporter": "latest",
-    "node-sass": "latest",
     "nyc": "latest",
-    "sass-loader": "latest",
     "sinon": "latest",
-    "style-loader": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
