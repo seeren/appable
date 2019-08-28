@@ -1,0 +1,13 @@
+$navy:#000052;
+app {
+    .mdl-layout {
+        background: $navy;
+        background: linear-gradient(135deg, #0000a5 0%, $navy 100%);
+    }
+    .mdl-layout__header.is-casting-shadow {
+        background: #fafafa;
+    }
+    .mdl-layout__header.is-casting-shadow * {
+        color: $navy !important;
+    }
+}

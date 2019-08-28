@@ -1,0 +1,19 @@
+@import './../materias/materias.component.scss';
+
+materia-editor {
+    @extend materias;
+
+    .mdl-list {
+        .material-icons {
+            font-size: 2.75em;
+
+            &.disabled {
+                opacity: .3;
+            }
+        }
+
+        input {
+            font-size: 1.5em;
+        }
+    }
+}
