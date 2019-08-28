@@ -49,7 +49,7 @@ npm run android:install
 ```
 Run the application on installed and detected device.
 ```bash
-npm run android
+npm run android:build
 ```
 [Gradle](https://gradle.org/install/) must be installed and SDK build tool licenses must be accepted: `ANDROID_HOME/tools/bin/sdkmanager --licenses`.
 
@@ -62,7 +62,7 @@ This skeleton allow to develop from scratch with a modern syntax and this is the
 
 The skeleton provide `Component` for manage dynamic view, `Service` for share data with simple notification mechanism and `RouterComponent` for page navigation.
 
-*[Try it](https://seeren.github.io/babel-skeleton/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/demo)*.
+*[Try it](https://seeren.github.io/babel-skeleton/demo/www/index.html) and view the [source code](https://github.com/seeren/babel-skeleton/tree/master/demo)*.
 
 ### 🍰 Components
 You can generate components.
@@ -200,8 +200,6 @@ Following scripts allow you to use the development environment.
 | `npm run android` | Deploy on device |
 | `npm run android:build` | Bundle and deploy |
 | `npm run android:install` | Install platform |
-| `npm run ios` | Deploy on device |
-| `npm run ios:install` | Install platform |
 | `npm test` | Pass tests |
 | `npm run test:coverage` | Generate report |
 | `npm run test:coveralls` | Send report |
