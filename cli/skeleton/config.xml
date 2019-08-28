@@ -1,9 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.project-name.app" version="0.0.1" xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>project-name</name>
+<widget id="com.{projectName}.app" version="0.0.1" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>{projectName}</name>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000052" />
     <preference name="StatusBarStyle" value="lightcontent" />
@@ -14,8 +13,4 @@
         <allow-intent href="https://*/*" />
         <allow-intent href="geo:*" />
     </platform>
-    <plugin name="cordova-plugin-device" spec="^1.1.7" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
-    <engine name="android" spec="^6.3.0" />
 </widget>
