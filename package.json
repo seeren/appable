@@ -19,7 +19,8 @@
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
-  "main": "src/index",
+  "module": "src/index.js",
+  "main": "dist/index.js",
   "bin": {
     "skeleton": "cli/index.js"
   },
