@@ -1,11 +1,16 @@
 const fs = require("fs");
 const path = require("path");
 
+/**
+ * @description File helper
+ * @module file
+ */
 module.exports = {
 
     /**
      * @param {srting} filename 
      * @param {srting} output 
+     * @returns {Boolean}
      */
     write(filename, output) {
         if (!this.createDirs(filename.split("/"))) {
@@ -25,6 +30,7 @@ module.exports = {
 
     /**
      * @param {string} filename 
+     * @returns {String}
      */
     read(filename) {
         let output;
@@ -40,6 +46,7 @@ module.exports = {
 
     /**
      * @param {Array} dirs 
+     * @returns {Boolean}
      */
     createDirs(dirs) {
         let currentDir;
@@ -60,7 +67,8 @@ module.exports = {
     },
 
     /**
-     * @param {string} filename 
+     * @param {String} filename 
+     * @returns {String}
      */
     className(filename) {
         let className = "";
