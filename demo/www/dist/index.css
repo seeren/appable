@@ -1,0 +1,79 @@
+app .mdl-layout {
+  background: #000052;
+  background: linear-gradient(135deg, #0000a5 0%, #000052 100%); }
+
+app .mdl-layout__header.is-casting-shadow {
+  background: #fafafa; }
+
+app .mdl-layout__header.is-casting-shadow * {
+  color: #000052 !important; }
+
+navigation a {
+  cursor: pointer; }
+
+materias .border, materia-editor .border {
+  border-style: ridge;
+  border-color: #fafafa;
+  border-width: 2px;
+  border-radius: 4px; }
+
+materias .mdl-list__item, materia-editor .mdl-list__item {
+  min-height: 2em;
+  padding-top: 0em;
+  padding-bottom: 0em; }
+
+materias .pointer, materia-editor .pointer {
+  cursor: pointer; }
+
+materias .magic, materia-editor .magic {
+  color: #409040 !important; }
+
+materias .command, materia-editor .command {
+  color: #b8b838 !important; }
+
+materias .summon, materia-editor .summon {
+  color: #b03131 !important; }
+
+materias .support, materia-editor .support {
+  color: #7071b1 !important; }
+
+materias .independent, materia-editor .independent {
+  color: #b041b0 !important; }
+
+materias .border, materia-editor .border {
+  border-style: ridge;
+  border-color: #fafafa;
+  border-width: 2px;
+  border-radius: 4px; }
+
+materias .mdl-list__item, materia-editor .mdl-list__item {
+  min-height: 2em;
+  padding-top: 0em;
+  padding-bottom: 0em; }
+
+materias .pointer, materia-editor .pointer {
+  cursor: pointer; }
+
+materias .magic, materia-editor .magic {
+  color: #409040 !important; }
+
+materias .command, materia-editor .command {
+  color: #b8b838 !important; }
+
+materias .summon, materia-editor .summon {
+  color: #b03131 !important; }
+
+materias .support, materia-editor .support {
+  color: #7071b1 !important; }
+
+materias .independent, materia-editor .independent {
+  color: #b041b0 !important; }
+
+materia-editor .mdl-list .material-icons {
+  font-size: 2.75em; }
+  materia-editor .mdl-list .material-icons.disabled {
+    opacity: .3; }
+
+materia-editor .mdl-list input {
+  font-size: 1.5em; }
+
