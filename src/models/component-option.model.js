@@ -1,9 +1,9 @@
 import { Component } from "../components/component";
 
 /**
- * @type {Option}
+ * @type {ComponentOption}
  */
-export class Option {
+export class ComponentOption {
 
     /**
      * @constructor
