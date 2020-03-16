@@ -11,33 +11,33 @@ export class Service {
         /**
          * @type {Function[]}
          */
-        const callback = [];
+        const callables = [];
 
         /**
          * @param {Function} callable
-         * @returns {this}
+         * @returns {Service}
          */
         this.attach = (callable) => {
-            callback.push(callable);
+            callables.push(callable);
             return this;
         };
 
         /**
-         * @returns {this}
+         * @returns {Service}
          */
         this.notify = () => {
-            callback.forEach(callable => callable(this));
+            callables.forEach(callable => callable(this));
             return this;
         };
 
         /**
          * @param {Function} callable 
-         * @returns {this}
+         * @returns {Service}
          */
         this.detach = (callable) => {
-            const index = callback.indexOf(callable);
-            if (-1 < index) {
-                callback.splice(index, 1);
+            const index = callables.indexOf(callable);
+            if (-1 !== index) {
+                callables.splice(index, 1);
             }
             return this;
         };
