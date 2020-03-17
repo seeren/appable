@@ -2,6 +2,6 @@
 /.vscode/
 /coverage/
 /node_modules/
-*.psd
-*.mp4
+resources/*/*.psd
+resources/*/*.mp4
 package-lock.json
