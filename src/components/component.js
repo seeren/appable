@@ -1,4 +1,4 @@
-import { Option } from "../models/option.model";
+import { ComponentOption } from "../models/component-option.model";
 
 /**
  * @type {Component}
@@ -7,7 +7,7 @@ export class Component {
 
     /**
      * @constructor
-     * @param {Option} option
+     * @param {ComponentOption} option
      */
     constructor(option) {
 
