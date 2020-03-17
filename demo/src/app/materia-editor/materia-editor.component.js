@@ -1,4 +1,5 @@
 import { Component, RouterComponent } from "babel-skeleton";
+
 import template from "./materia-editor.component.html";
 import { MateriasService } from "../shared/services/materias.service";
 

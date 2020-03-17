@@ -1,4 +1,5 @@
 import { Component, RouterComponent } from "babel-skeleton";
+
 import template from "./navigation.component.html";
 
 export class NavigationComponent extends Component {

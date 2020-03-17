@@ -1,4 +1,5 @@
 import { Component } from "babel-skeleton";
+
 import { template } from "./app.component.html";
 import { NavigationComponent } from "./navigation/navigation.component";
 

@@ -1,4 +1,5 @@
 import { Component } from "babel-skeleton";
+
 import template from "./materia-preview.component.html";
 import { MateriaService } from "../../shared/services/materia.service";
 
