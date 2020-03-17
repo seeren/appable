@@ -61,6 +61,7 @@ const IGNORE = `/.nyc_output/
 /node_modules/
 /platforms/
 /plugins/
+/resources/android/
 /www/dist/index.*
 package-lock.json`;
 
@@ -150,8 +151,8 @@ if (args[0] === NEW) {
             `${projectName}/${filename}`,
             output.toString().replace(/{projectName}/g, "config.xml" !== filename ? projectName : projectName.replace("-", ""))
         )
-    })
-    file.write(`${projectName}/.gitignore`, IGNORE)
+    });
+    file.write(`${projectName}/.gitignore`, IGNORE);
     console.log("\x1b[36m", "Installing packages");
     return npm.load({ loaded: false }, (err) => {
         npm.prefix = projectName;
