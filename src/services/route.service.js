@@ -35,14 +35,10 @@ export const RouteService = new class RouteService extends Service {
     post(path, name, component) {
         this.routes.forEach((route) => {
             if (path === route.path) {
-                throw new ReferenceError(
-                    `Can't add route: path "${path}" already exists`
-                );
+                throw new ReferenceError(`Can't add route: path "${path}" already exists`);
             }
             if (name === route.name) {
-                throw new ReferenceError(
-                    `Can't add route: name "${name}" already exists`
-                );
+                throw new ReferenceError(`Can't add route: name "${name}" already exists`);
             }
         });
         this.routes.push(new Route(path, name, component));
@@ -58,7 +54,7 @@ export const RouteService = new class RouteService extends Service {
 
     /**
      * @param {Route} route
-     * @returns {Object|undefined}
+     * @returns {Object|void}
      */
     getParam(route) {
         const param = {}
@@ -91,4 +87,3 @@ export const RouteService = new class RouteService extends Service {
     }
 
 }
-
