@@ -61,7 +61,7 @@
     "webpack-cli": "latest"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "cordova-android": "latest",
