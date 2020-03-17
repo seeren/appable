@@ -112,12 +112,12 @@ if (args[0] === GENERATE) {
 
     if (args[1] === SERVICE) {
         console.log("\x1b[36m", `Generate ${SERVICE}`);
-        return file.write(`src/${args[2]}/${args[2].split("/").pop()}.${SERVICE}.js`, service(file.className(args[2])));
+        return file.write(`src/app/${args[2]}/${args[2].split("/").pop()}.${SERVICE}.js`, service(file.className(args[2])));
     }
 
     if (args[1] === COMPONENT) {
         let componentName = args[2].split("/").pop();
-        let componentPath = `src/${args[2]}/${componentName}`;
+        let componentPath = `src/app/${args[2]}/${componentName}`;
         console.log("\x1b[36m", `Generate ${COMPONENT}`);
         file.write(`${componentPath}.${COMPONENT}.js`, component(componentName, file.className(args[2])));
         file.write(`${componentPath}.${COMPONENT}.html`, componentHTML(componentName));
