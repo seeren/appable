@@ -44,7 +44,9 @@ export const RouterComponent = new class extends Component {
      * @param {Component} component 
      */
     run(component) {
-        window.onpopstate = (event) => this.onPopstate(event);
+        window.addEventListener("popstate", (event) => this.onPopstate(event));
+        window.document.addEventListener("pause", () => this.lifeCycle("onPause"));
+        window.document.addEventListener("resume", () => this.lifeCycle("onResume"));
         let param;
         const routes = RouteService.get();
         try {
