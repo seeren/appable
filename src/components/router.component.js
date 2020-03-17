@@ -1,135 +1,134 @@
-import { Component } from "./../../src/index";
-import { RouterService } from "../services/router.service";
-import { Route } from "../models/route.model";
-
-/**
- * @type {Route[]}
- */
-const routes = [];
+import { Component } from "../components/component";
+import { RouteService } from "../services/route.service";
+import { StateService } from "../services/state.service";
 
 /**
  * @type {RouterComponent}
  */
-export let RouterComponent = new class extends Component {
+export const RouterComponent = new class extends Component {
 
     /**
      * @constructor
      */
     constructor() {
-        super({ selector: "router" });
-        window.onpopstate = this.onPopstate.bind(this);
-    }
-
-    /**
-     * @returns {this}
-     */
-    update() {
-        super.update();
-        RouterService.notify();
-        return this;
-    }
-
-    /**
-     * @param {PopStateEvent} event 
-     */
-    onPopstate(event) {
-        this.detach(this.components[0]);
-        if (event.state) {
-            routes.forEach((route) => {
-                if (event.state.name !== route.name) {
-                    return;
-                }
-                RouterService.put(this, route, event.state.param);
-            });
-        }
-        this.update();
-    }
-
-    /**
-     * @returns {void}
-     */
-    back() {
-        window.history.back();
-    }
-
-    /**
-     * @param {String} name
-     * @returns {mixed} 
-     */
-    get(name) {
-        return RouterService.get().param[name]
-    }
-
-    /**
-     * @param {Route} route
-     * @returns {Object|undefined}
-     */
-    getRouteParam(route) {
-        const param = {}
-        const explosedPath = window.location.pathname.split("/");
-        const explosedRoute = route.path.split("/");
-        if (explosedPath.length !== explosedRoute.length) {
-            return;
-        }
-        for (const key in explosedPath) {
-            if (":" === explosedRoute[key][0]) {
-                param[explosedRoute[key].replace(":", "")] = explosedPath[key]
-            } else if (explosedPath[key] !== explosedRoute[key]) {
-                return;
+        super({
+            selector: "router",
+            template: ""
+        });
+        this.basPath = "";
+        const scripts = window.document.getElementsByTagName("script");
+        for (const key in scripts) {
+            if (scripts[key].src
+                && -1 !== scripts[key].src.indexOf("dist/index.js")) {
+                this.basPath = scripts[key].src
+                    .replace("/dist/index.js", "")
+                    .replace(window.location.origin, "");
             }
         }
-        return param;
     }
 
     /**
-     * @param {string} path 
-     * @param {string} name 
-     * @param {Function} component 
-     * @returns {this}
+     * @param {String} path 
+     * @param {String} name 
+     * @param {Component} component 
+     * @returns {RouterComponent}
+     * 
+     * @throws {ReferenceError}
      */
     add(path, name, component) {
-        routes.push(new Route(path, name, component));
+        RouteService.post(`${this.basPath}${path}`, name, component);
         return this;
-    }
-
-    /**
-     * @param {string} name 
-     * @param {Object} param 
-     */
-    navigate(name, param) {
-        try {
-            routes.forEach((route) => {
-                if (name === route.name
-                    && route.component !== this.components[0]) {
-                    throw route;
-                }
-            });
-        } catch (route) {
-            this.detach(this.components[0]);
-            RouterService.put(this, route, param, true);
-            this.update();
-        }
     }
 
     /**
      * @param {Component} component 
      */
     run(component) {
+        window.onpopstate = (event) => this.onPopstate(event);
         let param;
+        const routes = RouteService.get();
         try {
             routes.forEach((route) => {
-                if (route.path === window.location.pathname
-                    || (param = this.getRouteParam(route))) {
+                if (RouteService.matchLocation(route)
+                    || (param = RouteService.getParam(route))) {
                     throw route;
                 }
             });
-            if (routes.length) {
-                RouterService.put(this, routes[0]);
+            if (routes.length && !RouteService.hasParam(routes[0])) {
+                throw routes[0];
             }
         } catch (route) {
-            RouterService.put(this, route, param);
+            StateService.put(route, param);
+            this.attach(route.component);
         }
-        component.attach(this, true).update();
+        component.attach(this, true);
+        component.update();
+    }
+
+    /**
+     * @param {string} name 
+     * @param {Object} param 
+     * 
+     * @throws {ReferenceError}
+     */
+    navigate(name, param) {
+        try {
+            RouteService.get().forEach((route) => {
+                if (name === route.name) {
+                    throw route;
+                }
+            });
+        } catch (route) {
+            if (route.component === this.components[0]) {
+                return;
+            }
+            this.detach(this.components[0]);
+            StateService.post(route, param);
+            this.attach(route.component);
+            this.update();
+            return;
+        }
+        throw new ReferenceError(`Route "${name}" not found`);
+    }
+
+    /**
+     * @param {String} paramName
+     * @returns {mixed} 
+     * 
+     * @throws {ReferenceError}
+     */
+    get(paramName) {
+        const param = StateService.get().param[paramName];
+        if (!param) {
+            throw new ReferenceError(
+                `There is no "${paramName}" param in the curent state`
+            );
+        }
+        return param;
+    }
+
+    /**
+     * @param {PopStateEvent} event 
+     */
+    onPopstate(event) {
+        if (false === this.lifeCycle("onBack")) {
+            const state = StateService.get();
+            return RouteService.get().forEach((route) => {
+                if (route.name === state.name) {
+                    StateService.post(route, state.param);
+                }
+            });
+        }
+        this.detach(this.components[0]);
+        if (event.state) {
+            RouteService.get().forEach((route) => {
+                if (event.state.name === route.name) {
+                    StateService.put(route, event.state.param);
+                    this.attach(route.component);
+                }
+            });
+        }
+        this.update();
     }
 
 }
