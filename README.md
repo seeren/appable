@@ -108,10 +108,11 @@ The skeleton contain following scripts:
 
 ___
 
+<img  src="resources/demo/demo.gif"  align="right" width="35%">  
+
 <a id="routing"></a>
 ## 🚦 Routing
 
-<img  src="resources/demo/demo.gif"  align="right" width="35%">  
 
 **You can associate a Component to an URL using the RouterComponent**, it will be displayed in the entry point component
 
