@@ -310,7 +310,10 @@ import { template } from  './baz.component.html';
 export class BazComponent extends Component {
 
     constructor() {
-        super({ selector: "baz", template: template });
+        super({
+            selector: "baz", 
+            template: template 
+        });
     }
 
     /**
@@ -395,7 +398,7 @@ export const BazService = new  class  extends  Service {
 }
 ```
 
-**Service can `attach` or `detach` callables to trigger when `notify` is called.**
+**Service can `attach` or `detach` callables to trigger when `notify` is called**
 
 *baz.component.js*
 ```js
