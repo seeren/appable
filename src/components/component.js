@@ -114,9 +114,9 @@ export class Component {
     }
 
     /**
-     * @returns {Component}
+     * @param {HTMLElement} element Selected element
      * 
-     * @throws {ReferenceError}
+     * @throws {ReferenceError} for not found selector in the document
      */
     update() {
         let vars = "";

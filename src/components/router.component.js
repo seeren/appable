@@ -28,12 +28,15 @@ export const RouterComponent = new class extends Component {
     }
 
     /**
-     * @param {String} path 
-     * @param {String} name 
-     * @param {Component} component 
+     * Add a route
+     * @example
+     * RouterComponent.add('/bar/:id', 'bar', BarComponent)
+     * @param {String} path Route path
+     * @param {String} name Route name
+     * @param {Component} component Component class or instance
      * @returns {RouterComponent}
      * 
-     * @throws {ReferenceError}
+     * @throws {ReferenceError} for existing path or name
      */
     add(path, name, component) {
         RouteService.post(`${this.basPath}${path}`, name, component);
@@ -41,7 +44,11 @@ export const RouterComponent = new class extends Component {
     }
 
     /**
-     * @param {Component} component 
+     * Run the entry point after route added components
+     * @example
+     * RouterComponent.run(new AppComponent)
+     * @param {Component} component Component instance
+     * @returns {RouterComponent}
      */
     run(component) {
         window.addEventListener("popstate", (event) => this.onPopstate(event));
@@ -68,10 +75,13 @@ export const RouterComponent = new class extends Component {
     }
 
     /**
-     * @param {string} name 
-     * @param {Object} param 
+     * Navigate to a Route
+     * @example
+     * RouterComponent.navigate("foo, { id: 3 })
+     * @param {string} name Route name
+     * @param {Object} [param] Route param
      * 
-     * @throws {ReferenceError}
+     * @throws {ReferenceError} for not found route
      */
     navigate(name, param) {
         try {
@@ -94,12 +104,29 @@ export const RouterComponent = new class extends Component {
     }
 
     /**
-     * @param {String} paramName
-     * @returns {mixed} 
+     * Retrieve the current Route or a Route parameter value
+     * @example
+     * const route = RouterComponent.get()
+     * const id = RouterComponent.get("id")
+     * @param {String} [paramName]
+     * @returns {Route|*} 
      * 
-     * @throws {ReferenceError}
+     * @throws {ReferenceError} for not found parameter name
      */
     get(paramName) {
+        if (!paramName) {
+            let activeRoute = null;
+            try {
+                RouteService.get().forEach((route) => {
+                    if (route.name === StateService.get().name) {
+                        throw route
+                    }
+                });
+            } catch (route) {
+                activeRoute = route;
+            }
+            return activeRoute;
+        }
         const param = StateService.get().param[paramName];
         if (!param) {
             throw new ReferenceError(
