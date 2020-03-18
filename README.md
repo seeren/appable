@@ -1,6 +1,6 @@
 # 💀 babel skeleton
 
-<img  src="resources/install/install.gif"  align="right" width="30%">
+<img  src="resources/install/install.gif"  align="right" width="35%">
 
 *JavaScript project starter for web and mobile with the environment of development*
 
@@ -23,6 +23,9 @@ Using **webpack**, **babel**, **sass** and **cordova** you can generate a **skel
 ```bash
 npm install babel-skeleton
 ```
+
+<img  src="resources/skeleton/skeleton.jpg"  align="right"  width="35%">
+
 ___
 
 <a id="usage"></a>
@@ -32,8 +35,6 @@ ___
 ```bash
 ./node_modules/.bin/skeleton new my-project
 ```
-
-<img  src="resources/skeleton/skeleton.jpg"  align="right"  width="30%">
 
 ```bash
 cd my-project
@@ -53,7 +54,9 @@ npm run start
 npm run android:install
 ```
 
+
 `Run on device`
+
 ```bash
 npm run android:build
 ```
@@ -63,8 +66,6 @@ npm run android:build
 ### 📜 Scripts
 
 The created project contain following scripts:
-
-<img  src="resources/test/test.jpg"  align="right" width="30%">
 
 | Script | Description |
 :---------------|:---------------|
@@ -84,9 +85,10 @@ The created project contain following scripts:
 
 > [Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
+
 ___
 
-<img  src="resources/demo/demo.gif"  align="right" width="30%">  
+<img  src="resources/test/test.jpg"  align="right" width="35%">
 
 <a id="development"></a>
 ## 👨‍💻 Development
@@ -109,6 +111,8 @@ ___
 
 <a id="routing"></a>
 ## 🚦 Routing
+
+<img  src="resources/demo/demo.gif"  align="right" width="35%">  
 
 **You can associate a Component to an URL using the RouterComponent**, it will be displayed in the entry point component
 
