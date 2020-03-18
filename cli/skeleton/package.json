@@ -18,7 +18,6 @@
   },
   "sass": "src/index",
   "main": "src/index",
-  "private": true,
   "cordova": {
     "platforms": [
       "android"
