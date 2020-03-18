@@ -1,6 +1,6 @@
 # 💀 babel skeleton
 
-<img  src="resources/install/install.gif"  align="right" width="35%">
+<img  src="resources/install/install.gif"  align="right" width="30%">
 
 *JavaScript project starter for web and mobile with the environment of development*
 
@@ -33,7 +33,7 @@ ___
 ./node_modules/.bin/skeleton new my-project
 ```
 
-<img  src="resources/skeleton/skeleton.jpg"  align="right"  width="35%">
+<img  src="resources/skeleton/skeleton.jpg"  align="right"  width="30%">
 
 ```bash
 cd my-project
@@ -64,7 +64,7 @@ npm run android:build
 
 The created project contain following scripts:
 
-<img  src="resources/test/test.jpg"  align="right" width="35%">
+<img  src="resources/test/test.jpg"  align="right" width="30%">
 
 | Script | Description |
 :---------------|:---------------|
@@ -86,7 +86,7 @@ The created project contain following scripts:
 
 ___
 
-<img  src="resources/demo/demo.gif"  align="right" width="35%">  
+<img  src="resources/demo/demo.gif"  align="right" width="30%">  
 
 <a id="development"></a>
 ## 👨‍💻 Development
