@@ -83,12 +83,11 @@ The created project contain following scripts:
 | npm run test:coverage | *Generate report* |
 | npm run test:coveralls | *Send report to coveralls* |
 
+<img  src="resources/test/test.jpg"  align="right" width="35%">
+
 > [Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
-
 ___
-
-<img  src="resources/test/test.jpg"  align="right" width="35%">
 
 <a id="development"></a>
 ## 👨‍💻 Development
