@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
   "description": "Build hybrid JavaScript with productive environment",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "keywords": [
     "es6",
     "hybrid",
