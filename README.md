@@ -8,14 +8,14 @@
 
 Using **webpack**, **babel**, **sass** and **cordova** you can generate a **skeleton** ready to build on web-browser and device with **continuous integration**
 
-[`Babel`](https://babeljs.io/) [`BrowserSync`](https://browsersync.io/) [`Chai`](https://www.chaijs.com/) [`Cordova`](https://cordova.apache.org/) [`Coveralls`](https://coveralls.io/) [`HtmlImport`](https://www.npmjs.com/package/babel-plugin-transform-html-import-to-string) [`Istanbul`](https://istanbul.js.org/) [`Jsdom`](https://www.npmjs.com/package/jsdom) [`Mocha`](https://mochajs.org/) [`NodeSass`](https://www.npmjs.com/package/node-sass) [`Sinon`](https://sinonjs.org/) [`SplashScreen`](https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-splashscreen/index.html)  [`Travis`](https://travis-ci.org/) [`Webpack`](https://webpack.js.org/)
-
+*Table of content:*
 * [Installation](#installation)
-* [Usage](#usage)
-* [Development](#development)
-  * [Routing](#routing)
-  * [Components](#components)
-  * [Services](#services)
+* [Usage](#usage): generate a project, build on web browser and device
+* [Development](#development): generate components and services
+  * [Routing](#routing): associate a component to an URL
+  * [Components](#components): display template and childs
+  * [Services](#services): share data with notification
+___
 
 <a id="installation"></a>
 ## 📦 Installation
@@ -35,7 +35,6 @@ ___
 ```bash
 ./node_modules/.bin/skeleton new my-project
 ```
-
 ```bash
 cd my-project
 ```
@@ -54,20 +53,18 @@ npm run start
 npm run android:install
 ```
 
-
 `Run on device`
-
 ```bash
 npm run android:build
 ```
 
-> [Gradle](https://gradle.org/install/) must be installed, device must be detected and [SDK build tools](https://androidsdkmanager.azurewebsites.net/Buildtools) must be installed and licenses must be accepted *(ANDROID_HOME/tools/bin/sdkmanager --licenses)*
+[Gradle](https://gradle.org/install/) must be installed, device must be detected and [SDK build tools](https://androidsdkmanager.azurewebsites.net/Buildtools) must be installed and licenses must be accepted *(ANDROID_HOME/tools/bin/sdkmanager --licenses)*
 
 ### 📜 Scripts
 
 The created project contain following scripts:
 
-| Script | Description |
+| Script | Feature |
 :---------------|:---------------|
 | npm run start | *Start to dev* |
 | npm run skeleton | *Run babel-skeleton for generate component or service* |
@@ -85,7 +82,7 @@ The created project contain following scripts:
 
 <img  src="resources/test/test.jpg"  align="right" width="35%">
 
-> [Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
+[Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
 ___
 
@@ -98,7 +95,7 @@ The skeleton provide `Component` for render template, `Service` for share data w
 
 The skeleton contain following scripts:
 
-| Script | Description |
+| Script | Feature |
 :---------------|:---------------|
 | npm run skeleton new [name] | *Generate a project* |
 | npm run skeleton generate component [name] | *Generate a component* |
@@ -113,8 +110,9 @@ ___
 <a id="routing"></a>
 ## 🚦 Routing
 
+**`Associate a Component to an URL`** using the RouterComponent, it will be displayed in the entry point component
 
-**You can associate a Component to an URL using the RouterComponent**, it will be displayed in the entry point component
+> RouterComponent provide lifecycle hook for routed components
 
 *index.js*
 ```js
@@ -126,7 +124,7 @@ RouterComponent
   .run(new AppComponent)
 ```
 
-> By default the first component will be rendered, rewrited URL is allowed and matching component will be routed
+By default the first component will be rendered, rewrited URL is allowed and matching component will be routed
 
 *index.html*
 ```html
@@ -140,81 +138,66 @@ RouterComponent
 </html>
 ```
 
-> You can run the component you want but his selector have to be found in the index.html
+You can run the component you want but his selector have to be found in the index.html
 
-*app/app.component.html*
+*app.component.html*
 ```html
 Hello app
 <!-- Router component -->
 <router></router>
 ```
 
-> Routed component will be rendered by the RouterComponent, his tag must exists in the entry point template
+Routed component will be rendered by the RouterComponent, his tag must exists in the entry point template
 
 ### 📑 RouterComponent
 
-```ts
-/**
- * Add a route
- * 
- * @example
- * RouterComponent.add('/bar/:id', 'bar', BarComponent)
- * 
- * @param {String} path Route path
- * @param {String} name Route name
- * @param {Component} component Component class or instance
- * @returns {RouterComponent}
- * 
- * @throws {ReferenceError} for existing path or name
- */
-add(path, name, component) { }
+#### add(path, name, component)
+*Add a route*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {String} **path** | *Route path* |
+| {String} **name** | *Route name* |
+| {Component} **component** | *Component class or instance* |
+| *`Return`* | *`Description`* |
+| {RouterComponent} | *Router instance* |
+| *`Throw`* | *`Description`* |
+| {ReferenceError} | *Existing path or name* |
 
-/**
- * Run the entry point after route added components
- * 
- * @example
- * RouterComponent.run(new AppComponent)
- * 
- * @param {Component} component Component instance
- * @returns {RouterComponent}
- */
-run(path, name, component) { }
+#### run(component)
+*Run the entry point*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {Component} **component** | *Component instance* |
+| *`Return`* | *`Description`* |
+| {RouterComponent} | *Router instance* |
 
-/**
- * Navigate to a Route
- * 
- * @example
- * RouterComponent.navigate("foo, { id: 3 })
- * 
- * @param {string} name Route name
- * @param {Object} [param] Route param
- * 
- * @throws {ReferenceError} for not found route
- */
-navigate(name, param = null) { }
+#### navigate(name, param = null)
+*Navigate to a Route*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {String} **name** | *Route name* |
+| {Object} **param** | *Route param* |
+| *`Throw`* | *`Description`* |
+| {ReferenceError} | *Not found route* |
 
-/**
- * Retrieve the current Route or a Route parameter value
- * 
- * @example
- * const route = RouterComponent.get()
- * const id = RouterComponent.get("id")
- * 
- * @param {String} [paramName]
- * @returns {Route|*} 
- * 
- * @throws {ReferenceError} for not found parameter name
- */
-get(paramName = null) { }
-```
-
-> RouterComponent provide lifecycle hook for routed components
+#### get(paramName = null)
+*Retrieve the current Route or a Route parameter value*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {Object} **paramName** | *Route param name* |
+| *`Return`* | *`Description`* |
+| {Mixed} | *Active Route or param name value* |
+| *`Throw`* | *`Description`* |
+| {ReferenceError} | *Not found parameter name* |
 
 <a id="components"></a>
 ## 🍰 Components
 
-`Generate a component`
-
+**`Generate a component`**
 ```bash
 ./node_modules/.bin/skeleton generate component foo
 ```
@@ -224,12 +207,11 @@ Following files have been generated in *app/foo*:
 * foo.component.html
 * foo.component.scss
 
-**`Component` have at least a selector and a template**
+`Component` have at least a selector and a template
 
 *foo.component.js*
 ```js
 import { Component } from  'babel-skeleton';
-
 import { template } from  './foo.component.html';
 
 export class FooComponent extends Component {
@@ -249,7 +231,7 @@ export class FooComponent extends Component {
 }
 ```
 
-**`Template` use ES6 strings with access to attributes and methods**
+`Template` use ES6 strings with access to attributes and methods
 
 *foo.component.html*
 ```html
@@ -259,24 +241,21 @@ export class FooComponent extends Component {
 <!-- Trigger "increment" method -->
 <button onclick="increment()">Click</button>
 ```
+Component is updated if an event handler return a value
 
-> Component is updated if an event handler return a value
-
-**`SCSS` file is generated and free to you to import it**
+`SCSS` file is generated and free to you to import it
 
 *foo.component.scss*
 ```scss
 foo {}
 ```
 
-**`Child Component` can be embeed**
+`Child Component` can be embeed
 
 *bar.component.js*
 ```js
 import { Component } from  'babel-skeleton';
-
 import { template } from  './bar.component.html';
-
 import { BazComponent } from  './baz/baz.component.html';
 import { QuxComponent } from  './qux/qux.component.html';
 
@@ -296,7 +275,7 @@ export class BarComponent extends Component {
 }
 ```
 
-> Child component selector have to be found in the template
+Child component selector have to be found in the template
 
 *bar.component.html*
 ```html
@@ -304,7 +283,7 @@ export class BarComponent extends Component {
 <qux></qux>
 ```
 
-**`Lifecycle hooks` are triggered by the router**
+`Lifecycle hooks` are triggered by the router
 
 *baz.component.js*
 ```js
@@ -360,33 +339,30 @@ export class BazComponent extends Component {
 
 ### 📑 Component
 
-```js
-/**
- * Update the component template
- * 
- * @example
- * this.update();
- * 
- * @returns {Component}
- * 
- * @throws {ReferenceError} for not found selector
- */
-update() {
-```
+#### update()
+*Update the Component template*
+| | |
+:---------------|:---------------|
+| *`Return`* | *`Description`* |
+| {Component} | *Component instance* |
+| *`Throw`* | *`Description`* |
+| {ReferenceError} | *Not found Component selector* |
 
 <a id="services"></a>
 ## 💫 **Services**
 
-`Generate a service`
+**`Generate a service`**
 
 ```bash
 ./node_modules/.bin/skeleton generate service baz
 ```
 
-**Service share data can `notify` for changes**
+`Service` share data and can notify for changes
 
 *baz.service.js*
 ```js
+import { Service } from  'babel-skeleton';
+
 export const BazService = new  class  extends  Service {
 
   constructor() {
@@ -402,14 +378,12 @@ export const BazService = new  class  extends  Service {
 }
 ```
 
-**Service can `attach` or `detach` callables to trigger when `notify` is called**
+`Attach` or `detach` callables to trigger when `notify` is called
 
 *baz.component.js*
 ```js
 import { Component } from  'babel-skeleton';
-
 import { template } from  './baz.component.html';
-
 import { BazService } from  './baz.service';
 
 export class BazComponent extends Component {
@@ -432,44 +406,33 @@ export class BazComponent extends Component {
 }
 ```
 
-
 ### 📑 Service
 
-```js
+#### attach(callable)
+*Attach a callable triggered when notify is called*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {Function} **callable** | *Function to attach* |
+| *`Return`* | *`Description`* |
+| {Service} | *Service instance* |
 
-/**
- * Attach a callable triggered when notify is called
- * 
- * @example
- * const callable = (s) => console.log(s)
- * service.attach(callable)
- * 
- * @param {Function} callable
- * @returns {Service}
- */
-attach() { }
+#### detach(callable)
+*Detach a callable*
+| | |
+:---------------|:---------------|
+| *`Param`* | *`Description`* |
+| {Function} **callable** | *Function to detach* |
+| *`Return`* | *`Description`* |
+| {Service} | *Service instance* |
 
-/**
- * Detach a callable
- * 
- * @example
- * service.detach(callable)
- * 
- * @param {Function} callable
- * @returns {Service}
- */
-detach() { }
+#### notify()
+*Call all attached callables*
+| | |
+:---------------|:---------------|
+| *`Return`* | *`Description`* |
+| {Service} | *Service instance* |
 
-/**
- * Call all attached callables
- * 
- * @example
- * service.notify()
- * 
- * @returns {Service}
- */
-notify() { }
-```
 ___
 
 ## 🎓 License
