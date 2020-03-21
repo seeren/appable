@@ -114,6 +114,11 @@ export class Component {
     }
 
     /**
+     * Update the component temple
+     * 
+     * @example
+     * component.update()
+     * 
      * @param {HTMLElement} element Selected element
      * 
      * @throws {ReferenceError} for not found selector in the document

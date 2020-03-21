@@ -46,6 +46,11 @@ export class Service {
         };
 
         /**
+         * Call all attached callables
+         * 
+         * @example
+         * service.notify()
+         * 
          * @returns {Service}
          */
         this.notify = () => {

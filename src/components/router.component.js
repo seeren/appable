@@ -29,8 +29,10 @@ export const RouterComponent = new class extends Component {
 
     /**
      * Add a route
+     * 
      * @example
      * RouterComponent.add('/bar/:id', 'bar', BarComponent)
+     *
      * @param {String} path Route path
      * @param {String} name Route name
      * @param {Component} component Component class or instance
@@ -44,9 +46,11 @@ export const RouterComponent = new class extends Component {
     }
 
     /**
-     * Run the entry point after route added components
+     * Run the entry point
+     * 
      * @example
      * RouterComponent.run(new AppComponent)
+     * 
      * @param {Component} component Component instance
      * @returns {RouterComponent}
      */
@@ -76,8 +80,10 @@ export const RouterComponent = new class extends Component {
 
     /**
      * Navigate to a Route
-     * @example
+     *
+     *  @example
      * RouterComponent.navigate("foo, { id: 3 })
+     * 
      * @param {string} name Route name
      * @param {Object} [param] Route param
      * 
@@ -105,9 +111,11 @@ export const RouterComponent = new class extends Component {
 
     /**
      * Retrieve the current Route or a Route parameter value
+     * 
      * @example
      * const route = RouterComponent.get()
      * const id = RouterComponent.get("id")
+     * 
      * @param {String} [paramName]
      * @returns {Route|*} 
      * 
