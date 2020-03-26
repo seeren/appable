@@ -82,7 +82,7 @@ export class Component {
         this.row++;
         component.selector = `${selector}[${attribute}]`;
         if (component.onInit) {
-            component.onInit()
+            component.onInit();
         }
         return this;
     }
@@ -94,6 +94,7 @@ export class Component {
      * @throws {ReferenceError}
      */
     detach(component) {
+        
         const index = this.components.indexOf(component);
         const selectorSplitHook = component.selector.split("[");
         if (-1 === index || 1 === selectorSplitHook.length) {
@@ -107,7 +108,7 @@ export class Component {
         this.components.splice(index, 1);
         this.row--;
         component.selector = `${selector}`;
-        this.lifeCycle("onDestroy");
+        component.lifeCycle("onDestroy");
         return this;
     }
 
