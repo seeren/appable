@@ -94,7 +94,6 @@ export class Component {
      * @throws {ReferenceError}
      */
     detach(component) {
-        
         const index = this.components.indexOf(component);
         const selectorSplitHook = component.selector.split("[");
         if (-1 === index || 1 === selectorSplitHook.length) {

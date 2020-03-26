@@ -154,44 +154,44 @@ Routed component will be rendered by the RouterComponent, his tag must exists in
 
 ### 📑 RouterComponent
 
-> Add a route
+➕ Add a route
 
 | add(`path`, `name`, `component`) |
 |:-----------|
 | *`Param`* |
-| {String} **`path`** Route path |
-| {String} **`name`** Route name |
-| {Component} **`component`** Component class or instance |
+| {String} **path** Route path |
+| {String} **name** Route name |
+| {Component} **component** Component class or instance |
 | *`Return`* |
 | {RouterComponent} Router instance |
 | *`Throw`* |
 | {ReferenceError} Path or name exists |
 
-> Run the entry point
+➕ Run the entry point
 
 | run(`component`) |
 |:-----------|
 | *`Param`* |
-| {Component} **`component`** Component instance |
+| {Component} **component** Component instance |
 | *`Return`* |
 | {RouterComponent} Router instance |
 
-> Navigate to a Route
+➕ Navigate to a Route
 
 | navigate(`name`, `param`= null) |
 |:-----------|
 | *`Param`* |
-| {String} **`name`** Route name |
-| {Object} **`param`** Route param |
+| {String} **name** Route name |
+| {Object} **param** Route param |
 | *`Throw`* |
 | {ReferenceError} Route not found |
 
-> Retrieve the current Route or a Route parameter value
+➕ Retrieve the current Route or a Route parameter value
 
 | get(`paramName`= null) |
 |:-----------|
 | *`Param`* |
-| {String} **`paramName`** Route param name |
+| {String} **paramName** Route param name |
 | *`Return`* |
 | {Mixed} Active Route or param name value |
 | *`Throw`* |
@@ -343,7 +343,7 @@ export class BazComponent extends Component {
 
 ### 📑 Component
 
-> Update the Component template
+➕ Update the Component template
 
 | update() |
 |:-----------|
@@ -413,25 +413,25 @@ export class BazComponent extends Component {
 
 ### 📑 Service
 
-> Attach a callable triggered when notify is called
+➕ Attach a callable triggered when notify is called
 
 | attach(`callable`) |
 |:-----------|
 | *`Param`* |
-| {Function} **`callable`** Function to attach |
+| {Function} **callable** Function to attach |
 | *`Return`* |
 | {Service} Service instance |
 
-> Detach a callable
+➕ Detach a callable
 
 | detach(`callable`) |
 |:-----------|
 | *`Param`* |
-| {Function} **`callable`** Function to attach |
+| {Function} **callable** Function to attach |
 | *`Return`* |
 | {Service} Service instance |
 
-> Call all attached callables
+➕ Call all attached callables
 
 | notify() |
 |:-----------|
