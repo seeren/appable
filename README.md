@@ -18,6 +18,7 @@ Using **webpack**, **babel**, **sass** and **cordova** you can generate a **skel
 ___
 
 <a id="installation"></a>
+
 ## 📦 Installation
 
 ```bash
@@ -29,6 +30,7 @@ npm install babel-skeleton
 ___
 
 <a id="usage"></a>
+
 ## 🕹️ Usage
 
 `Create a project`
@@ -87,10 +89,12 @@ The created project contain following scripts:
 ___
 
 <a id="development"></a>
+
 ## 👨‍💻 Development
 
 The skeleton provide `Component` for render template, `Service` for share data with notification and `RouterComponent` for navigation and lifecycle
 
+> See [source code](https://github.com/seeren/babel-skeleton/tree/master/demo) of the demo hosted on [GitHub Pages](https://seeren.github.io/babel-skeleton/demo/www/index.html)
 ### 📜 Scripts
 
 The skeleton contain following scripts:
@@ -101,13 +105,12 @@ The skeleton contain following scripts:
 | npm run skeleton generate component [name] | *Generate a component* |
 | npm run skeleton generate service [name] | *Generate a service* |
 
-> [Source code](https://github.com/seeren/babel-skeleton/tree/master/demo) of the demo hosted on [GitHub Pages](https://seeren.github.io/babel-skeleton/demo/www/index.html)
-
 ___
 
 <img  src="resources/demo/demo.gif"  align="right" width="35%">  
 
 <a id="routing"></a>
+
 ## 🚦 Routing
 
 **`Associate a Component to an URL`** using the RouterComponent, it will be displayed in the entry point component
@@ -151,50 +154,51 @@ Routed component will be rendered by the RouterComponent, his tag must exists in
 
 ### 📑 RouterComponent
 
-#### add(path, name, component)
-*Add a route*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {String} **path** | *Route path* |
-| {String} **name** | *Route name* |
-| {Component} **component** | *Component class or instance* |
-| *`Return`* | *`Description`* |
-| {RouterComponent} | *Router instance* |
-| *`Throw`* | *`Description`* |
-| {ReferenceError} | *Existing path or name* |
+> Add a route
 
-#### run(component)
-*Run the entry point*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {Component} **component** | *Component instance* |
-| *`Return`* | *`Description`* |
-| {RouterComponent} | *Router instance* |
+| add(`path`, `name`, `component`) |
+|:-----------|
+| *`Param`* |
+| {String} **`path`** Route path |
+| {String} **`name`** Route name |
+| {Component} **`component`** Component class or instance |
+| *`Return`* |
+| {RouterComponent} Router instance |
+| *`Throw`* |
+| {ReferenceError} Path or name exists |
 
-#### navigate(name, param = null)
-*Navigate to a Route*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {String} **name** | *Route name* |
-| {Object} **param** | *Route param* |
-| *`Throw`* | *`Description`* |
-| {ReferenceError} | *Not found route* |
+> Run the entry point
 
-#### get(paramName = null)
-*Retrieve the current Route or a Route parameter value*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {Object} **paramName** | *Route param name* |
-| *`Return`* | *`Description`* |
-| {Mixed} | *Active Route or param name value* |
-| *`Throw`* | *`Description`* |
-| {ReferenceError} | *Not found parameter name* |
+| run(`component`) |
+|:-----------|
+| *`Param`* |
+| {Component} **`component`** Component instance |
+| *`Return`* |
+| {RouterComponent} Router instance |
+
+> Navigate to a Route
+
+| navigate(`name`, `param`= null) |
+|:-----------|
+| *`Param`* |
+| {String} **`name`** Route name |
+| {Object} **`param`** Route param |
+| *`Throw`* |
+| {ReferenceError} Route not found |
+
+> Retrieve the current Route or a Route parameter value
+
+| get(`paramName`= null) |
+|:-----------|
+| *`Param`* |
+| {String} **`paramName`** Route param name |
+| *`Return`* |
+| {Mixed} Active Route or param name value |
+| *`Throw`* |
+| {ReferenceError} Route parameter name not found |
 
 <a id="components"></a>
+
 ## 🍰 Components
 
 **`Generate a component`**
@@ -339,16 +343,17 @@ export class BazComponent extends Component {
 
 ### 📑 Component
 
-#### update()
-*Update the Component template*
-| | |
-:---------------|:---------------|
-| *`Return`* | *`Description`* |
-| {Component} | *Component instance* |
-| *`Throw`* | *`Description`* |
-| {ReferenceError} | *Not found Component selector* |
+> Update the Component template
+
+| update() |
+|:-----------|
+| *`Return`* |
+| {Component} Component instance |
+| *`Throw`* |
+| {ReferenceError} Component selector not found |
 
 <a id="services"></a>
+
 ## 💫 **Services**
 
 **`Generate a service`**
@@ -408,33 +413,29 @@ export class BazComponent extends Component {
 
 ### 📑 Service
 
-#### attach(callable)
-*Attach a callable triggered when notify is called*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {Function} **callable** | *Function to attach* |
-| *`Return`* | *`Description`* |
-| {Service} | *Service instance* |
+> Attach a callable triggered when notify is called
 
-#### detach(callable)
-*Detach a callable*
-| | |
-:---------------|:---------------|
-| *`Param`* | *`Description`* |
-| {Function} **callable** | *Function to detach* |
-| *`Return`* | *`Description`* |
-| {Service} | *Service instance* |
+| attach(`callable`) |
+|:-----------|
+| *`Param`* |
+| {Function} **`callable`** Function to attach |
+| *`Return`* |
+| {Service} Service instance |
 
-#### notify()
-*Call all attached callables*
-| | |
-:---------------|:---------------|
-| *`Return`* | *`Description`* |
-| {Service} | *Service instance* |
+> Detach a callable
+
+| detach(`callable`) |
+|:-----------|
+| *`Param`* |
+| {Function} **`callable`** Function to attach |
+| *`Return`* |
+| {Service} Service instance |
+
+> Call all attached callables
+
+| notify() |
+|:-----------|
+| *`Return`* |
+| {Service} Service instance |
 
 ___
-
-## 🎓 License
-
-This project is under [MIT](LICENSE) license.

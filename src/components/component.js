@@ -107,9 +107,7 @@ export class Component {
         this.components.splice(index, 1);
         this.row--;
         component.selector = `${selector}`;
-        if (component.onDestroy) {
-            component.onDestroy()
-        }
+        this.lifeCycle("onDestroy");
         return this;
     }
 
