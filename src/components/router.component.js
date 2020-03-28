@@ -18,13 +18,25 @@ export const RouterComponent = new class extends Component {
         this.basPath = "";
         const scripts = window.document.getElementsByTagName("script");
         for (const key in scripts) {
-            if (scripts[key].src
-                && -1 !== scripts[key].src.indexOf("dist/index.js")) {
+            if (scripts[key].src && -1 !== scripts[key].src.indexOf("dist/index.js")) {
                 this.basPath = scripts[key].src
                     .replace("/dist/index.js", "")
                     .replace(window.location.origin, "");
             }
         }
+    }
+
+    /**
+     * @param {Route} route 
+     * @returns {Component}
+     * 
+     * @throws {ReferenceError}
+     */
+    attach(route) {
+        if (route.component instanceof window.Function) {
+            route.component = new route.component;
+        }
+        return super.attach(route.component);
     }
 
     /**
@@ -72,7 +84,7 @@ export const RouterComponent = new class extends Component {
             }
         } catch (route) {
             StateService.put(route, param);
-            this.attach(route.component);
+            this.attach(route);
         }
         component.attach(this, true);
         component.update();
@@ -102,7 +114,7 @@ export const RouterComponent = new class extends Component {
             }
             this.detach(this.components[0]);
             StateService.post(route, param);
-            this.attach(route.component);
+            this.attach(route);
             this.update();
             return;
         }
@@ -161,7 +173,7 @@ export const RouterComponent = new class extends Component {
             RouteService.get().forEach((route) => {
                 if (event.state.name === route.name) {
                     StateService.put(route, event.state.param);
-                    this.attach(route.component);
+                    this.attach(route);
                 }
             });
         }
