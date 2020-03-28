@@ -56,15 +56,12 @@ export class Component {
     }
 
     /**
-     * @param {Component|Function} component 
+     * @param {Component} component 
      * @returns {Component}
      * 
      * @throws {ReferenceError}
      */
     attach(component) {
-        if (component instanceof window.Function) {
-            component = new component;
-        }
         const selector = component.selector.split("[")[0];
         if (-1 !== this.components.indexOf(component)) {
             throw new ReferenceError(`Can't attach "${selector}": instance already exist`);
