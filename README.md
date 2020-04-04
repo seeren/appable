@@ -1,20 +1,18 @@
 # 💀 babel skeleton
 
-<img  src="resources/install/install.gif"  align="right" width="35%">
+<img  src="https://user-images.githubusercontent.com/17710028/78450370-6cb54f80-767e-11ea-833d-0e7055fd6498.gif"  align="right" width="35%">
 
-*JavaScript project starter for web and mobile with the environment of development*
+*JavaScript Library for route Components and share Services*
 
 [![Build Status](https://travis-ci.org/seeren/babel-skeleton.svg?branch=master)](https://travis-ci.org/seeren/babel-skeleton) [![Coverage Status](https://coveralls.io/repos/github/seeren/babel-skeleton/badge.svg?branch=master)](https://coveralls.io/github/seeren/babel-skeleton?branch=master) [![Downloads](https://img.shields.io/npm/dt/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton) [![Release](https://img.shields.io/npm/v/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton)
 
-Using **webpack**, **babel**, **sass** and **cordova** you can generate a **skeleton** ready to build on web-browser and device with **continuous integration**
-
-*Table of content:*
 * [Installation](#installation)
-* [Usage](#usage): generate a project, build on web browser and device
-* [Development](#development): generate components and services
-  * [Routing](#routing): associate a component to an URL
-  * [Components](#components): display template and childs
-  * [Services](#services): share data with notification
+* [Usage](#usage): Generate a new project
+* [Development](#development): Generate component and service
+  * [Routing](#routing): Associate component to  URL
+  * [Components](#components): Display template
+  * [Services](#services): Share data and notify
+
 ___
 
 <a id="installation"></a>
@@ -25,7 +23,7 @@ ___
 npm install babel-skeleton
 ```
 
-<img  src="resources/skeleton/skeleton.jpg"  align="right"  width="35%">
+<img  src="https://user-images.githubusercontent.com/17710028/78450369-6921c880-767e-11ea-8dcd-e65332857c2b.jpg"  align="right"  width="35%">
 
 ___
 
@@ -82,7 +80,7 @@ The created project contain following scripts:
 | npm run test:coverage | *Generate report* |
 | npm run test:coveralls | *Send report to coveralls* |
 
-<img  src="resources/test/test.jpg"  align="right" width="35%">
+<img  src="https://user-images.githubusercontent.com/17710028/78450368-645d1480-767e-11ea-88db-8d127c79ae2c.jpg"  align="right" width="35%">
 
 [Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
@@ -94,7 +92,6 @@ ___
 
 The skeleton provide `Component` for render template, `Service` for share data with notification and `RouterComponent` for navigation and lifecycle
 
-> See [source code](https://github.com/seeren/babel-skeleton/tree/master/demo) of the demo hosted on [GitHub Pages](https://seeren.github.io/babel-skeleton/demo/www/index.html)
 ### 📜 Scripts
 
 The skeleton contain following scripts:
@@ -107,13 +104,13 @@ The skeleton contain following scripts:
 
 ___
 
-<img  src="resources/demo/demo.gif"  align="right" width="35%">  
+<img  src="https://user-images.githubusercontent.com/17710028/78450375-70e16d00-767e-11ea-9bda-8a297aac2395.gif"  align="right" width="35%">  
 
 <a id="routing"></a>
 
 ## 🚦 Routing
 
-**`Associate a Component to an URL`** using the RouterComponent, it will be displayed in the entry point component
+**`Associate a Component to an URL`** using the RouterComponent
 
 > RouterComponent provide lifecycle hook for routed components
 
@@ -203,7 +200,7 @@ Routed component will be rendered by the RouterComponent, his tag must exists in
 
 **`Generate a component`**
 ```bash
-./node_modules/.bin/skeleton generate component foo
+npm run skeleton generate component foo
 ```
 
 Following files have been generated in *app/foo*:
@@ -359,8 +356,10 @@ export class BazComponent extends Component {
 **`Generate a service`**
 
 ```bash
-./node_modules/.bin/skeleton generate service baz
+npm run skeleton generate service baz
 ```
+File *baz.service.js* have been generated in app/baz:
+
 
 `Service` share data and can notify for changes
 
