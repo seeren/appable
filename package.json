@@ -1,7 +1,7 @@
 {
   "name": "babel-skeleton",
-  "description": "JavaScript Library for route Components and share Services",
-  "version": "5.1.3",
+  "description": "Babel-skeleton is a JavaScript library for build UI and pages",
+  "version": "5.1.4",
   "keywords": [
     "component",
     "route",

@@ -73,14 +73,12 @@ export class Component {
             const partialTag = match[0].substring(0, match[0].length - 2);
             this.template = this.template.replace(`${partialTag}>`, `${partialTag} ${attribute}>`);
         } else {
+            component.lifeCycle("onInit");
             this.template += `<${selector} ${attribute}></${selector}>`;
         }
         this.components.push(component);
         this.row++;
         component.selector = `${selector}[${attribute}]`;
-        if (component.onInit) {
-            component.onInit();
-        }
         return this;
     }
 
@@ -100,11 +98,11 @@ export class Component {
         const selector = selectorSplitSpace[selectorSplitSpace.length - 1];
         const attributes = `${selectorSplitHook[selectorSplitHook.length - 1].replace("]", "")}`;
         const match = new RegExp(`<${selector}+(.)+${attributes}+><`).exec(this.template);
+        component.lifeCycle("onDestroy");
         this.template = this.template.replace(`${match[0]}/${selector}>`, "");
         this.components.splice(index, 1);
         this.row--;
         component.selector = `${selector}`;
-        component.lifeCycle("onDestroy");
         return this;
     }
 
