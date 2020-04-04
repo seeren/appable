@@ -1,8 +1,0 @@
-/.nyc_output/
-/.vscode/
-/coverage/
-/node_modules/
-/platforms/
-/plugins/
-/resources/android/
-package-lock.json
