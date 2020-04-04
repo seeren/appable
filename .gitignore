@@ -1,6 +1,7 @@
 /.nyc_output/
 /.vscode/
 /coverage/
+/demo/
 /node_modules/
 resources/*/*.psd
 resources/*/*.mp4
