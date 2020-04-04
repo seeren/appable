@@ -3,6 +3,5 @@
 /coverage/
 /demo/
 /node_modules/
-resources/*/*.psd
-resources/*/*.mp4
-package-lock.json
+/resources/
+/package-lock.json
