@@ -2,16 +2,19 @@
 
 <img  src="https://user-images.githubusercontent.com/17710028/78450370-6cb54f80-767e-11ea-833d-0e7055fd6498.gif"  align="right" width="35%">
 
-*JavaScript Library for route Components and share Services*
+Babel skeleton is a JavaScript library for structure web applications
 
 [![Build Status](https://travis-ci.org/seeren/babel-skeleton.svg?branch=master)](https://travis-ci.org/seeren/babel-skeleton) [![Coverage Status](https://coveralls.io/repos/github/seeren/babel-skeleton/badge.svg?branch=master)](https://coveralls.io/github/seeren/babel-skeleton?branch=master) [![Downloads](https://img.shields.io/npm/dt/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton) [![Release](https://img.shields.io/npm/v/babel-skeleton.svg)](https://www.npmjs.com/package/babel-skeleton)
 
+*Table of content:*
+
 * [Installation](#installation)
-* [Usage](#usage): Generate a new project
-* [Development](#development): Generate component and service
-  * [Routing](#routing): Associate component to  URL
-  * [Components](#components): Display template
-  * [Services](#services): Share data and notify
+* [Usage](#usage): Generate Project
+* [Scripts](#scripts)
+* [Development](#development): Generate Component and Service
+  * [Routing](#routing)
+  * [Components](#components)
+  * [Services](#services)
 
 ___
 
@@ -59,6 +62,8 @@ npm run android:build
 ```
 
 [Gradle](https://gradle.org/install/) must be installed, device must be detected and [SDK build tools](https://androidsdkmanager.azurewebsites.net/Buildtools) must be installed and licenses must be accepted *(ANDROID_HOME/tools/bin/sdkmanager --licenses)*
+
+<a id="scripts"></a>
 
 ### 📜 Scripts
 

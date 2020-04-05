@@ -1,6 +1,6 @@
 {
   "name": "babel-skeleton",
-  "description": "Babel-skeleton is a JavaScript library for build UI and pages",
+  "description": "Babel skeleton is a JavaScript library for structure web applications",
   "version": "5.1.4",
   "keywords": [
     "component",
