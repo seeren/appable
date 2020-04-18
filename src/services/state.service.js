@@ -1,5 +1,4 @@
 import { Service } from "./service";
-import { HistoryState } from "../models/history-state.model";
 
 /**
  * @type {StateService}
@@ -13,13 +12,17 @@ export const StateService = new class StateService extends Service {
         super();
 
         /**
-         * @type {HistoryState}
+         * @type {Object}
          */
-        this.state = new HistoryState;
+        this.state = {
+            name: null,
+            param: {}
+        };
+
     }
 
     /**
-     * @returns {HistoryState}
+     * @returns {Object}
      */
     get() {
         return this.state;
