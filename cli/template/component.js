@@ -1,12 +1,11 @@
 module.exports = (filename, className) => `import { Component } from "babel-skeleton";
 
-import { template } from "./${filename}.component.html";
-
+import template from "./${filename}.component.html";
 
 /**
  * @type { ${className}Component}
  */
-export class  ${className}Component extends Component {
+export class ${className}Component extends Component {
 
     /**
      * @constructor
