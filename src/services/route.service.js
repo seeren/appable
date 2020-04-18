@@ -16,6 +16,7 @@ export const RouteService = new class RouteService extends Service {
          * @type {Route[]}
          */
         this.routes = [];
+
     }
 
     /**
