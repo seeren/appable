@@ -1,4 +1,4 @@
-import { RouterComponent } from "babel-skeleton";
+import { RouterComponent } from "app-js";
 
 import { AppComponent } from "./app/app.component";
 
