@@ -1,5 +1,3 @@
-import { ComponentOption } from "../models/component-option.model";
-
 /**
  * @type {Component}
  */
@@ -7,7 +5,7 @@ export class Component {
 
     /**
      * @constructor
-     * @param {ComponentOption} option
+     * @param {Object} option
      */
     constructor(option) {
 
