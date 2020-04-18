@@ -12,7 +12,7 @@ App-js is a JavaScript Library for build user interfaces and scale web applicati
 <a href="https://www.npmjs.com/package/app-js"><img src="https://img.shields.io/npm/v/app-js.svg" alt="Version"></a>
 </p>
 
-## Create an app
+## 🚀 Create an app
 
 ```bash
 npm install -g app-js
