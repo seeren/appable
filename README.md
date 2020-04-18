@@ -38,11 +38,11 @@ App-js is a library for building user interfaces. It provide structured project 
 
 ___
 
-##  [Documentation](https://github.com/seeren/app-js/wiki/App-js)
+## 📘 [Documentation](https://github.com/seeren/app-js/wiki/App-js)
 
 ___
 
-## 🌱 Example
+## Example
 
 ```bash
 app generate component foo
