@@ -15,7 +15,12 @@ export const RouterComponent = new class extends Component {
             selector: "router",
             template: ""
         });
+
+        /**
+         * @type {String}
+         */
         this.basPath = "";
+
         const scripts = window.document.getElementsByTagName("script");
         for (const key in scripts) {
             if (scripts[key].src && -1 !== scripts[key].src.indexOf("dist/index.js")) {
