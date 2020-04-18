@@ -1,4 +1,4 @@
-declare module 'babel-skeleton' {
+declare module 'app-js' {
 
     export class Component {
 
