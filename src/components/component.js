@@ -107,14 +107,9 @@ export class Component {
     }
 
     /**
-     * Update the component temple
+     * @returns {HTMLElement} element Selected element
      * 
-     * @example
-     * component.update()
-     * 
-     * @param {HTMLElement} element Selected element
-     * 
-     * @throws {ReferenceError} for not found selector in the document
+     * @throws {ReferenceError} for not found selector
      */
     update() {
         let vars = "";
