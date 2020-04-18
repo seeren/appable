@@ -14,12 +14,6 @@ export class Service {
         const callables = [];
 
         /**
-         * Attach a callable triggered when notify is called
-         * 
-         * @example
-         * const callable = (s) => console.log(s)
-         * service.attach(callable)
-         * 
          * @param {Function} callable
          * @returns {Service}
          */
@@ -29,11 +23,6 @@ export class Service {
         };
 
         /**
-         * Detach a callable
-         * 
-         * @example
-         * service.detach(callable)
-         * 
          * @param {Function} callable
          * @returns {Service}
          */
@@ -46,11 +35,6 @@ export class Service {
         };
 
         /**
-         * Call all attached callables
-         * 
-         * @example
-         * service.notify()
-         * 
          * @returns {Service}
          */
         this.notify = () => {
