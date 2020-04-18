@@ -1,4 +1,4 @@
-import { Component } from "babel-skeleton";
+import { Component } from "app-js";
 
 import template from "./app.component.html";
 

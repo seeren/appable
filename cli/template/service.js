@@ -1,4 +1,4 @@
-module.exports = (className) => `import { Service } from 'babel-skeleton';
+module.exports = (className) => `import { Service } from 'app-js';
 
 /**
  * @type {${className}Service}
