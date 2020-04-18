@@ -1,20 +1,17 @@
 {
-  "name": "babel-skeleton",
-  "description": "Babel skeleton is a JavaScript library for structure web applications",
-  "version": "5.2.0",
+  "name": "app-js",
+  "description": "App-js is a JavaScript Library for build user interfaces and scale web applications",
+  "version": "0.0.1",
   "keywords": [
-    "page",
-    "route",
-    "router",
+    "application",
     "component",
-    "service",
-    "dom"
+    "route",
+    "hybrid"
   ],
   "author": "Cyril Ichti",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack --mode development --watch",
-    "prod": "webpack --mode production --watch",
     "build": "webpack --mode production",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
@@ -23,11 +20,11 @@
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "bin": {
-    "skeleton": "cli/index.js"
+    "app": "cli/index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seeren/babel-skeleton"
+    "url": "https://github.com/seeren/app-js"
   },
   "license": "MIT",
   "devDependencies": {
