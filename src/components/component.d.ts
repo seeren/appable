@@ -1,12 +1,18 @@
 export class Component {
 
+    selector: string;
+
+    template: string;
+
+    components: [] = [];
+
     /**
      * @param option 
      */
     constructor(option: {
         selector: string,
         template: string,
-        component: [] = [],
+        components: [] = [],
     });
 
     /**
