@@ -160,7 +160,7 @@ if (args[0] === NEW) {
 
     const projectName = args[1];
     const package = [];
-    const includePath = `node_modules/babel-skeleton/cli/skeleton`;
+    const includePath = `node_modules/app-js/cli/skeleton`;
     for (let key in JSON.parse(file.read(
         `${includePath}/package.json`
     ).toString()).devDependencie) {
