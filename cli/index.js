@@ -104,25 +104,41 @@ if (args[0] === GENERATE) {
     }
 
     if (!args[2]) {
-        return console.error("\x1b[31m", "\u00D7", "\x1b[0m", "You must provide a file name");
+        return console.error(
+            "\x1b[31m", "\u00D7", "\x1b[0m", "You must provide a file name"
+        );
     }
 
     if (!/^[0-9a-zA-Z\.\/-]{1,}$/.test(args[2])) {
-        return console.error("\x1b[31m", "\u00D7", "\x1b[0m", "Invalid file name");
+        return console.error(
+            "\x1b[31m", "\u00D7", "\x1b[0m", "Invalid file name"
+        );
     }
 
     if (args[1] === SERVICE) {
         console.log("\x1b[36m", `Generate ${SERVICE}`);
-        return file.write(`src/app/${args[2]}/${args[2].split("/").pop()}.${SERVICE}.js`, service(file.className(args[2])));
+        return file.write(
+            `src/app/${args[2]}/${args[2].split("/").pop()}.${SERVICE}.js`,
+            service(file.className(args[2]))
+        );
     }
 
     if (args[1] === COMPONENT) {
         let componentName = args[2].split("/").pop();
         let componentPath = `src/app/${args[2]}/${componentName}`;
         console.log("\x1b[36m", `Generate ${COMPONENT}`);
-        file.write(`${componentPath}.${COMPONENT}.js`, component(componentName, file.className(args[2])));
-        file.write(`${componentPath}.${COMPONENT}.html`, componentHTML(componentName));
-        return file.write(`${componentPath}.${COMPONENT}.scss`, componentSass(componentName));
+        file.write(
+            `${componentPath}.${COMPONENT}.js`,
+            component(componentName, file.className(args[2]))
+        );
+        file.write(
+            `${componentPath}.${COMPONENT}.html`,
+            componentHTML(componentName)
+        );
+        return file.write(
+            `${componentPath}.${COMPONENT}.scss`,
+            componentSass(componentName)
+        );
     }
 
     return;
@@ -131,17 +147,23 @@ if (args[0] === GENERATE) {
 if (args[0] === NEW) {
 
     if (!args[1]) {
-        return console.error("\x1b[31m", "\u00D7", "\x1b[0m", "You must provide a project name");
+        return console.error(
+            "\x1b[31m", "\u00D7", "\x1b[0m", "You must provide a project name"
+        );
     }
 
     if (!/^[0-9a-zA-Z-]{1,}$/.test(args[1])) {
-        return console.error("\x1b[31m", "\u00D7", "\x1b[0m", "Invalid project name");
+        return console.error(
+            "\x1b[31m", "\u00D7", "\x1b[0m", "Invalid project name"
+        );
     }
 
     const projectName = args[1];
     const package = [];
     const includePath = `node_modules/babel-skeleton/cli/skeleton`;
-    for (let key in JSON.parse(file.read(`${includePath}/package.json`).toString()).devDependencie) {
+    for (let key in JSON.parse(file.read(
+        `${includePath}/package.json`
+    ).toString()).devDependencie) {
         package.push(key)
     }
     console.log("\x1b[36m", "Generate files");
@@ -149,7 +171,11 @@ if (args[0] === NEW) {
         let output = file.read(`${includePath}/${filename}`) || "";
         file.write(
             `${projectName}/${filename}`,
-            output.toString().replace(/{projectName}/g, "config.xml" !== filename ? projectName : projectName.replace("-", ""))
+            output.toString().replace(
+                /{projectName}/g,
+                "config.xml" !== filename
+                    ? projectName
+                    : projectName.replace(/-/, ""))
         )
     });
     file.write(`${projectName}/.gitignore`, IGNORE);
