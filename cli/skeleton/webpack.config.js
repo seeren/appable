@@ -18,6 +18,11 @@ module.exports = {
                 loader: 'babel-loader'
             },
             {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                use: 'raw-loader',
+            },
+            {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
@@ -37,33 +42,27 @@ module.exports = {
     },
     watchOptions: {
         ignored: [
+            /\.nyc_output/,
+            /coverage/,
             /node_modules/,
-            /test/
+            /platforms/,
+            /plugins/,
+            /resources/,
+            /test/,
+            /www/
         ]
     },
     plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'index.css',
-        }),
+        new MiniCssExtractPlugin({ filename: 'index.css', }),
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,
-            files: [
-                'www/index.html',
-            ],
+            files: ['www/index.html',],
             server: {
                 baseDir: 'www',
-                middleware: [
-                    function (req, res, next) {
-                        if (-1 === req.url.indexOf(".") && "/" !== req.url) {
-                            res.writeHead(302, {
-                                'Location': '/'
-                            });
-                            res.end();
-                        }
-                        next();
-                    }
-                ]
+                middleware: (req, res, next) => -1 === req.url.indexOf(".") && "/" !== req.url
+                    ? res.end(res.writeHead(302, { 'Location': '/' }))
+                    : next()
             }
         })
     ]
