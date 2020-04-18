@@ -175,7 +175,7 @@ if (args[0] === NEW) {
                 /{projectName}/g,
                 "config.xml" !== filename
                     ? projectName
-                    : projectName.replace(/-/, ""))
+                    : projectName.replace(/-/g, ""))
         )
     });
     file.write(`${projectName}/.gitignore`, IGNORE);
