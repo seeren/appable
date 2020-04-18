@@ -1,3 +1,1 @@
-module.exports = (filename) => `${filename} {
-
-}`;
+module.exports = (filename) => `${filename} { }`;

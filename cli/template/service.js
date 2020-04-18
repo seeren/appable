@@ -1,6 +1,5 @@
 module.exports = (className) => `import { Service } from 'babel-skeleton';
 
-
 /**
  * @type {${className}Service}
  */
