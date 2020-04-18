@@ -28,6 +28,7 @@ export class Route {
          * @param {Component} path 
          */
         this.component = component;
+
     }
 
 }
