@@ -113,7 +113,7 @@ export class Component {
         let vars = "";
         const element = window.document.querySelector(this.selector);
         if (!element) {
-            throw new ReferenceError(`Can't find "${this.selector}" selector in the document`)
+            throw new ReferenceError(`Can't find "${this.selector}" selector in the document`);
         }
         const properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
             window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1)
@@ -134,7 +134,7 @@ export class Component {
             component.update();
         });
         if (this.onUpdate) {
-            this.onUpdate(element)
+            this.onUpdate(element);
         }
         return this;
     }
@@ -148,10 +148,9 @@ export class Component {
         let match;
         properties.forEach((propertie) => {
             const regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g");
-            while (match = regExp.exec(htmlElement.innerHTML)) {
-                window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(
-                    (child) => this.registerEvent(child, match[1], propertie, match[2].split(", "))
-                );
+            const childEvent = (child) => this.registerEvent(child, match[1], propertie, match[2].split(", "));
+            while ((match = regExp.exec(htmlElement.innerHTML))) {
+                window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(childEvent);
             }
         });
         return this;
@@ -168,7 +167,9 @@ export class Component {
         htmlElement[type] = () => {
             const evaluedArguments = [];
             for (const key in args) {
-                evaluedArguments[key] = eval(args[key]);
+                if (args.hasOwnProperty(key)) {
+                    evaluedArguments[key] = eval(args[key]);
+                }
             }
             if (undefined !== this[propertie](...evaluedArguments)) {
                 this.update();
