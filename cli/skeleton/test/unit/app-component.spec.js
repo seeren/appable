@@ -11,7 +11,7 @@ describe("AppComponent", () => {
 
     describe("Selector", () => {
         it("`app` is the selector", () => {
-            assert.equal(component.selector, "app")
+            assert.equal(component.selector, "app");
         });
     });
 
