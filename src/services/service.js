@@ -38,7 +38,7 @@ export class Service {
          * @returns {Service}
          */
         this.notify = () => {
-            callables.forEach(callable => callable(this));
+            callables.forEach((callable) => callable(this));
             return this;
         };
 
