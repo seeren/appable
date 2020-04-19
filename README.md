@@ -12,11 +12,12 @@ Appable is a JavaScript Library for create then scale front application effectiv
 <a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/v/appable.svg" alt="Version"></a>
 </p>
 
-<h2 align="center">🚀 Create an app</h2>
-
 <p align="center">
 <a href="https://www.npmjs.com/package/appable"><img src="https://nodei.co/npm/appable.png" alt="Version"></a>
 </p>
+
+## 🚀 Create an app
+
 
 ```bash
 npm install -g appable
