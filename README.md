@@ -1,7 +1,7 @@
 <h1 align="center">Appable</h2>
 
 <p align="center">
-Appable is a JavaScript Library for create then scale front application effectively.
+Appable is a JavaScript Library for build user interfaces and scale web application effectively
 </p>
 
 <p align="center">
@@ -11,12 +11,7 @@ Appable is a JavaScript Library for create then scale front application effectiv
 <a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/v/appable.svg" alt="Version"></a>
 </p>
 
-<p align="center">
-<a href="https://www.npmjs.com/package/appable"><img src="https://nodei.co/npm/appable.png" alt="Version"></a>
-</p>
-
-## 🚀 Create an app
-
+## 📦 Create an app
 
 ```bash
 npm install -g appable
@@ -38,51 +33,65 @@ ___
 
 ## 📄 Introduction
 
-Appable is a library for building user interfaces. It provide project creation with environment for build on web browser and device. It focus on components rendering, route, services and life cycle hooks. The package provide these features with 12 ko of builded code and use native JavaScript syntaxe.
+Appable focus on project creation, components rendering, routing, services and life cycle hooks with environment for build on web browser and device. The package provide these features with 12 ko of builded code and use native JavaScript syntaxe.
 
 ___
 
-## 📘 [Documentation](https://github.com/seeren/appable/wiki/appable)
+## 📘 Documentation
+
+* [Project](https://github.com/seeren/appable/wiki/📦-Creation)
+* [Router](https://github.com/seeren/appable/wiki/🚦-Router-usage)
+* [Component](https://github.com/seeren/appable/wiki/🍰-Component-creation)
+* [Service](https://github.com/seeren/appable/wiki/💫-Service-creation)
+* [Scripts](https://github.com/seeren/appable/wiki/📜-Scripts)
 
 ___
 
-## Example
+## 🖊️ Example
+
+*Generate a component*
 
 ```bash
-appable generate component foo
+appable generate component counter
 ```
+
+*Associate an url*
 
 ```js
 RouterComponent
-  .add('/', 'foo', FooComponent)
+  .add('/count', 'counter', CounterComponent)
   .run(new AppComponent)
 ```
 
+*Interpolate and bind event*
+
 ```html
-<p onclick="hello()">${title}</p>
+<button onclick="increment()">${counter}</button>
 ```
 
+*Handle interaction*
+
 ```js
-export class FooComponent extends Component {
+export class CounterComponent extends Component {
 
-    constructor() {
-        super({ selector: "foo", template: template });
-    }
+  constructor() {
+    super({ selector: "foo", template: template });
+  }
 
-    onInit() {
-      this.title = "Click Me";
-    }
+  onInit() {
+      this.counter = 0;
+  }
 
-    hello() {
-        return this.title = "Hello World";
-    }
+  increment() {
+    return this.counter++;
+  }
 
 }
 ```
 
-```scss
-foo { background: chocolate }
-```
+___
+
+You can fast add feature to the app, check the [documentation](https://github.com/seeren/appable/wiki) to read about build, shared service, router and component details.
 
 ___
 
