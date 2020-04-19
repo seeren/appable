@@ -5,7 +5,7 @@
     "start": "npm run dev",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "app": "app",
+    "appable": "appable",
     "cordova": "cordova",
     "res": "cordova-res",
     "android": "cordova run android --device",
