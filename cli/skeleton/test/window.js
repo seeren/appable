@@ -2,7 +2,7 @@ import jsdom from "jsdom";
 
 export const window = (() => {
 
-    const { JSDOM } = jsdom;
+    const JSDOM = jsdom;
     global.window = new JSDOM("<!doctype html>").window;
     global.window.Error = Error;
     global.window.Function = Function;
