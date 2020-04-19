@@ -123,7 +123,7 @@ export const RouterComponent = new class extends Component {
             try {
                 RouteService.get().forEach((route) => {
                     if (route.name === StateService.get().name) {
-                        throw route
+                        throw route;
                     }
                 });
             } catch (route) {

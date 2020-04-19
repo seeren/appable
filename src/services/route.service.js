@@ -66,7 +66,7 @@ export const RouteService = new class RouteService extends Service {
         }
         for (const key in explosedPath) {
             if (":" === explosedRoute[key][0]) {
-                param[explosedRoute[key].replace(":", "")] = explosedPath[key]
+                param[explosedRoute[key].replace(":", "")] = explosedPath[key];
             } else if (explosedPath[key] !== explosedRoute[key]) {
                 return;
             }
@@ -87,4 +87,4 @@ export const RouteService = new class RouteService extends Service {
         return !this.hasParam(route) && route.path === window.location.pathname;
     }
 
-}
+};
