@@ -1,14 +1,22 @@
 {
   "name": "appable",
-  "description": "Appable is a JavaScript Library for build user interfaces and scale web applications",
-  "version": "0.0.3",
+  "description": "Appable is a JavaScript Library for build user interfaces and scale web application effectively",
+  "version": "1.0.0",
   "keywords": [
-    "application",
+    "appable",
     "component",
     "route",
-    "hybrid"
+    "service",
+    "hybrid",
+    "app"
   ],
   "author": "Cyril Ichti",
+  "homepage": "https://github.com/seeren/appable/wiki",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seeren/appable"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack --mode development --watch",
@@ -22,11 +30,6 @@
   "bin": {
     "appable": "cli/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/seeren/app"
-  },
-  "license": "MIT",
   "devDependencies": {
     "@babel/cli": "latest",
     "@babel/core": "latest",
