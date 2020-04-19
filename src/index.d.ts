@@ -1,4 +1,4 @@
-declare module 'appable' {
+declare module "appable" {
 
     export class Component {
 
@@ -88,7 +88,7 @@ declare module 'appable' {
          * 
          * @example
          * 
-         * RouterComponent.add('/bar/:id', 'bar', BarComponent)
+         * RouterComponent.add("/bar/:id", "bar", BarComponent)
          * 
          * @param path 
          * @param name 
