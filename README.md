@@ -39,11 +39,11 @@ ___
 
 ## 📘 Documentation
 
-* [Project](https://github.com/seeren/appable/wiki/📦-Creation)
-* [Router](https://github.com/seeren/appable/wiki/🚦-Router-usage)
-* [Component](https://github.com/seeren/appable/wiki/🍰-Component-creation)
-* [Service](https://github.com/seeren/appable/wiki/💫-Service-creation)
-* [Scripts](https://github.com/seeren/appable/wiki/📜-Scripts)
+*    [Project](https://github.com/seeren/appable/wiki/📦-Creation)
+*    [Router](https://github.com/seeren/appable/wiki/🚦-Router-usage)
+*    [Component](https://github.com/seeren/appable/wiki/🍰-Component-creation)
+*    [Service](https://github.com/seeren/appable/wiki/💫-Service-creation)
+*    [Scripts](https://github.com/seeren/appable/wiki/📜-Scripts)
 
 ___
 
