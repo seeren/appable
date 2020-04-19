@@ -6,7 +6,7 @@ declare module "appable" {
 
         template: string;
 
-        components: [] = [];
+        components: [];
 
         /**
          * @param option 
@@ -14,7 +14,7 @@ declare module "appable" {
         constructor(option: {
             selector: string,
             template: string,
-            components: [] = [],
+            components: [],
         });
 
         /**
@@ -79,7 +79,7 @@ declare module "appable" {
 
     }
 
-    export const RouterComponent = new class RouterComponent extends Component {
+    export class RouterComponent extends Component {
 
         constructor();
 
