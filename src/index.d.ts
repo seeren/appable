@@ -1,4 +1,4 @@
-declare module 'app-js' {
+declare module 'hybrid-app' {
 
     export class Component {
 

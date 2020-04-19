@@ -1,6 +1,6 @@
 {
-  "name": "app.js",
-  "description": "App-js is a JavaScript Library for build user interfaces and scale web applications",
+  "name": "hybrid-app",
+  "description": "Hybrid-app is a JavaScript Library for build user interfaces and scale web applications",
   "version": "0.0.1",
   "keywords": [
     "application",
@@ -24,7 +24,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/seeren/app-js"
+    "url": "https://github.com/seeren/hybrid-app"
   },
   "license": "MIT",
   "devDependencies": {

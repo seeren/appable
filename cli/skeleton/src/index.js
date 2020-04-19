@@ -1,4 +1,4 @@
-import { RouterComponent } from "app-js";
+import { RouterComponent } from "hybrid-app";
 
 import { AppComponent } from "./app/app.component";
 

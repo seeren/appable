@@ -1,4 +1,4 @@
-import { Component } from "app-js";
+import { Component } from "hybrid-app";
 
 import template from "./app.component.html";
 

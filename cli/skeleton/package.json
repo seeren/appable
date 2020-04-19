@@ -33,7 +33,7 @@
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "@babel/register": "latest",
-    "app-js": "latest",
+    "hybrid-app": "latest",
     "babel-loader": "latest",
     "babel-plugin-istanbul": "latest",
     "browser-sync": "latest",
