@@ -54,7 +54,9 @@ export const StateService = new class StateService extends Service {
         this.state.name = route.name;
         this.state.param = param || {}
         for (let prop in this.state.param) {
-            path = path.replace(`:${prop}`, this.state.param[prop])
+            if (this.state.param.hasOwnProperty(prop)) {
+                path = path.replace(`:${prop}`, this.state.param[prop]);
+            }
         }
         if (replace) {
             return window.history.replaceState(this.state, route.name, path);
