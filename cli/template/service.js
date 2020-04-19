@@ -1,4 +1,4 @@
-module.exports = (className) => `import { Service } from 'hybrid-app';
+module.exports = (className) => `import { Service } from '@seeren/app';
 
 /**
  * @type {${className}Service}

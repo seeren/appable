@@ -1,4 +1,4 @@
-import { Component } from "hybrid-app";
+import { Component } from "@seeren/app";
 
 import template from "./app.component.html";
 

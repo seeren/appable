@@ -33,7 +33,7 @@
     "@babel/core": "latest",
     "@babel/preset-env": "latest",
     "@babel/register": "latest",
-    "hybrid-app": "latest",
+    "@seeren/app": "latest",
     "babel-loader": "latest",
     "babel-plugin-istanbul": "latest",
     "browser-sync": "latest",

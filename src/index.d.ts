@@ -1,4 +1,4 @@
-declare module 'hybrid-app' {
+declare module '@seeren/app' {
 
     export class Component {
 

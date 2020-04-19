@@ -1,4 +1,4 @@
-import { RouterComponent } from "hybrid-app";
+import { RouterComponent } from "@seeren/app";
 
 import { AppComponent } from "./app/app.component";
 

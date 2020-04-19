@@ -1,4 +1,4 @@
-module.exports = (filename, className) => `import { Component } from "hybrid-app";
+module.exports = (filename, className) => `import { Component } from "@seeren/app";
 import template from "./${filename}.component.html";
 import "./${filename}.component.scss";
 
