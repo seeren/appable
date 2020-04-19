@@ -58,7 +58,7 @@ export const RouteService = new class RouteService extends Service {
      * @returns {Object|void}
      */
     getParam(route) {
-        const param = {}
+        const param = {};
         const explosedPath = window.location.pathname.split("/");
         const explosedRoute = route.path.split("/");
         if (explosedPath.length !== explosedRoute.length) {

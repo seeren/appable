@@ -164,4 +164,4 @@ export const RouterComponent = new class extends Component {
         this.update();
     }
 
-}
+};

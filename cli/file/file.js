@@ -54,7 +54,7 @@ module.exports = {
             currentDir = path.join.apply(null, dirs.slice(0, i));
             try {
                 if (!fs.existsSync(currentDir)) {
-                    fs.mkdirSync(currentDir)
+                    fs.mkdirSync(currentDir);
                 }
             } catch (e) {
                 console.error(
@@ -73,7 +73,7 @@ module.exports = {
     className(filename) {
         let className = "";
         filename.split("/").pop().split("-").forEach(
-            elem => className += elem[0].toUpperCase() + elem.slice(1)
+            (elem) => className += elem[0].toUpperCase() + elem.slice(1)
         );
         return className;
     }

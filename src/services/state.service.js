@@ -52,7 +52,7 @@ export const StateService = new class StateService extends Service {
     history(route, param, replace) {
         let path = route.path;
         this.state.name = route.name;
-        this.state.param = param || {}
+        this.state.param = param || {};
         for (let prop in this.state.param) {
             if (this.state.param.hasOwnProperty(prop)) {
                 path = path.replace(`:${prop}`, this.state.param[prop]);
@@ -64,4 +64,4 @@ export const StateService = new class StateService extends Service {
         window.history.pushState(this.state, route.name, path);
     }
 
-}
+};
