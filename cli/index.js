@@ -160,7 +160,8 @@ if (args[0] === NEW) {
 
     const projectName = args[1];
     const package = [];
-    const includePath = `node_modules/appable/cli/skeleton`;
+
+    const includePath = __dirname + `/skeleton`;
     for (let key in JSON.parse(file.read(
         `${includePath}/package.json`
     ).toString()).devDependencie) {
