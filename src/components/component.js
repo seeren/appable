@@ -125,7 +125,7 @@ export class Component {
             }
             vars += ";";
         });
-        element.innerHTML = eval(vars + '`' + this.template + '`');
+        element.innerHTML = eval(vars + "`" + this.template + "`");
         this.updateEvents(element, properties);
         this.components.forEach((component) => {
             if (-1 === component.selector.indexOf(this.selector)) {
@@ -149,7 +149,7 @@ export class Component {
         properties.forEach((propertie) => {
             const regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g");
             const childEvent = (child) => this.registerEvent(child, match[1], propertie, match[2].split(", "));
-            while ((match = regExp.exec(htmlElement.innerHTML))) {
+            while (match = regExp.exec(htmlElement.innerHTML)) {
                 window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(childEvent);
             }
         });
