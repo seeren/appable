@@ -7,7 +7,7 @@ export class AppComponent extends Component {
     constructor() {
         super({
             selector: "app",
-            template: template
+            template
         });
         this.status = "Is ready";
     }

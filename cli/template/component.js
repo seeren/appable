@@ -13,7 +13,7 @@ export class ${className}Component extends Component {
     constructor() {
         super({
             selector: "${filename}",
-            template: template
+            template
         });
     }
 
