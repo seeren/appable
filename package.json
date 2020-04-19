@@ -1,7 +1,7 @@
 {
   "name": "appable",
   "description": "Appable is a JavaScript Library for build user interfaces and scale web applications",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "keywords": [
     "application",
     "component",
@@ -20,7 +20,7 @@
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "bin": {
-    "app": "cli/index.js"
+    "appable": "cli/index.js"
   },
   "repository": {
     "type": "git",
