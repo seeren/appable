@@ -1,4 +1,4 @@
-import { Component } from "@seeren/app";
+import { Component } from "appable";
 
 import template from "./app.component.html";
 

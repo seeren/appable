@@ -1,4 +1,4 @@
-import { RouterComponent } from "@seeren/app";
+import { RouterComponent } from "appable";
 
 import { AppComponent } from "./app/app.component";
 

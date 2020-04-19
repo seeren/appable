@@ -1,4 +1,4 @@
-declare module '@seeren/app' {
+declare module 'appable' {
 
     export class Component {
 

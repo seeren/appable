@@ -1,25 +1,29 @@
-<h1 align="center">@seeren/app</h2>
+<h1 align="center">Appable</h2>
 
 <p align="center">
-@seeren/app is a JavaScript Library for build user interfaces and scale hybrid applications
+Appable is a JavaScript Library for create then scale front application effectively.
 </p>
 
 <p align="center">
-<a href="https://travis-ci.org/seeren/@seeren/app) 
-"><img src="https://travis-ci.org/seeren/@seeren/app.svg?branch=master" alt="Build"></a>
-<a href="https://coveralls.io/github/seeren/@seeren/app?branch=master"><img src="https://coveralls.io/repos/github/seeren/@seeren/app/badge.svg?branch=master" alt="Coverage"></a>
-<a href="https://www.npmjs.com/package/@seeren/app"><img src="https://img.shields.io/npm/dt/@seeren/app.svg" alt="Download"></a>
-<a href="https://www.npmjs.com/package/@seeren/app"><img src="https://img.shields.io/npm/v/@seeren/app.svg" alt="Version"></a>
+<a href="https://travis-ci.org/seeren/appable) 
+"><img src="https://travis-ci.org/seeren/appable.svg?branch=master" alt="Build"></a>
+<a href="https://coveralls.io/github/seeren/appable?branch=master"><img src="https://coveralls.io/repos/github/seeren/appable/badge.svg?branch=master" alt="Coverage"></a>
+<a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/dt/appable.svg" alt="Download"></a>
+<a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/v/appable.svg" alt="Version"></a>
 </p>
 
-## 🚀 Create an app
+<h2 align="center">🚀 Create an app</h2>
+
+<p align="center">
+<a href="https://www.npmjs.com/package/appable"><img src="https://nodei.co/npm/appable.png" alt="Version"></a>
+</p>
 
 ```bash
-npm install -g @seeren/app
+npm install -g appable
 ```
 
 ```bash
-app new my-app
+appable new my-app
 ```
 
 ```bash
@@ -34,18 +38,18 @@ ___
 
 ## 📄 Introduction
 
-@seeren/app is a library for building user interfaces. It provide structured project creation with environment for build on web browser and device. It focus on route, components rendering, services and life cycle hook. The project provide these features with 12 ko of builded code and use native JavaScript syntaxe for template.
+Appable is a library for building user interfaces. It provide project creation with environment for build on web browser and device. It focus on components rendering, route, services and life cycle hooks. The package provide these features with 12 ko of builded code and use native JavaScript syntaxe.
 
 ___
 
-## 📘 [Documentation](https://github.com/seeren/@seeren/app/wiki/@seeren/app)
+## 📘 [Documentation](https://github.com/seeren/appable/wiki/appable)
 
 ___
 
 ## Example
 
 ```bash
-app generate component foo
+appable generate component foo
 ```
 
 ```js

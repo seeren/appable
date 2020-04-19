@@ -1,4 +1,4 @@
-module.exports = (filename, className) => `import { Component } from "@seeren/app";
+module.exports = (filename, className) => `import { Component } from "appable";
 import template from "./${filename}.component.html";
 import "./${filename}.component.scss";
 
