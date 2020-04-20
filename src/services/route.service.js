@@ -65,14 +65,14 @@ export const RouteService = new class RouteService extends Service {
             return;
         }
         for (const key in explosedPath) {
-            if (":" === explosedRoute[key][0]) {
-                param[explosedRoute[key].replace(":", "")] = explosedPath[key];
-            } else if (explosedPath[key] !== explosedRoute[key]) {
+            if (":" === explosedRoute[`${key}`][0]) {
+                param[explosedRoute[`${key}`].replace(":", "")] = explosedPath[`${key}`];
+            } else if (explosedPath[`${key}`] !== explosedRoute[`${key}`]) {
                 return;
             }
         }
         for (const key in param) {
-            if (`:${key}` === param[key]) {
+            if (`:${key}` === param[`${key}`]) {
                 return;
             }
         }

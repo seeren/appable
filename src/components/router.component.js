@@ -23,8 +23,9 @@ export const RouterComponent = new class extends Component {
 
         const scripts = window.document.getElementsByTagName("script");
         for (const key in scripts) {
-            if (scripts[key].src && -1 !== scripts[key].src.indexOf("dist/index.js")) {
-                this.basPath = scripts[key].src
+            if (scripts[`${key}`].src
+                && -1 !== scripts[`${key}`].src.indexOf("dist/index.js")) {
+                this.basPath = scripts[`${key}`].src
                     .replace("/dist/index.js", "")
                     .replace(window.location.origin, "");
             }
@@ -134,7 +135,7 @@ export const RouterComponent = new class extends Component {
             }
             return activeRoute;
         }
-        const param = StateService.get().param[paramName];
+        const param = StateService.get().param[`${paramName}`];
         if (!param) {
             throw new ReferenceError(
                 `There is no "${paramName}" param in the curent state`

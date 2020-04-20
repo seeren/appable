@@ -120,7 +120,7 @@ export class Component {
         );
         properties.forEach((varName) => {
             vars += `var ${varName} = this["${varName}"]`;
-            if (this[varName] instanceof window.Function) {
+            if (this[`${varName}`] instanceof window.Function) {
                 vars += ".bind(this)";
             }
             vars += ";";
@@ -177,14 +177,14 @@ export class Component {
      * @returns {Component}
      */
     registerEvent(htmlElement, type, propertie, args) {
-        htmlElement[type] = () => {
+        htmlElement[`${type}`] = () => {
             const evaluedArguments = [];
             for (const key in args) {
                 if (args.hasOwnProperty(key)) {
-                    evaluedArguments[key] = eval(args[key]);
+                    evaluedArguments[`${key}`] = eval(args[`${key}`]);
                 }
             }
-            if ("undefined" !== typeof this[propertie](...evaluedArguments)) {
+            if ("undefined" !== typeof this[`${propertie}`](...evaluedArguments)) {
                 this.update();
             }
         };
