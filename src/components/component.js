@@ -171,7 +171,7 @@ export class Component {
                     evaluedArguments[key] = eval(args[key]);
                 }
             }
-            if (undefined !== this[propertie](...evaluedArguments)) {
+            if ("undefined" !== typeof this[propertie](...evaluedArguments)) {
                 this.update();
             }
         };
