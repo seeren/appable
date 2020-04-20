@@ -147,11 +147,24 @@ export class Component {
     updateEvents(htmlElement, properties) {
         let match;
         properties.forEach((propertie) => {
-            const regExp = new window.RegExp(`(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`, "g");
-            const childEvent = (child) => this.registerEvent(child, match[1], propertie, match[2].split(", "));
-            while (match = regExp.exec(htmlElement.innerHTML)) {
-                window.document.querySelectorAll(`${this.selector} [${match[0]}]`).forEach(childEvent);
-            }
+            const regExp = new window.RegExp(
+                `(on[a-zA-Z]{4,16})="${propertie}\\((\.*)\\)"`,
+                "g"
+            );
+            const childEvent = (child) => this.registerEvent(
+                child,
+                match[1],
+                propertie,
+                match[2].split(", ")
+            );
+            do {
+                match = regExp.exec(htmlElement.innerHTML);
+                if (match) {
+                    window.document.querySelectorAll(
+                        `${this.selector} [${match[0]}]`
+                    ).forEach(childEvent);
+                }
+            } while (match);
         });
         return this;
     }
