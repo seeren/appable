@@ -69,8 +69,11 @@ export const RouterComponent = new class extends Component {
         const routes = RouteService.get();
         try {
             routes.forEach((route) => {
-                if (RouteService.matchLocation(route)
-                    || (param = RouteService.getParam(route))) {
+                if (RouteService.matchLocation(route)) {
+                    throw route;
+                }
+                param = RouteService.getParam(route);
+                if (param) {
                     throw route;
                 }
             });
