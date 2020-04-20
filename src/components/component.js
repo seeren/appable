@@ -41,8 +41,8 @@ export class Component {
      */
     lifeCycle(hookName) {
         let hookValue = null;
-        if (this[hookName]) {
-            hookValue = this[hookName]();
+        if (this[`${hookName}`]) {
+            hookValue = this[`${hookName}`]();
         }
         this.components.forEach((component) => {
             if (hookValue === false) {
