@@ -1,5 +1,5 @@
-import { Service } from "./service";
-import { Route } from "../models/route.model";
+import { Service } from './service';
+import { Route } from '../models/route.model';
 
 /**
  * @type {RouteService}
@@ -16,7 +16,6 @@ export const RouteService = new class RouteService extends Service {
          * @type {Route[]}
          */
         this.routes = [];
-
     }
 
     /**
@@ -27,10 +26,10 @@ export const RouteService = new class RouteService extends Service {
     }
 
     /**
-     * @param {String} path 
-     * @param {String} name 
-     * @param {Component} component 
-     * 
+     * @param {String} path
+     * @param {String} name
+     * @param {Component} component
+     *
      * @throws {ReferenceError}
      */
     post(path, name, component) {
@@ -46,45 +45,49 @@ export const RouteService = new class RouteService extends Service {
     }
 
     /**
-     * @param {Route} route 
+     * @param {Route} route
      * @returns {Boolean}
      */
-    hasParam(route) {
-        return -1 !== route.path.indexOf(":");
+    static matchLocation(route) {
+        return !RouteService.hasParam(route) && route.path === window.location.pathname;
     }
 
     /**
      * @param {Route} route
-     * @returns {Object|void}
+     * @returns {Boolean}
      */
-    getParam(route) {
+    static hasParam(route) {
+        return -1 !== route.path.indexOf(':');
+    }
+
+    /**
+     * @param {Route} route
+     * @returns {Object|Boolean}
+     */
+    static getParam(route) {
         const param = {};
-        const explosedPath = window.location.pathname.split("/");
-        const explosedRoute = route.path.split("/");
-        if (explosedPath.length !== explosedRoute.length) {
-            return;
-        }
-        for (const key in explosedPath) {
-            if (":" === explosedRoute[`${key}`][0]) {
-                param[explosedRoute[`${key}`].replace(":", "")] = explosedPath[`${key}`];
-            } else if (explosedPath[`${key}`] !== explosedRoute[`${key}`]) {
-                return;
+        const explosedPath = window.location.pathname.split('/');
+        const explosedRoute = route.path.split('/');
+        try {
+            if (explosedPath.length !== explosedRoute.length) {
+                throw new Error('Location path length is different of route path length');
             }
-        }
-        for (const key in param) {
-            if (`:${key}` === param[`${key}`]) {
-                return;
-            }
+            Object.keys(explosedPath).forEach((key) => {
+                if (':' === explosedRoute[`${key}`][0]) {
+                    param[explosedRoute[`${key}`].replace(':', '')] = explosedPath[`${key}`];
+                } else if (explosedPath[`${key}`] !== explosedRoute[`${key}`]) {
+                    throw new Error('Route path slug not found and is different from Location parth part');
+                }
+            });
+            Object.keys(explosedPath).forEach((key) => {
+                if (`:${key}` === param[`${key}`]) {
+                    throw new Error(`The parameter ${key} is not populated`);
+                }
+            });
+        } catch (error) {
+            return false;
         }
         return param;
     }
 
-    /**
-     * @param {Route} route 
-     * @returns {Boolean}
-     */
-    matchLocation(route) {
-        return !this.hasParam(route) && route.path === window.location.pathname;
-    }
-
-};
+}();
