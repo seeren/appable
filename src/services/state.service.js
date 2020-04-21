@@ -52,10 +52,12 @@ export const StateService = new class StateService extends Service {
         let { path } = route;
         this.state.name = route.name;
         this.state.param = param || {};
-        Object.keys(this.state.param).forEach((key) => {
+        Object.keys(this.state.param).some((key) => {
             if (this.state.param.hasOwnProperty(key)) {
                 path = path.replace(`:${key}`, this.state.param[`${key}`]);
+                return true;
             }
+            return false;
         });
         if (replace) {
             window.history.replaceState(this.state, route.name, path);
