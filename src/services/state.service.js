@@ -1,4 +1,4 @@
-import { Service } from "./service";
+import { Service } from './service';
 
 /**
  * @type {StateService}
@@ -16,9 +16,8 @@ export const StateService = new class StateService extends Service {
          */
         this.state = {
             name: null,
-            param: {}
+            param: {},
         };
-
     }
 
     /**
@@ -45,23 +44,25 @@ export const StateService = new class StateService extends Service {
     }
 
     /**
-     * @param {Route} route 
-     * @param {Object} param 
-     * @param {Boolean} replace 
+     * @param {Route} route
+     * @param {Object} param
+     * @param {Boolean} replace
      */
     history(route, param, replace) {
-        let path = route.path;
+        let { path } = route;
         this.state.name = route.name;
         this.state.param = param || {};
-        for (let prop in this.state.param) {
-            if (this.state.param.hasOwnProperty(prop)) {
-                path = path.replace(`:${prop}`, this.state.param[prop]);
+        Object.keys(this.state.param).forEach((key) => {
+            if (this.state.param.hasOwnProperty(key)) {
+                path = path.replace(`:${key}`, this.state.param[`${key}`]);
             }
-        }
+        });
         if (replace) {
-            return window.history.replaceState(this.state, route.name, path);
+            window.history.replaceState(this.state, route.name, path);
+            return true;
         }
         window.history.pushState(this.state, route.name, path);
+        return false;
     }
 
-};
+}();
