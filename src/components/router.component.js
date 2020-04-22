@@ -1,47 +1,57 @@
-import { Component } from "../components/component";
-import { RouteService } from "../services/route.service";
-import { StateService } from "../services/state.service";
+import { Component } from './component';
+import { Route } from '../models/route.model';
+import { RouteService } from '../services/route.service';
+import { StateService } from '../services/state.service';
 
 /**
  * @type {RouterComponent}
  */
-export const RouterComponent = new class extends Component {
+export const RouterComponent = new class RouterComponent extends Component {
 
     /**
      * @constructor
      */
     constructor() {
         super({
-            selector: "router",
-            template: ""
+            selector: 'router',
+            template: '',
         });
 
         /**
          * @type {String}
          */
-        this.basPath = "";
+        this.basPath = '';
 
-        const scripts = window.document.getElementsByTagName("script");
-        for (const key in scripts) {
-            if (scripts[`${key}`].src
-                && -1 !== scripts[`${key}`].src.indexOf("dist/index.js")) {
-                this.basPath = scripts[`${key}`].src
-                    .replace("/dist/index.js", "")
-                    .replace(window.location.origin, "");
+        /**
+         * @type {Route}
+         */
+        this.route = null;
+
+        const scripts = window.document.getElementsByTagName('script');
+        Object.keys(scripts).some((key) => {
+            const script = scripts[`${key}`];
+            if (script.src && -1 !== script.src.indexOf('dist/index.js')) {
+                this.basPath = script.src
+                    .replace('/dist/index.js', '')
+                    .replace(window.location.origin, '');
+                return true;
             }
-        }
+            return false;
+        });
     }
 
     /**
-     * @param {Route} route 
+     * @param {Route} route
      * @returns {Component}
-     * 
+     *
      * @throws {ReferenceError}
      */
     attach(route) {
         if (route.component instanceof window.Function) {
-            route.component = new route.component;
+            const Attachable = route.component;
+            route.component = new Attachable();
         }
+        this.route = route;
         return super.attach(route.component);
     }
 
@@ -50,7 +60,7 @@ export const RouterComponent = new class extends Component {
      * @param {String} name Route name
      * @param {Component} component Component class or instance
      * @returns {RouterComponent}
-     * 
+     *
      * @throws {ReferenceError} for existing path or name
      */
     add(path, name, component) {
@@ -63,22 +73,22 @@ export const RouterComponent = new class extends Component {
      * @returns {RouterComponent}
      */
     run(component) {
-        window.addEventListener("popstate", (event) => this.onPopstate(event));
-        window.document.addEventListener("pause", () => this.lifeCycle("onPause"));
-        window.document.addEventListener("resume", () => this.lifeCycle("onResume"));
+        window.addEventListener('popstate', (event) => this.onPopstate(event));
+        window.document.addEventListener('pause', () => this.lifeCycle('onPause'));
+        window.document.addEventListener('resume', () => this.lifeCycle('onResume'));
         let param;
         const routes = RouteService.get();
         try {
             routes.forEach((route) => {
-                if (RouteService.matchLocation(route)) {
+                if (RouteService.constructor.matchLocation(route)) {
                     throw route;
                 }
-                param = RouteService.getParam(route);
+                param = RouteService.constructor.getParam(route);
                 if (param) {
                     throw route;
                 }
             });
-            if (routes.length && !RouteService.hasParam(routes[0])) {
+            if (routes.length && !RouteService.constructor.hasParam(routes[0])) {
                 throw routes[0];
             }
         } catch (route) {
@@ -92,7 +102,7 @@ export const RouterComponent = new class extends Component {
     /**
      * @param {string} name Route name
      * @param {Object} [param] Route param
-     * 
+     *
      * @throws {ReferenceError} for not found route
      */
     navigate(name, param) {
@@ -117,44 +127,36 @@ export const RouterComponent = new class extends Component {
 
     /**
      * @param {String} [paramName]
-     * @returns {Route|*} 
-     * 
+     * @returns {Route|*}
+     *
      * @throws {ReferenceError} for not found parameter name
      */
     get(paramName) {
         if (!paramName) {
-            let activeRoute = null;
-            try {
-                RouteService.get().forEach((route) => {
-                    if (route.name === StateService.get().name) {
-                        throw route;
-                    }
-                });
-            } catch (route) {
-                activeRoute = route;
-            }
-            return activeRoute;
+            return this.route;
         }
         const param = StateService.get().param[`${paramName}`];
         if (!param) {
             throw new ReferenceError(
-                `There is no "${paramName}" param in the curent state`
+                `There is no "${paramName}" param in the curent state`,
             );
         }
         return param;
     }
 
     /**
-     * @param {PopStateEvent} event 
+     * @param {PopStateEvent} event
+     * @returns {Boolean}
      */
     onPopstate(event) {
-        if (false === this.lifeCycle("onBack")) {
+        if (false === this.lifeCycle('onBack')) {
             const state = StateService.get();
-            return RouteService.get().forEach((route) => {
+            RouteService.get().forEach((route) => {
                 if (route.name === state.name) {
                     StateService.post(route, state.param);
                 }
             });
+            return false;
         }
         this.detach(this.components[0]);
         if (event.state) {
@@ -166,6 +168,7 @@ export const RouterComponent = new class extends Component {
             });
         }
         this.update();
+        return true;
     }
 
-};
+}();

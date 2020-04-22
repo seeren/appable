@@ -26,6 +26,7 @@ module.exports = {
       "afterBlockComment": false,
      }],
      "yoda": [2, "always"],
-     "no-prototype-builtins": 0
+     "no-prototype-builtins": 0,
+     "no-param-reassign": [2, { "props": false }]
   },
 };
