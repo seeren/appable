@@ -20,7 +20,7 @@ module.exports = {
     "import/no-default-export": 2,
     "padded-blocks": [2, { "classes": "always" }],
     "indent": [2, 4],
-    "no-unused-vars":["error", { "varsIgnorePattern": "^[A-Z]" }],
+    "no-unused-vars":["error", { "varsIgnorePattern": "^[A-Z]|window" }],
     "lines-around-comment": ["error", {
       "beforeBlockComment": true,
       "afterBlockComment": false,
