@@ -2,8 +2,10 @@ import jsdom from 'jsdom';
 
 export const window = (() => {
 
-    const JSDOM = jsdom;
-    global.window = new JSDOM('<!doctype html>').window;
+    const { JSDOM } = jsdom;
+    global.window = new JSDOM('<!doctype html>', {
+        url: 'http://localhost/',
+    }).window;
     global.window.Error = Error;
     global.window.Function = Function;
     global.window.JSON = JSON;

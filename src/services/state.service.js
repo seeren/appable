@@ -1,4 +1,5 @@
 import { Service } from './service';
+import { Route } from '../models/route.model';
 
 /**
  * @type {StateService}
@@ -49,22 +50,35 @@ export const StateService = new class StateService extends Service {
      * @param {Boolean} replace
      */
     history(route, param, replace) {
+        const stateParam = param || {};
+        route.path.split('/').forEach((key) => {
+            if (':' !== key[0]) {
+                return false;
+            }
+            if ('undefined' === typeof stateParam[`${key.substr(1)}`]) {
+                throw new Error(`Navigation route part "${key}" missing in param`);
+            }
+            return true;
+        });
+        Object.keys(stateParam).forEach((key) => {
+            if (-1 === route.path.indexOf(`:${key}`)) {
+                throw new Error(
+                    `Navigation param "${key}" not found in "${route.path}"`,
+                );
+            }
+        });
         let { path } = route;
         this.state.name = route.name;
-        this.state.param = param || {};
-        Object.keys(this.state.param).some((key) => {
-            if (this.state.param.hasOwnProperty(key)) {
-                path = path.replace(`:${key}`, this.state.param[`${key}`]);
-                return true;
-            }
-            return false;
+        this.state.param = stateParam;
+        Object.keys(this.state.param).forEach((key) => {
+            path = path.replace(`:${key}`, this.state.param[`${key}`]);
         });
         if (replace) {
             window.history.replaceState(this.state, route.name, path);
-            return true;
+            return false;
         }
         window.history.pushState(this.state, route.name, path);
-        return false;
+        return true;
     }
 
 }();
