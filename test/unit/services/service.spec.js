@@ -1,6 +1,6 @@
 import { describe, beforeEach, it } from 'mocha';
 import { assert } from 'chai';
-import { Service } from '../../src/services/service';
+import { Service } from '../../../src/services/service';
 
 describe('Service', () => {
 
@@ -9,7 +9,7 @@ describe('Service', () => {
     beforeEach(() => { service = new Service(); });
 
     describe('notify', () => {
-        it('call attached callback', () => {
+        it('call attached callables', () => {
             let called = false;
             const callable = () => { called = true; };
             service.attach(callable);
@@ -19,7 +19,7 @@ describe('Service', () => {
     });
 
     describe('attach', () => {
-        it('Allow collection', () => {
+        it('Add callable', () => {
             let called = 0;
             const callable = () => { called += 1; };
             service.attach(callable);
@@ -30,7 +30,7 @@ describe('Service', () => {
     });
 
     describe('detach', () => {
-        it('Remove attached', () => {
+        it('Remove callable', () => {
             let called = false;
             const callable = () => { called = true; };
             service.attach(callable);
