@@ -1,15 +1,14 @@
-import { Component } from "appable";
-import template from "./app.component.html";
-import "./app.component.scss";
+import { Component } from 'appable';
+import template from './app.component.html';
 
 export class AppComponent extends Component {
 
     constructor() {
         super({
-            selector: "app",
-            template
+            selector: 'app',
+            template,
         });
-        this.status = "Is ready";
+        this.status = 'Is ready';
     }
 
 }
