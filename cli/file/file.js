@@ -1,5 +1,5 @@
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 /**
  * @description File helper
@@ -8,28 +8,28 @@ const path = require("path");
 module.exports = {
 
     /**
-     * @param {srting} filename 
-     * @param {srting} output 
+     * @param {srting} filename
+     * @param {srting} output
      * @returns {Boolean}
      */
     write(filename, output) {
-        if (!this.createDirs(filename.split("/"))) {
+        if (!this.createDirs(filename.split('/'))) {
             return false;
         }
         try {
             fs.writeFileSync(filename, output);
         } catch (e) {
             console.error(
-                "\x1b[31m", "\u00D7", "\x1b[0m", `Generate error: ${e.message}`
+                '\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`,
             );
             return false;
         }
-        console.log("\x1b[32m", "\u2713", "\x1b[0m", filename);
+        console.warn('\x1b[32m', '\u2713', '\x1b[0m', filename);
         return true;
     },
 
     /**
-     * @param {string} filename 
+     * @param {string} filename
      * @returns {String}
      */
     read(filename) {
@@ -38,19 +38,19 @@ module.exports = {
             output = fs.readFileSync(filename);
         } catch (e) {
             console.error(
-                "\x1b[31m", "\u00D7", "\x1b[0m", `Read error: ${e.message}`
+                '\x1b[31m', '\u00D7', '\x1b[0m', `Read error: ${e.message}`,
             );
         }
         return output;
     },
 
     /**
-     * @param {Array} dirs 
+     * @param {Array} dirs
      * @returns {Boolean}
      */
     createDirs(dirs) {
         let currentDir;
-        for (let i = 1, l = dirs.length; i < l; i++) {
+        for (let i = 1, l = dirs.length; i < l; i += 1) {
             currentDir = path.join.apply(null, dirs.slice(0, i));
             try {
                 if (!fs.existsSync(currentDir)) {
@@ -58,7 +58,7 @@ module.exports = {
                 }
             } catch (e) {
                 console.error(
-                    "\x1b[31m", "\u00D7", "\x1b[0m", `Generate error: ${e.message}`
+                    '\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`,
                 );
                 return false;
             }
@@ -67,15 +67,15 @@ module.exports = {
     },
 
     /**
-     * @param {String} filename 
+     * @param {String} filename
      * @returns {String}
      */
     className(filename) {
-        let className = "";
-        filename.split("/").pop().split("-").forEach(
-            (elem) => className += elem[0].toUpperCase() + elem.slice(1)
+        let className = '';
+        filename.split('/').pop().split('-').forEach(
+            (elem) => { className += elem[0].toUpperCase() + elem.slice(1); },
         );
         return className;
-    }
+    },
 
 };
