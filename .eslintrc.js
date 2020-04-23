@@ -28,6 +28,7 @@ module.exports = {
      "yoda": [2, "always"],
      "no-prototype-builtins": 0,
      "no-param-reassign": [2, { "props": false }],
-     "no-eval": 0
+     "no-eval": 0,
+     "no-console": ["error", { allow: ["warn", "error"] }],
   },
 };
