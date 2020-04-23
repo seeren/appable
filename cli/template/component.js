@@ -1,6 +1,6 @@
-module.exports = (filename, className) => `import { Component } from "appable";
-import template from "./${filename}.component.html";
-import "./${filename}.component.scss";
+module.exports = (filename, className) => `import { Component } from 'appable';
+import template from './${filename}.component.html';
+import './${filename}.component.scss';
 
 /**
  * @type { ${className}Component}
@@ -12,8 +12,8 @@ export class ${className}Component extends Component {
      */
     constructor() {
         super({
-            selector: "${filename}",
-            template
+            selector: '${filename}',
+            template,
         });
     }
 
@@ -24,7 +24,7 @@ export class ${className}Component extends Component {
 
     /**
      * Called after the component is displayed
-     * 
+     *
      * @param {HTMLElement}
      */
     onUpdate(element) { }
@@ -37,7 +37,7 @@ export class ${className}Component extends Component {
     /**
      * Called after the user trigger the back button
      * You can cancel the back navigation by returning false
-     * 
+     *
      * @returns {Boolean}
      */
     onBack() { }
@@ -53,4 +53,5 @@ export class ${className}Component extends Component {
     onResume() { }
 
 }
+
 `;
