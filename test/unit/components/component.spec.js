@@ -25,6 +25,16 @@ describe('Component', () => {
         it('components is an array', () => {
             assert.isArray(appComponent.components);
         });
+        it('components are attached', () => {
+            const parentComponent = new Component({
+                selector: 'app',
+                template: '',
+                components: [
+                    new Component({ selector: 'foo', template: '' }),
+                ],
+            });
+            assert.equal(1, parentComponent.row);
+        });
     });
 
     describe('attach', () => {
@@ -199,6 +209,19 @@ describe('Component', () => {
             // eslint-disable-next-line no-template-curly-in-string
             appComponent.update();
             assert.equal(1, updateEventsSpy.callCount);
+        });
+        it('Call component lifeCycle for "onUpdate"', () => {
+            appComponent.onUpdate = () => {};
+            const lifCycleSpy = spy(appComponent, 'onUpdate');
+            appComponent.update();
+            assert.equal(1, lifCycleSpy.callCount);
+        });
+        it('Call components update', () => {
+            fooComponent.onUpdate = () => {};
+            const lifCycleSpy = spy(fooComponent, 'update');
+            appComponent.attach(fooComponent);
+            appComponent.update();
+            assert.equal(1, lifCycleSpy.callCount);
         });
     });
 
