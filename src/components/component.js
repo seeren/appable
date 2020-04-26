@@ -1,4 +1,16 @@
 /**
+ * @type {Array}
+ */
+const hooks = [
+    'onInit',
+    'onUpdate',
+    'onDestroy',
+    'onBack',
+    'onPause',
+    'onResume',
+];
+
+/**
  * @type {Component}
  */
 export class Component {
@@ -120,6 +132,12 @@ export class Component {
         const properties = window.Object.getOwnPropertyNames(this).slice(4).concat(
             window.Object.getOwnPropertyNames(this.constructor.prototype).slice(1),
         );
+        hooks.forEach((hook) => {
+            const index = properties.indexOf(hook);
+            if (-1 !== index) {
+                properties.splice(index, 1);
+            }
+        });
         properties.forEach((varName) => {
             vars += `var ${varName} = this["${varName}"]`;
             if (this[`${varName}`] instanceof window.Function) {
@@ -181,8 +199,8 @@ export class Component {
     registerEvent(htmlElement, type, propertie, args) {
         htmlElement[`${type}`] = () => {
             const evaluedArguments = [];
-            Object.keys(args).forEach((arg) => {
-                evaluedArguments[`${arg}`] = eval(args[`${arg}`]);
+            Object.keys(args).forEach((key) => {
+                evaluedArguments[`${key}`] = eval(args[`${key}`]);
             });
             if ('undefined' !== typeof this[`${propertie}`](...evaluedArguments)) {
                 this.update();

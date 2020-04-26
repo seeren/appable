@@ -171,4 +171,8 @@ export const RouterComponent = new class RouterComponent extends Component {
         return true;
     }
 
+    updateEvents() {
+        return this;
+    }
+
 }();
