@@ -1,5 +1,6 @@
 import { Service } from './service';
 import { Route } from '../models/route.model';
+import { Component } from '../components/component';
 
 /**
  * @type {RouteService}
@@ -81,7 +82,7 @@ export const RouteService = new class RouteService extends Service {
                     throw new Error('Route path slug not found and is different from Location path part');
                 }
             });
-            Object.keys(explosedPath).forEach((key) => {
+            Object.keys(param).forEach((key) => {
                 if (`:${key}` === param[`${key}`]) {
                     throw new Error(`The parameter ${key} is not populated`);
                 }
