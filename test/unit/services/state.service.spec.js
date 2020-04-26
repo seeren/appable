@@ -1,10 +1,16 @@
 import { describe, it } from 'mocha';
 import { assert, expect } from 'chai';
+import { spy } from 'sinon';
 import { window } from '../../window';
 import { StateService } from '../../../src/services/state.service';
 import { Route } from '../../../src/models/route.model';
 
 describe('StateService', () => {
+
+    const historySpy = spy(StateService, 'history');
+    const staticRoute = new Route('/foo', 'foo');
+    const dynamicRoute = new Route('/bar/:bar/baz/:baz', 'bar');
+    const param = { bar: 7, baz: 77 };
 
     describe('state', () => {
         it('name is null', () => {
@@ -21,10 +27,21 @@ describe('StateService', () => {
         });
     });
 
+    describe('post', () => {
+        it('call pushState', () => {
+            StateService.post(staticRoute);
+            assert.equal(1, historySpy.callCount);
+        });
+    });
+
+    describe('put', () => {
+        it('call pushState', () => {
+            StateService.put(staticRoute);
+            assert.equal(2, historySpy.callCount);
+        });
+    });
+
     describe('history', () => {
-        const staticRoute = new Route('/foo', 'foo');
-        const dynamicRoute = new Route('/bar/:bar/baz/:baz', 'bar');
-        const param = { bar: 7, baz: 77 };
         it('replace at true call history.replaceState', () => {
             assert.isFalse(StateService.history(staticRoute, {}, true));
         });
@@ -54,10 +71,9 @@ describe('StateService', () => {
             expect(() => {
                 StateService.history(dynamicRoute, { bar: 7 });
             }).to.throw(
-                'Navigation route part ":baz" missing in param',
+                'Navigation route part ":baz" is missing in param',
             );
         });
-
     });
 
 });

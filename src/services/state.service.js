@@ -56,7 +56,7 @@ export const StateService = new class StateService extends Service {
                 return false;
             }
             if ('undefined' === typeof stateParam[`${key.substr(1)}`]) {
-                throw new Error(`Navigation route part "${key}" missing in param`);
+                throw new Error(`Navigation route part "${key}" is missing in param`);
             }
             return true;
         });
