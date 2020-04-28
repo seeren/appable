@@ -1,4 +1,6 @@
-import { describe, beforeEach, it } from 'mocha';
+import {
+    describe, beforeEach, afterEach, it,
+} from 'mocha';
 import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import { window } from '../../window';
@@ -6,6 +8,7 @@ import { RouterComponent } from '../../../src/components/router.component';
 import { Component } from '../../../src/components/component';
 import { Route } from '../../../src/models/route.model';
 import { RouteService } from '../../../src/services/route.service';
+import { StateService } from '../../../src/services/state.service';
 
 describe('RouterComponent', () => {
 
@@ -22,7 +25,7 @@ describe('RouterComponent', () => {
             }
 
         };
-        route = new Route('/foo', 'foo', appComponent);
+        route = new Route('/', 'foo', fooComponent);
     });
 
     describe('constructor', () => {
@@ -56,6 +59,44 @@ describe('RouterComponent', () => {
             assert.equal(routeLength + 1, RouteService.routes.length);
             RouteService.routes = [];
         });
+    });
+
+    describe('run', () => {
+        it('dynamise added and runing component', () => {
+            RouterComponent.add(route.path, route.name, route.component);
+            RouterComponent.run(appComponent);
+            assert.equal(
+                RouterComponent.template,
+                '<foo data-router="0"></foo>',
+            );
+            assert.equal(
+                appComponent.template,
+                '<router data-app="0"></router>',
+            );
+        });
+
+        it('redirect to route path', () => {
+            route.path = '/foo';
+            RouterComponent.add(route.path, route.name, route.component);
+            RouterComponent.run(appComponent);
+            assert.equal(window.location.pathname, RouterComponent.route.path);
+        });
+
+        it('detected rewrited url', () => {
+            route.path = '/foo/:id';
+            window.history.replaceState({}, 'test', '/foo/2');
+            RouterComponent.add(route.path, route.name, route.component);
+            RouterComponent.run(appComponent);
+            assert.equal(route.path, RouterComponent.route.path);
+        });
+
+        afterEach(() => {
+            route.path = '/';
+            StateService.post(route);
+            RouteService.routes = [];
+            StateService.state = { name: null, param: {} };
+        });
+
     });
 
 });
