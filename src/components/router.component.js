@@ -20,7 +20,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         /**
          * @type {String}
          */
-        this.basPath = '';
+        this.basePath = null;
 
         /**
          * @type {Route}
@@ -31,7 +31,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         Object.keys(scripts).some((key) => {
             const script = scripts[`${key}`];
             if (script.src && -1 !== script.src.indexOf('dist/index.js')) {
-                this.basPath = script.src
+                this.basePath = script.src
                     .replace('/dist/index.js', '')
                     .replace(window.location.origin, '');
                 return true;
@@ -64,7 +64,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      * @throws {ReferenceError} for existing path or name
      */
     add(path, name, component) {
-        RouteService.post(`${this.basPath}${path}`, name, component);
+        RouteService.post(`${this.basePath}${path}`, name, component);
         return this;
     }
 
