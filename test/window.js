@@ -12,6 +12,12 @@ export const window = (() => {
     global.window.Object = Object;
     global.window.RegExp = RegExp;
     global.window.parseInt = parseInt;
+    const script = global.window.document.createElement('script');
+    const otherScript = global.window.document.createElement('script');
+    global.window.document.body.appendChild(otherScript);
+    global.window.document.body.appendChild(script);
+    script.src = '/dist/index.js';
+    otherScript.src = '/other/index.js';
     return global.window;
 
 })();
