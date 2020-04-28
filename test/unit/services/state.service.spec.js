@@ -29,15 +29,17 @@ describe('StateService', () => {
 
     describe('post', () => {
         it('call pushState', () => {
+            const { callCount } = historySpy;
             StateService.post(staticRoute);
-            assert.equal(1, historySpy.callCount);
+            assert.equal(callCount + 1, historySpy.callCount);
         });
     });
 
     describe('put', () => {
         it('call pushState', () => {
+            const { callCount } = historySpy;
             StateService.put(staticRoute);
-            assert.equal(2, historySpy.callCount);
+            assert.equal(callCount + 1, historySpy.callCount);
         });
     });
 
