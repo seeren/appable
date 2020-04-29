@@ -113,10 +113,12 @@ export const RouterComponent = new class RouterComponent extends Component {
                 }
             });
         } catch (route) {
-            if (route.component === this.components[0]) {
-                return;
+            if (this.components.length) {
+                if (this.components[0] === route.component) {
+                    return;
+                }
+                this.detach(this.components[0]);
             }
-            this.detach(this.components[0]);
             StateService.post(route, param);
             this.attach(route);
             this.update();
@@ -151,26 +153,33 @@ export const RouterComponent = new class RouterComponent extends Component {
     onPopstate(event) {
         if (false === this.lifeCycle('onBack')) {
             const state = StateService.get();
-            RouteService.get().forEach((route) => {
+            RouteService.get().some((route) => {
                 if (route.name === state.name) {
                     StateService.post(route, state.param);
+                    return true;
                 }
+                return false;
             });
             return false;
         }
         this.detach(this.components[0]);
         if (event.state) {
-            RouteService.get().forEach((route) => {
+            RouteService.get().some((route) => {
                 if (event.state.name === route.name) {
                     StateService.put(route, event.state.param);
                     this.attach(route);
+                    return true;
                 }
+                return false;
             });
         }
         this.update();
         return true;
     }
 
+    /**
+     * @returns {RouterComponent}
+     */
     updateEvents() {
         return this;
     }
