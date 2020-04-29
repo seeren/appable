@@ -10,15 +10,14 @@ describe('RouteService', () => {
     const dynamicRoute = new Route('/bar/:bar/baz/:baz', 'bar');
 
     describe('routes', () => {
-        it('is an array', () => {
-            assert.isArray(RouteService.routes);
-        });
+        it('is an array', () => assert.isArray(RouteService.routes));
     });
 
     describe('get', () => {
-        it('retrieve routes', () => {
-            assert.equal(RouteService.routes, RouteService.get());
-        });
+        it('retrieve routes', () => assert.equal(
+            RouteService.routes,
+            RouteService.get(),
+        ));
     });
 
     describe('post', () => {
@@ -27,20 +26,16 @@ describe('RouteService', () => {
             RouteService.post('/foo', 'foo');
             assert.equal(lengthBefore + 1, RouteService.routes.length);
         });
-        it('Throw ReferenceError for existing path', () => {
-            expect(() => {
-                RouteService.post('/foo', 'fail');
-            }).to.throw(
-                'Can\'t add route: path "/foo" already exists',
-            );
-        });
-        it('Throw ReferenceError for existing name', () => {
-            expect(() => {
-                RouteService.post('/fail', 'foo');
-            }).to.throw(
-                'Can\'t add route: name "foo" already exists',
-            );
-        });
+        it('throw ReferenceError for existing path', () => expect(() => {
+            RouteService.post('/foo', 'fail');
+        }).to.throw(
+            'Can\'t add route: path "/foo" already exists',
+        ));
+        it('throw ReferenceError for existing name', () => expect(() => {
+            RouteService.post('/fail', 'foo');
+        }).to.throw(
+            'Can\'t add route: name "foo" already exists',
+        ));
     });
 
     describe('matchLocation', () => {

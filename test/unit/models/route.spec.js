@@ -4,25 +4,26 @@ import { Route } from '../../../src/models/route.model';
 
 describe('Route', () => {
 
+    const path = '/foo';
+    const name = 'foo';
+    const component = {};
+    const route = new Route(path, name, component);
+
     describe('path', () => {
         it('Path on first argument', () => {
-            const name = 'foo';
-            assert.equal(new Route(name).path, name);
+            assert.equal(route.path, path);
         });
     });
 
     describe('name', () => {
         it('Name on second argument', () => {
-            const name = 'foo';
-            assert.equal(new Route('', name).name, name);
+            assert.equal(route.name, name);
         });
     });
 
-
     describe('component', () => {
         it('Component on thrid argument', () => {
-            const component = {};
-            assert.equal(new Route('', '', component).component, component);
+            assert.equal(route.component, component);
         });
     });
 

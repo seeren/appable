@@ -13,18 +13,15 @@ describe('StateService', () => {
     const param = { bar: 7, baz: 77 };
 
     describe('state', () => {
-        it('name is null', () => {
-            assert.isNull(StateService.state.name);
-        });
-        it('param is an Object', () => {
-            assert.isObject(StateService.state.param);
-        });
+        it('name is null', () => assert.isNull(StateService.state.name));
+        it('param is an Object', () => assert.isObject(StateService.state.param));
     });
 
     describe('get', () => {
-        it('retrieve state', () => {
-            assert.equal(StateService.state, StateService.get());
-        });
+        it('retrieve state', () => assert.equal(
+            StateService.state,
+            StateService.get(),
+        ));
     });
 
     describe('post', () => {
@@ -62,17 +59,19 @@ describe('StateService', () => {
             StateService.history(dynamicRoute, param);
             assert.equal(window.location.pathname, '/bar/7/baz/77');
         });
-        it('Throw Error for param not found', () => {
-            expect(() => {
-                StateService.history(dynamicRoute, { bar: 7, baz: 77, qux: 777 });
-            }).to.throw(
+        it('throw Error for param not found', () => {
+            expect(() => StateService.history(
+                dynamicRoute,
+                { bar: 7, baz: 77, qux: 777 },
+            )).to.throw(
                 'Navigation param "qux" not found in "/bar/:bar/baz/:baz',
             );
         });
-        it('Throw Error for missing param', () => {
-            expect(() => {
-                StateService.history(dynamicRoute, { bar: 7 });
-            }).to.throw(
+        it('throw Error for missing param', () => {
+            expect(() => StateService.history(
+                dynamicRoute,
+                { bar: 7 },
+            )).to.throw(
                 'Navigation route part ":baz" is missing in param',
             );
         });

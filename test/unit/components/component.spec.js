@@ -15,9 +15,10 @@ describe('Component', () => {
     });
 
     describe('constructor', () => {
-        it('selector is option selector', () => {
-            assert.equal(appComponent.selector, 'app');
-        });
+        it('selector is option selector', () => assert.equal(
+            appComponent.selector,
+            'app',
+        ));
         it('template is option template', () => {
             appComponent.template = 'Hello';
             assert.equal(appComponent.template, 'Hello');
@@ -25,26 +26,26 @@ describe('Component', () => {
         it('components is an array', () => {
             assert.isArray(appComponent.components);
         });
-        it('components are attached', () => {
-            const parentComponent = new Component({
+        it('components are attached', () => assert.equal(
+            1,
+            (new Component({
                 selector: 'app',
                 template: '',
                 components: [
                     new Component({ selector: 'foo', template: '' }),
                 ],
-            });
-            assert.equal(1, parentComponent.row);
-        });
+            })).row,
+        ));
     });
 
     describe('attach', () => {
-        it('Throw ReferenceError for already attached', () => {
+        it('throw ReferenceError for already attached', () => {
             appComponent.attach(fooComponent);
-            expect(() => { appComponent.attach(fooComponent); }).to.throw(
+            expect(() => appComponent.attach(fooComponent)).to.throw(
                 'Can\'t attach "foo": instance already exist',
             );
         });
-        it('Add data-{selector}={row} on component tag', () => {
+        it('add data-{selector}={row} on component tag', () => {
             appComponent.template = 'Hello<foo class="test"></foo>World';
             appComponent.attach(fooComponent);
             assert.equal(
@@ -52,16 +53,16 @@ describe('Component', () => {
                 appComponent.template,
             );
         });
-        it('Add component tag at the template end when not found', () => {
+        it('add component tag at the template end when not found', () => {
             appComponent.attach(fooComponent);
             assert.equal('<foo data-app="0"></foo>', appComponent.template);
         });
-        it('Add component to components collection', () => {
+        it('add component to components collection', () => {
             const componentLength = appComponent.components.length;
             appComponent.attach(fooComponent);
             assert.equal(componentLength + 1, appComponent.components.length);
         });
-        it('Increment row', () => {
+        it('increment row', () => {
             appComponent.attach(fooComponent);
             appComponent.attach(new Component({ selector: 'bar', template: '' }));
             assert.equal(2, appComponent.row);
@@ -70,7 +71,7 @@ describe('Component', () => {
                 appComponent.template,
             );
         });
-        it('Call component lifeCycle for "onInit"', () => {
+        it('call component lifeCycle for "onInit"', () => {
             const lifCycleSpy = spy(fooComponent, 'lifeCycle');
             appComponent.attach(fooComponent);
             assert.isTrue(lifCycleSpy.calledWith('onInit'));
@@ -79,24 +80,24 @@ describe('Component', () => {
 
     describe('detach', () => {
         it('Throw ReferenceError for not attached', () => {
-            expect(() => { appComponent.detach(fooComponent); }).to.throw(
+            expect(() => appComponent.detach(fooComponent)).to.throw(
                 'Can\'t detach "foo": make sure you attach it before',
             );
         });
-        it('Remove component tag from template', () => {
+        it('remove component tag from template', () => {
             appComponent.template = 'Hello<foo class="test"></foo>World';
             appComponent.attach(fooComponent);
             appComponent.detach(fooComponent);
             assert.equal(appComponent.template, 'HelloWorld');
         });
-        it('Decrement row', () => {
+        it('decrement row', () => {
             appComponent.attach(fooComponent);
             const { row } = appComponent;
             appComponent.detach(fooComponent);
             assert.equal(row - 1, appComponent.row);
         });
 
-        it('Call component lifeCycle for "onDestroy"', () => {
+        it('call component lifeCycle for "onDestroy"', () => {
             const lifCycleSpy = spy(fooComponent, 'lifeCycle');
             appComponent.attach(fooComponent);
             appComponent.detach(fooComponent);
@@ -105,26 +106,26 @@ describe('Component', () => {
     });
 
     describe('lifeCycle', () => {
-        it('Call hook when exists', () => {
+        it('call hook when exists', () => {
             appComponent.onInit = () => {};
             const onInitSpy = spy(appComponent, 'onInit');
             appComponent.lifeCycle('onInit');
             assert.equal(1, onInitSpy.callCount);
         });
-        it('Call components hook', () => {
+        it('call components hook', () => {
             fooComponent.onInit = () => {};
             appComponent.attach(fooComponent);
             const onInitSpy = spy(fooComponent, 'onInit');
             appComponent.lifeCycle('onInit');
             assert.equal(1, onInitSpy.callCount);
         });
-        it('Return false when is present', () => {
+        it('return false when is present', () => {
             appComponent.onInit = () => false;
             fooComponent.onInit = () => true;
             appComponent.attach(fooComponent);
             assert.isFalse(appComponent.lifeCycle('onInit'));
         });
-        it('Return components hook while not false', () => {
+        it('return components hook while not false', () => {
             appComponent.onInit = () => true;
             fooComponent.onInit = () => false;
             appComponent.attach(fooComponent);
@@ -134,13 +135,14 @@ describe('Component', () => {
 
 
     describe('registerEvent', () => {
+
         let element = null;
 
         beforeEach(() => {
             element = window.document.createElement('p');
         });
 
-        it('Affect callable to property', () => {
+        it('affect callable to property', () => {
             appComponent.registerEvent(element, 'onclick', 'callable', {});
             assert.isFunction(element.onclick);
         });
@@ -151,14 +153,14 @@ describe('Component', () => {
             element.onclick();
             assert.isTrue(called);
         });
-        it('Parameters are re-based on type', () => {
+        it('parameters are re-based on type', () => {
             let value = null;
             appComponent.callable = (foo) => { value = foo; };
             appComponent.registerEvent(element, 'onclick', 'callable', ['"foo"']);
             element.onclick();
             assert.equal(value, 'foo');
         });
-        it('Call update when method return a value', () => {
+        it('call update when method return a value', () => {
             const updateSpy = spy(appComponent, 'update');
             window.document.body.innerHTML = '<app></app>';
             appComponent.callable = () => true;
@@ -170,7 +172,7 @@ describe('Component', () => {
     });
 
     describe('updateEvents', () => {
-        it('Call register event when method found in template', () => {
+        it('call register event when method found in template', () => {
             const registerEventSpy = spy(appComponent, 'registerEvent');
             const element = window.document.createElement('app');
             appComponent.callable = () => true;
@@ -184,12 +186,12 @@ describe('Component', () => {
     });
 
     describe('update', () => {
-        it('Throw ReferenceError for selector not found', () => {
-            expect(() => { appComponent.update(); }).to.throw(
+        it('throw ReferenceError for selector not found', () => {
+            expect(() => appComponent.update()).to.throw(
                 'Can\'t find "app" selector in the document',
             );
         });
-        it('Dynamize element for selector template', () => {
+        it('dynamize element for selector template', () => {
             const element = window.document.createElement('app');
             window.document.body.innerHTML = '';
             window.document.body.appendChild(element);
@@ -199,7 +201,7 @@ describe('Component', () => {
             appComponent.update();
             assert.equal('Hello World', element.innerHTML);
         });
-        it('Call update event for own methods', () => {
+        it('call update event for own methods', () => {
             const updateEventsSpy = spy(appComponent, 'updateEvents');
             const element = window.document.createElement('app');
             window.document.body.innerHTML = '';
@@ -210,13 +212,13 @@ describe('Component', () => {
             appComponent.update();
             assert.equal(1, updateEventsSpy.callCount);
         });
-        it('Call component lifeCycle for "onUpdate"', () => {
+        it('call component lifeCycle for "onUpdate"', () => {
             appComponent.onUpdate = () => {};
             const lifCycleSpy = spy(appComponent, 'onUpdate');
             appComponent.update();
             assert.equal(1, lifCycleSpy.callCount);
         });
-        it('Call components update', () => {
+        it('call components update', () => {
             fooComponent.onUpdate = () => {};
             const lifCycleSpy = spy(fooComponent, 'update');
             appComponent.attach(fooComponent);

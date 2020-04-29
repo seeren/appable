@@ -2,7 +2,6 @@ import {
     describe, beforeEach, afterEach, it,
 } from 'mocha';
 import { assert, expect } from 'chai';
-import { spy } from 'sinon';
 import { window } from '../../window';
 import { RouterComponent } from '../../../src/components/router.component';
 import { Component } from '../../../src/components/component';
@@ -20,21 +19,15 @@ describe('RouterComponent', () => {
         appComponent = new Component({ selector: 'app', template: '' });
         fooComponent = class extends Component {
 
-            constructor() {
-                super({ selector: 'foo', template: '' });
-            }
+            constructor() { super({ selector: 'foo', template: '' }); }
 
         };
         route = new Route('/foo', 'foo', fooComponent);
     });
 
     describe('constructor', () => {
-        it('basePath is empty string', () => {
-            assert.equal('', RouterComponent.basePath);
-        });
-        it('route is null', () => {
-            assert.isNull(RouterComponent.route);
-        });
+        it('basePath is empty string', () => assert.equal('', RouterComponent.basePath));
+        it('route is null', () => assert.isNull(RouterComponent.route));
     });
 
     describe('attach', () => {
@@ -42,7 +35,6 @@ describe('RouterComponent', () => {
             RouterComponent.attach(route);
             assert.equal(route, RouterComponent.route);
             RouterComponent.detach(route.component);
-
         });
         it('construct route component when is constructor', () => {
             route.component = fooComponent;
@@ -65,14 +57,8 @@ describe('RouterComponent', () => {
         it('dynamise added and runing component', () => {
             RouterComponent.add(route.path, route.name, route.component);
             RouterComponent.run(appComponent);
-            assert.equal(
-                RouterComponent.template,
-                '<foo data-router="0"></foo>',
-            );
-            assert.equal(
-                appComponent.template,
-                '<router data-app="0"></router>',
-            );
+            assert.equal(RouterComponent.template, '<foo data-router="0"></foo>');
+            assert.equal(appComponent.template, '<router data-app="0"></router>');
         });
         it('redirect to route path', () => {
             route.path = '/foo';
@@ -97,9 +83,7 @@ describe('RouterComponent', () => {
     });
 
     describe('navigate', () => {
-        expect(() => {
-            RouterComponent.navigate('foo');
-        }).to.throw(
+        expect(() => RouterComponent.navigate('foo')).to.throw(
             'Route "foo" not found',
         );
         it('navigate to route path', () => {
@@ -123,9 +107,7 @@ describe('RouterComponent', () => {
     });
 
     describe('get', () => {
-        expect(() => {
-            RouterComponent.get('id');
-        }).to.throw(
+        expect(() => RouterComponent.get('id')).to.throw(
             'There is no "id" param in the curent state',
         );
         it('retrieve current route', () => {
@@ -147,7 +129,6 @@ describe('RouterComponent', () => {
     });
 
     describe('onPopstate', () => {
-
         it('go back on navigation', () => {
             const barRoute = new Route('/bar', 'bar', fooComponent);
             const bazRoute = new Route('/baz', 'baz', fooComponent);
@@ -157,14 +138,10 @@ describe('RouterComponent', () => {
             RouterComponent.navigate(route.name);
             RouterComponent.navigate(barRoute.name);
             RouterComponent.onPopstate({
-                state: {
-                    name: route.name,
-                    param: {},
-                },
+                state: { name: route.name, param: {} },
             });
             assert.equal(window.location.pathname, route.path);
         });
-
         it('go back on navigation when onBack not false', () => {
             appComponent.onBack = () => false;
             const barRoute = new Route('/bar', 'bar', appComponent);
@@ -175,10 +152,7 @@ describe('RouterComponent', () => {
             RouterComponent.navigate(route.name);
             RouterComponent.navigate(barRoute.name);
             RouterComponent.onPopstate({
-                state: {
-                    name: route.name,
-                    param: {},
-                },
+                state: { name: route.name, param: {} },
             });
             assert.equal(window.location.pathname, barRoute.path);
         });
@@ -191,9 +165,10 @@ describe('RouterComponent', () => {
     });
 
     describe('updateEvents', () => {
-        it('retrieve this', () => {
-            assert.equal(RouterComponent, RouterComponent.updateEvents());
-        });
+        it('retrieve this', () => assert.equal(
+            RouterComponent,
+            RouterComponent.updateEvents(),
+        ));
     });
 
 });

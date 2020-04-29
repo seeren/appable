@@ -5,38 +5,41 @@ import { Service } from '../../../src/services/service';
 describe('Service', () => {
 
     let service;
+    let called = null;
+    let callable = null;
 
-    beforeEach(() => { service = new Service(); });
+    beforeEach(() => {
+        service = new Service();
+        called = 0;
+        callable = () => { called += 1; };
+    });
 
     describe('notify', () => {
         it('call attached callables', () => {
-            let called = false;
-            const callable = () => { called = true; };
-            service.attach(callable);
-            service.notify();
-            assert.isTrue(called);
+            service
+                .attach(callable)
+                .notify();
+            assert.equal(1, called);
         });
     });
 
     describe('attach', () => {
-        it('Add callable', () => {
-            let called = 0;
-            const callable = () => { called += 1; };
-            service.attach(callable);
-            service.attach(callable);
-            service.notify();
+        it('add callable', () => {
+            service
+                .attach(callable)
+                .attach(callable)
+                .notify();
             assert.equal(called, 2);
         });
     });
 
     describe('detach', () => {
-        it('Remove callable', () => {
-            let called = false;
-            const callable = () => { called = true; };
-            service.attach(callable);
-            service.detach(callable);
-            service.notify();
-            assert.isFalse(called);
+        it('remove callable', () => {
+            service
+                .attach(callable)
+                .detach(callable)
+                .notify();
+            assert.equal(0, called);
         });
     });
 
