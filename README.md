@@ -39,45 +39,27 @@ Appable focus on project creation, components rendering, routing, services and l
 
 ___
 
-## 📘 Documentation
-
-*   [Project](https://github.com/seeren/appable/wiki/📦-Creation)
-*   [Router](https://github.com/seeren/appable/wiki/🚦-Router-usage)
-*   [Component](https://github.com/seeren/appable/wiki/🍰-Component-creation)
-*   [Service](https://github.com/seeren/appable/wiki/💫-Service-creation)
-*   [Scripts](https://github.com/seeren/appable/wiki/📜-Scripts)
-
-___
-
 ## 🖊️ Example
 
-*Generate a component*
+Generate component
 
 ```bash
 appable generate component counter
 ```
 
-*Associate an url*
-
-```js
-RouterComponent
-  .add('/count', 'counter', CounterComponent)
-  .run(new AppComponent)
-```
-
-*Interpolate and bind event*
+Interpolate and bind event
 
 ```html
 <button onclick="increment()">${counter}</button>
 ```
 
-*Handle interaction*
+Handle interaction
 
 ```js
 export class CounterComponent extends Component {
 
   constructor() {
-    super({ selector: "foo", template });
+    super({ selector: "counter", template });
   }
 
   onInit() {
@@ -91,7 +73,16 @@ export class CounterComponent extends Component {
 }
 ```
 
+Associate an url
+
+```js
+RouterComponent
+  .add('/count', 'counter', CounterComponent)
+  .run(new AppComponent)
+```
 ___
+
+## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
 
 You can fast add feature to the app, check the [documentation](https://github.com/seeren/appable/wiki) to read about build, shared service, router and component details.
 
