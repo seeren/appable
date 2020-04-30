@@ -33,7 +33,7 @@ ___
 
 **User Interface**: generate views with data interpollation, event binding, hooks and auto rendering.
 
-**Scale**: encapsulate components, share data with services and associate url
+**Scale**: encapsulate components, share data with services and associate url.
 
 ___
 
