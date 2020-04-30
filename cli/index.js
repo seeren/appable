@@ -80,7 +80,7 @@ const DEPLOY = [
     'www/dist/.gitkeep',
     'www/index.html',
     '.babelrc',
-    '..eslintrc.js',
+    '.eslintrc.js',
     '.nycrc',
     '.travis.yml',
     'config.xml',
@@ -166,7 +166,7 @@ const DEPLOY = [
 
         Object.keys(JSON.parse(file.read(
             `${includePath}/package.json`,
-        ).toString()).devDependencie).forEach((key) => {
+        ).toString()).devDependencies).forEach((key) => {
             packages.push(key);
         });
         console.warn('\x1b[36m', 'Generate files');

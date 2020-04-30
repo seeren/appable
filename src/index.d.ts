@@ -79,7 +79,7 @@ declare module "appable" {
 
     }
 
-    export class RouterComponent extends Component {
+    export const RouterComponent = new class RouterComponent extends Component {
 
         constructor();
 
@@ -88,7 +88,7 @@ declare module "appable" {
          * 
          * @example
          * 
-         * RouterComponent.add("/bar/:id", "bar", BarComponent)
+         * RouterComponent.add('/bar/:id', 'bar', BarComponent)
          * 
          * @param path 
          * @param name 
