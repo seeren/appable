@@ -29,29 +29,33 @@ ___
 
 ## Introduction
 
-**Building**: create, build and test an app on web and mobile.
+**Building**: create, build and test app on web and mobile.
 
 **User Interface**: generate views with data interpollation, event binding, hooks and auto rendering.
 
-**Scale**: encapsulate components for build rich UI without DOM, share data with services and associate url
+**Scale**: encapsulate components, share data with services and associate url
 
 ___
 
 ## Example
 
-*Generate a component*
+Generate a component
 
 ```bash
 appable generate component counter
 ```
 
-*A template interpolate and bind event*
+**counter.component.html**
+
+*Template is auto rendering, use interpolation and event binding*
 
 ```html
 <button onclick="increment()">${counter}</button>
 ```
 
-*A component handle interaction*
+**counter.component.js**
+
+*Component handle interaction, data and use life cycle*
 
 ```js
 export class CounterComponent extends Component {
@@ -71,6 +75,8 @@ export class CounterComponent extends Component {
 }
 ```
 
+**index.js**
+
 *Associate component to url*
 
 ```js
@@ -82,7 +88,7 @@ ___
 
 ## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
 
-Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, shared service, router and component details.
+Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, component encapsulation, service, router and other details.
 
 ___
 
