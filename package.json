@@ -1,7 +1,7 @@
 {
   "name": "appable",
-  "description": "Appable is a JavaScript Library for build user interfaces and scale web application effectively",
-  "version": "1.0.4",
+  "description": "Appable is JavaScript Library for building user interfaces and scale them effectively",
+  "version": "1.0.5",
   "keywords": [
     "appable",
     "component",

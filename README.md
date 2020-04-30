@@ -1,7 +1,7 @@
 <h1 align="center">Appable</h2>
 
 <p align="center">
-Appable is a JavaScript Library for build user interfaces and scale web application effectively
+Appable is JavaScript Library for building user interfaces and scale them effectively
 </p>
 
 <p align="center">
@@ -13,47 +13,45 @@ Appable is a JavaScript Library for build user interfaces and scale web applicat
 <a href="https://www.codacy.com/manual/seeren/appable?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=seeren/appable&amp;utm_campaign=Badge_Grade"><img src="https://api.codacy.com/project/badge/Grade/5de3e97bcbe74350a5a6c47b99b4b735" alt="Build"></a>
 </p>
 
-## 📦 Create an app
+## Installation
 
 ```bash
 npm install -g appable
-```
 
-```bash
 appable new my-app
-```
 
-```bash
 cd my-app
-```
 
-```bash
 npm start
 ```
 
 ___
 
-## 📄 Introduction
+## Introduction
 
-Appable focus on project creation, components rendering, routing, services and life cycle hooks with environment for build on web browser and device. The package provide these features with 12 ko of builded code and use native JavaScript syntaxe.
+**Building**: create, build and test an app on web and mobile.
+
+**User Interface**: generate views with data interpollation, event binding, hooks and auto rendering.
+
+**Scale**: encapsulate components for build rich UI without DOM, share data with services and associate url
 
 ___
 
-## 🖊️ Example
+## Example
 
-Generate component
+*Generate a component*
 
 ```bash
 appable generate component counter
 ```
 
-Interpolate and bind event
+*A template interpolate and bind event*
 
 ```html
 <button onclick="increment()">${counter}</button>
 ```
 
-Handle interaction
+*A component handle interaction*
 
 ```js
 export class CounterComponent extends Component {
@@ -73,7 +71,7 @@ export class CounterComponent extends Component {
 }
 ```
 
-Associate an url
+*Associate component to url*
 
 ```js
 RouterComponent
@@ -84,7 +82,7 @@ ___
 
 ## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
 
-You can fast add feature to the app, check the [documentation](https://github.com/seeren/appable/wiki) to read about build, shared service, router and component details.
+Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, shared service, router and component details.
 
 ___
 

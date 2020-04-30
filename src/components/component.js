@@ -199,9 +199,12 @@ export class Component {
     registerEvent(htmlElement, type, propertie, args) {
         htmlElement[`${type}`] = () => {
             const evaluedArguments = [];
-            Object.keys(args).forEach((key) => {
-                evaluedArguments[`${key}`] = eval(args[`${key}`]);
-            });
+            // eslint-disable-next-line no-restricted-syntax
+            for (const key in args) {
+                if (args.hasOwnProperty(key)) {
+                    evaluedArguments[`${key}`] = eval(args[`${key}`]);
+                }
+            }
             if ('undefined' !== typeof this[`${propertie}`](...evaluedArguments)) {
                 this.update();
             }
