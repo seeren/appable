@@ -164,7 +164,7 @@ const DEPLOY = [
 
         const includePath = `${__dirname}/skeleton`;
 
-        Object.key(JSON.parse(file.read(
+        Object.keys(JSON.parse(file.read(
             `${includePath}/package.json`,
         ).toString()).devDependencie).forEach((key) => {
             packages.push(key);
