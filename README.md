@@ -45,17 +45,17 @@ Generate a component
 appable generate component counter
 ```
 
-**counter.component.html**
+Template is auto rendering, use interpolation and event binding
 
-*Template is auto rendering, use interpolation and event binding*
+**counter.component.html**
 
 ```html
 <button onclick="increment()">${counter}</button>
 ```
 
-**counter.component.js**
+Component handle interaction, data and use life cycle
 
-*Component handle interaction, data and use life cycle*
+**counter.component.js**
 
 ```js
 export class CounterComponent extends Component {
@@ -75,9 +75,9 @@ export class CounterComponent extends Component {
 }
 ```
 
-**index.js**
+Associate component to url
 
-*Associate component to url*
+**index.js**
 
 ```js
 RouterComponent
