@@ -74,7 +74,7 @@ export class Component {
      * @throws {ReferenceError}
      */
     attach(component) {
-        const selector = component.selector.split('[')[0];
+        const selector = component.selector.split(' ').pop().split('[')[0];
         if (-1 !== this.components.indexOf(component)) {
             throw new ReferenceError(`Can't attach "${selector}": instance already exist`);
         }

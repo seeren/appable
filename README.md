@@ -31,7 +31,7 @@ ___
 
 **Building**: create, build and test app on web and mobile.
 
-**User Interface**: generate views with data interpollation, event binding, hooks and auto rendering.
+**User Interface**: generate views with interpollation, event binding, hooks and auto-rendering.
 
 **Scale**: encapsulate components, share data with services and associate url.
 
@@ -47,7 +47,7 @@ appable generate component counter
 
 Template is auto rendered, use interpolation and event binding:
 
-**counter.component.html**
+`src/app/counter/counter.component.html`
 
 ```html
 <button onclick="increment()">${counter}</button>
@@ -55,7 +55,7 @@ Template is auto rendered, use interpolation and event binding:
 
 Component handle interaction, data and use life cycle:
 
-**counter.component.js**
+`src/app/counter/counter.component.js`
 
 ```js
 export class CounterComponent extends Component {
@@ -77,7 +77,7 @@ export class CounterComponent extends Component {
 
 Associate component to url:
 
-**index.js**
+`src/index.js`
 
 ```js
 RouterComponent
@@ -89,6 +89,12 @@ ___
 ## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
 
 Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, component encapsulation, service, router and other details.
+
+___
+
+## Motivation
+
+Curious about reduce complexity in component rendering and communication the project think about web and mobile app who have to make the job and take care about dependencie size.
 
 ___
 
