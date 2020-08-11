@@ -1,9 +1,10 @@
 module.exports = (filename, className) => `import { Component } from 'appable';
+
 import template from './${filename}.component.html';
 import './${filename}.component.scss';
 
 /**
- * @type { ${className}Component}
+ * @type {${className}Component}
  */
 export class ${className}Component extends Component {
 
@@ -53,5 +54,4 @@ export class ${className}Component extends Component {
     onResume() { }
 
 }
-
 `;
