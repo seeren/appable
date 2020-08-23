@@ -8,8 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="Content-Security-Policy" content="default-src *  'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *" />
     <title>{projectName}</title>
-    <title>{projectName}</title>
-    <link rel="stylesheet" type="text/css" href="./dist/index.css" />
+    <base href="./" />
+    <link rel="stylesheet" type="text/css" href="dist/index.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
     <app></app>
 
     <script src="cordova.js"></script>
-    <script type="text/javascript" src="./dist/index.js"></script>
+    <script type="text/javascript" src="dist/index.js"></script>
 </body>
 
 </html>
