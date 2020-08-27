@@ -3,9 +3,6 @@ import { Route } from '../models/route.model';
 import { RouteService } from '../services/route.service';
 import { StateService } from '../services/state.service';
 
-/**
- * @type {RouterComponent}
- */
 export const RouterComponent = new class RouterComponent extends Component {
 
     /**
@@ -15,6 +12,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         super({
             selector: 'router',
             template: '',
+            components: [],
         });
 
         /**
@@ -41,7 +39,7 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {Route} route
+     * @param {Route|*} route
      * @returns {Component}
      *
      * @throws {ReferenceError}
@@ -80,14 +78,17 @@ export const RouterComponent = new class RouterComponent extends Component {
         const routes = RouteService.get();
         try {
             routes.forEach((route) => {
+                // @ts-ignore
                 if (RouteService.constructor.matchLocation(route)) {
                     throw route;
                 }
+                // @ts-ignore
                 param = RouteService.constructor.getParam(route);
                 if (param) {
                     throw route;
                 }
             });
+            // @ts-ignore
             if (routes.length && !RouteService.constructor.hasParam(routes[0])) {
                 throw routes[0];
             }
@@ -95,8 +96,9 @@ export const RouterComponent = new class RouterComponent extends Component {
             StateService.put(route, param);
             this.attach(route);
         }
-        component.attach(this, true);
+        component.attach(this);
         component.update();
+        return this;
     }
 
     /**
@@ -113,10 +115,12 @@ export const RouterComponent = new class RouterComponent extends Component {
                 }
             });
         } catch (route) {
-            if (this.components.length) {
+            if (0 < this.components.length) {
+                // @ts-ignore
                 if (this.components[0] === route.component) {
                     return;
                 }
+                // @ts-ignore
                 this.detach(this.components[0]);
             }
             StateService.post(route, param);
@@ -133,7 +137,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      *
      * @throws {ReferenceError} for not found parameter name
      */
-    get(paramName) {
+    get(paramName = null) {
         if (!paramName) {
             return this.route;
         }
@@ -147,7 +151,7 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {PopStateEvent} event
+     * @param {Object} event
      * @returns {Boolean}
      */
     onPopstate(event) {
@@ -162,6 +166,7 @@ export const RouterComponent = new class RouterComponent extends Component {
             });
             return false;
         }
+        // @ts-ignore
         this.detach(this.components[0]);
         if (event.state) {
             RouteService.get().some((route) => {

@@ -7,6 +7,7 @@ describe('Route', () => {
     const path = '/foo';
     const name = 'foo';
     const component = {};
+    // @ts-ignore
     const route = new Route(path, name, component);
 
     describe('path', () => {

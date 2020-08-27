@@ -1,9 +1,6 @@
 import { Service } from './service';
 import { Route } from '../models/route.model';
 
-/**
- * @type {StateService}
- */
 export const StateService = new class StateService extends Service {
 
     /**
@@ -32,7 +29,7 @@ export const StateService = new class StateService extends Service {
      * @param {Route} route
      * @param {Object} param
      */
-    post(route, param) {
+    post(route, param = null) {
         this.history(route, param);
     }
 
@@ -40,7 +37,7 @@ export const StateService = new class StateService extends Service {
      * @param {Route} route
      * @param {Object} param
      */
-    put(route, param) {
+    put(route, param = {}) {
         this.history(route, param, true);
     }
 
@@ -49,7 +46,7 @@ export const StateService = new class StateService extends Service {
      * @param {Object} param
      * @param {Boolean} replace
      */
-    history(route, param, replace) {
+    history(route, param = {}, replace = false) {
         const stateParam = param || {};
         route.path.split('/').forEach((key) => {
             if (':' !== key[0]) {

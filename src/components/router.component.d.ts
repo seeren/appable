@@ -3,6 +3,10 @@ import { Route } from "../models/route.model";
 
 export const RouterComponent = new class RouterComponent extends Component {
 
+    basePath: string;
+
+    route: Route;
+
     constructor();
 
     /**
@@ -43,7 +47,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      * 
      * @throws {ReferenceError} for not found route 
      */
-    navigate(name: string, param: string): void;
+    navigate(name: string, param: object = null): void;
 
     /**
      * Retrieve the current Route or a Route parameter value
@@ -57,6 +61,18 @@ export const RouterComponent = new class RouterComponent extends Component {
      * 
      * @throws {ReferenceError} for not found parameter name
      */
-    get(paramName: string): Route | *;
+    get(paramName: string = null): Route | *;
+
+    /**
+     * PopStateEvent event handler
+     * 
+     * @param event
+     */
+    onPopstate(event: Object): bool;
+
+    /**
+     * Cancel parent component to update template evants
+     */
+    updateEvents(): RouterComponent;
 
 }

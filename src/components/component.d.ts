@@ -1,10 +1,12 @@
 export class Component {
 
+    row: number;
+
     selector: string;
 
     template: string;
 
-    components: [] = [];
+    components: [];
 
     /**
      * @param option 
@@ -12,7 +14,7 @@ export class Component {
     constructor(option: {
         selector: string,
         template: string,
-        components: [] = [],
+        components: Component[],
     });
 
     /**
@@ -53,5 +55,17 @@ export class Component {
      * @throws {ReferenceError} for not found selector
      */
     update(): HTMLElement;
+
+    /**
+     * Trigger life cycle hook
+     * 
+     * @example
+     * 
+     * const decision = fooComponent.lifeCycle('onBack')
+     * 
+     * 
+     * @param hookName
+     */
+    lifeCycle(hookName: string): boolean
 
 }

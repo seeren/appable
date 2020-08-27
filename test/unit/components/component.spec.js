@@ -10,8 +10,8 @@ describe('Component', () => {
     let fooComponent = null;
 
     beforeEach(() => {
-        appComponent = new Component({ selector: 'app', template: '' });
-        fooComponent = new Component({ selector: 'foo', template: '' });
+        appComponent = new Component({ selector: 'app', template: '', components: [] });
+        fooComponent = new Component({ selector: 'foo', template: '', components: [] });
     });
 
     describe('constructor', () => {
@@ -32,7 +32,7 @@ describe('Component', () => {
                 selector: 'app',
                 template: '',
                 components: [
-                    new Component({ selector: 'foo', template: '' }),
+                    new Component({ selector: 'foo', template: '', components: [] }),
                 ],
             })).row,
         ));
@@ -64,7 +64,7 @@ describe('Component', () => {
         });
         it('increment row', () => {
             appComponent.attach(fooComponent);
-            appComponent.attach(new Component({ selector: 'bar', template: '' }));
+            appComponent.attach(new Component({ selector: 'bar', template: '', components: [] }));
             assert.equal(2, appComponent.row);
             assert.equal(
                 '<foo data-app="0"></foo><bar data-app="1"></bar>',
@@ -132,7 +132,6 @@ describe('Component', () => {
             assert.isFalse(appComponent.lifeCycle('onInit'));
         });
     });
-
 
     describe('registerEvent', () => {
 

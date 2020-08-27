@@ -8,7 +8,9 @@ import { Route } from '../../../src/models/route.model';
 describe('StateService', () => {
 
     const historySpy = spy(StateService, 'history');
+    // @ts-ignore
     const staticRoute = new Route('/foo', 'foo');
+    // @ts-ignore
     const dynamicRoute = new Route('/bar/:bar/baz/:baz', 'bar');
     const param = { bar: 7, baz: 77 };
 

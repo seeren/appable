@@ -36,13 +36,21 @@ export class Component {
          */
         this.selector = option.selector;
 
-        /**
-         * @type {String}
-         */
         this.template = option.template;
 
+        /**
+         * @type {Function}
+         */
+        this.onUpdate = this.onUpdate || null;
+
         if (option.components) {
-            option.components.forEach((component) => this.attach(component));
+            option.components.forEach(
+
+                /**
+                 * @param {Component} component
+                 */
+                (component) => this.attach(component),
+            );
         }
         window.document.createElement(option.selector);
     }
@@ -119,7 +127,7 @@ export class Component {
     }
 
     /**
-     * @returns {HTMLElement} element Selected element
+     * @returns {Component} element Selected element
      *
      * @throws {ReferenceError} for not found selector
      */
@@ -160,7 +168,7 @@ export class Component {
     }
 
     /**
-     * @param {HTMLElement} htmlElement
+     * @param {Element} htmlElement
      * @param {String[]} properties
      * @returns {Component}
      */

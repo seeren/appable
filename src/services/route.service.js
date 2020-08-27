@@ -2,9 +2,6 @@ import { Service } from './service';
 import { Route } from '../models/route.model';
 import { Component } from '../components/component';
 
-/**
- * @type {RouteService}
- */
 export const RouteService = new class RouteService extends Service {
 
     /**

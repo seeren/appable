@@ -17,12 +17,12 @@ export class Route {
         /**
          * @param {String} path
          */
-        this.name = name;
+        this.path = path;
 
         /**
          * @param {String} path
          */
-        this.path = path;
+        this.name = name;
 
         /**
          * @param {Component} path

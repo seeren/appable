@@ -12,16 +12,18 @@ import { StateService } from '../../../src/services/state.service';
 describe('RouterComponent', () => {
 
     let appComponent = null;
+
     let fooComponent = null;
     let route = null;
 
     beforeEach(() => {
-        appComponent = new Component({ selector: 'app', template: '' });
+        appComponent = new Component({ selector: 'app', template: '', components: [] });
         fooComponent = class extends Component {
 
-            constructor() { super({ selector: 'foo', template: '' }); }
+            constructor() { super({ selector: 'foo', template: '', components: [] }); }
 
         };
+        // @ts-ignore
         route = new Route('/foo', 'foo', fooComponent);
     });
 

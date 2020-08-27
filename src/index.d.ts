@@ -2,6 +2,8 @@ declare module "appable" {
 
     export class Component {
 
+        row: number;
+
         selector: string;
 
         template: string;
@@ -14,7 +16,7 @@ declare module "appable" {
         constructor(option: {
             selector: string,
             template: string,
-            components: [],
+            components: Component[],
         });
 
         /**
@@ -56,6 +58,18 @@ declare module "appable" {
          */
         update(): HTMLElement;
 
+        /**
+         * Trigger life cycle hook
+         * 
+         * @example
+         * 
+         * const decision = fooComponent.lifeCycle('onBack')
+         * 
+         * 
+         * @param hookName
+         */
+        lifeCycle(hookName: string): boolean
+
     }
 
     export class Route {
@@ -79,7 +93,11 @@ declare module "appable" {
 
     }
 
-    export const RouterComponent = new class RouterComponent extends Component {
+    export class RouterComponent extends Component {
+
+        basePath: string;
+
+        route: Route;
 
         constructor();
 
@@ -121,7 +139,7 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for not found route 
          */
-        navigate(name: string, param: string): void;
+        navigate(name: string, param: object): void;
 
         /**
          * Retrieve the current Route or a Route parameter value
@@ -135,7 +153,19 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for not found parameter name
          */
-        get(paramName: string): Route | *;
+        get(paramName: string): Route | any;
+
+        /**
+         * PopStateEvent event handler
+         * 
+         * @param event
+         */
+        onPopstate(event: Object): boolean;
+
+        /**
+         * Cancel parent component to update template evants
+         */
+        updateEvents(): RouterComponent;
 
     }
 
