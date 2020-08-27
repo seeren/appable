@@ -8,8 +8,8 @@ const path = require('path');
 module.exports = {
 
     /**
-     * @param {srting} filename
-     * @param {srting} output
+     * @param {String} filename
+     * @param {String} output
      * @returns {Boolean}
      */
     write(filename, output) {
@@ -29,8 +29,8 @@ module.exports = {
     },
 
     /**
-     * @param {string} filename
-     * @returns {String}
+     * @param {String} filename
+     * @returns {Buffer}
      */
     read(filename) {
         let output;

@@ -16,7 +16,7 @@ declare module "appable" {
         constructor(option: {
             selector: string,
             template: string,
-            components: Component[],
+            components?: Component[],
         });
 
         /**
@@ -93,7 +93,7 @@ declare module "appable" {
 
     }
 
-    export class RouterComponent extends Component {
+    export const RouterComponent = new class RouterComponent extends Component {
 
         basePath: string;
 
@@ -114,7 +114,7 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for existing path or name
          */
-        add(path: string, name: string, component: Component): RouterComponent;
+        add(path: string, name: string, component: Component | Function): RouterComponent;
 
         /**
          * Run the entry point
@@ -139,7 +139,7 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for not found route 
          */
-        navigate(name: string, param: object): void;
+        navigate(name: string, param: object = null): void;
 
         /**
          * Retrieve the current Route or a Route parameter value

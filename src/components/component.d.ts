@@ -14,7 +14,7 @@ export class Component {
     constructor(option: {
         selector: string,
         template: string,
-        components: Component[],
+        components?: Component[],
     });
 
     /**
