@@ -37,7 +37,7 @@ export const RouterService = new class RouterService extends Service {
      * @param {Route} route
      * @param {Object} param
      */
-    put(route, param = {}) {
+    put(route, param = null) {
         this.history(route, param, true);
     }
 
