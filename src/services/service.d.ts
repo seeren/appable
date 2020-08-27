@@ -30,6 +30,7 @@ export class Service {
      * Call attached callables
      * 
      * @example
+     * 
      * FooService.notify()
      */
     notify(): Service;

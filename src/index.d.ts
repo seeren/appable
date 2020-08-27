@@ -180,6 +180,8 @@ declare module "appable" {
 
     }
 
+    export const RouterService = new class RouterService extends Service { }
+
     export class Service {
 
         constructor();

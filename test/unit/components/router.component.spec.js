@@ -7,7 +7,7 @@ import { RouterComponent } from '../../../src/components/router.component';
 import { Component } from '../../../src/components/component';
 import { Route } from '../../../src/models/route.model';
 import { RouteService } from '../../../src/services/route.service';
-import { StateService } from '../../../src/services/state.service';
+import { RouterService } from '../../../src/services/router.service';
 
 describe('RouterComponent', () => {
 
@@ -77,9 +77,9 @@ describe('RouterComponent', () => {
         });
         afterEach(() => {
             route.path = '/';
-            StateService.post(route);
+            RouterService.post(route);
             RouteService.routes = [];
-            StateService.state = { name: null, param: {} };
+            RouterService.state = { name: null, param: {} };
             RouterComponent.components = [];
         });
     });
@@ -102,9 +102,9 @@ describe('RouterComponent', () => {
         });
         afterEach(() => {
             route.path = '/';
-            StateService.post(route);
+            RouterService.post(route);
             RouteService.routes = [];
-            StateService.state = { name: null, param: {} };
+            RouterService.state = { name: null, param: {} };
         });
     });
 
@@ -124,9 +124,9 @@ describe('RouterComponent', () => {
         });
         afterEach(() => {
             route.path = '/';
-            StateService.post(route);
+            RouterService.post(route);
             RouteService.routes = [];
-            StateService.state = { name: null, param: {} };
+            RouterService.state = { name: null, param: {} };
         });
     });
 
@@ -160,9 +160,9 @@ describe('RouterComponent', () => {
         });
         afterEach(() => {
             route.path = '/';
-            StateService.post(route);
+            RouterService.post(route);
             RouteService.routes = [];
-            StateService.state = { name: null, param: {} };
+            RouterService.state = { name: null, param: {} };
         });
     });
 
