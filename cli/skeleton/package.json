@@ -39,6 +39,7 @@
     "browser-sync-webpack-plugin": "latest",
     "chai": "latest",
     "cordova": "latest",
+    "cordova-android": "latest",
     "cordova-res": "latest",
     "coveralls": "latest",
     "cross-env": "latest",
@@ -65,7 +66,6 @@
   },
   "dependencies": {
     "appable": "latest",
-    "cordova-android": "^8.1.0",
     "cordova-plugin-device": "^2.0.3",
     "cordova-plugin-headercolor": "^1.0.0",
     "cordova-plugin-splashscreen": "^5.0.3",

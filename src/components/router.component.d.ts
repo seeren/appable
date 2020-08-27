@@ -36,6 +36,17 @@ export const RouterComponent = new class RouterComponent extends Component {
     run(component: Component): RouterComponent;
 
     /**
+     * Navigate back
+     *
+     *  @example
+     * 
+     * RouterComponent.back()
+     * 
+     * @returns {RouterComponent}
+     */
+    back(): RouterComponent;
+
+    /**
      * Navigate to a Route
      *
      *  @example

@@ -1,7 +1,7 @@
 import { Service } from './service';
 import { Route } from '../models/route.model';
 
-export const StateService = new class StateService extends Service {
+export const RouterService = new class RouterService extends Service {
 
     /**
      * @constructor
@@ -72,9 +72,11 @@ export const StateService = new class StateService extends Service {
         });
         if (replace) {
             window.history.replaceState(this.state, route.name, path);
+            this.notify();
             return false;
         }
         window.history.pushState(this.state, route.name, path);
+        this.notify();
         return true;
     }
 

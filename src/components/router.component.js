@@ -1,7 +1,7 @@
 import { Component } from './component';
 import { Route } from '../models/route.model';
 import { RouteService } from '../services/route.service';
-import { StateService } from '../services/state.service';
+import { RouterService } from '../services/router.service';
 
 export const RouterComponent = new class RouterComponent extends Component {
 
@@ -93,11 +93,19 @@ export const RouterComponent = new class RouterComponent extends Component {
                 throw routes[0];
             }
         } catch (route) {
-            StateService.put(route, param);
+            RouterService.put(route, param);
             this.attach(route);
         }
         component.attach(this);
         component.update();
+        return this;
+    }
+
+    /**
+     * @returns {RouterComponent}
+     */
+    back() {
+        window.history.back();
         return this;
     }
 
@@ -123,7 +131,7 @@ export const RouterComponent = new class RouterComponent extends Component {
                 // @ts-ignore
                 this.detach(this.components[0]);
             }
-            StateService.post(route, param);
+            RouterService.post(route, param);
             this.attach(route);
             this.update();
             return;
@@ -141,7 +149,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         if (!paramName) {
             return this.route;
         }
-        const param = StateService.get().param[`${paramName}`];
+        const param = RouterService.get().param[`${paramName}`];
         if (!param) {
             throw new ReferenceError(
                 `There is no "${paramName}" param in the curent state`,
@@ -156,10 +164,10 @@ export const RouterComponent = new class RouterComponent extends Component {
      */
     onPopstate(event) {
         if (false === this.lifeCycle('onBack')) {
-            const state = StateService.get();
+            const state = RouterService.get();
             RouteService.get().some((route) => {
                 if (route.name === state.name) {
-                    StateService.post(route, state.param);
+                    RouterService.post(route, state.param);
                     return true;
                 }
                 return false;
@@ -171,7 +179,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         if (event.state) {
             RouteService.get().some((route) => {
                 if (event.state.name === route.name) {
-                    StateService.put(route, event.state.param);
+                    RouterService.put(route, event.state.param);
                     this.attach(route);
                     return true;
                 }
