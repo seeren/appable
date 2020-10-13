@@ -1,5 +1,6 @@
 import { Service } from './service';
 import { Route } from '../models/route.model';
+import { State } from '../models/state.model';
 
 export const RouterService = new class RouterService extends Service {
 
@@ -10,16 +11,13 @@ export const RouterService = new class RouterService extends Service {
         super();
 
         /**
-         * @type {Object}
+         * @type {State}
          */
-        this.state = {
-            name: null,
-            param: {},
-        };
+        this.state = new State();
     }
 
     /**
-     * @returns {Object}
+     * @returns {State}
      */
     get() {
         return this.state;
@@ -48,20 +46,24 @@ export const RouterService = new class RouterService extends Service {
      */
     history(route, param = {}, replace = false) {
         const stateParam = param || {};
-        route.path.split('/').forEach((key) => {
-            if (':' !== key[0]) {
-                return false;
-            }
-            if ('undefined' === typeof stateParam[`${key.substr(1)}`]) {
-                throw new Error(`Navigation route part "${key}" is missing in param`);
-            }
-            return true;
-        });
+        route.path.split('/').forEach(
+
+            /**
+             * @param {String} key
+             */
+            (key) => {
+                if (':' !== key[0]) {
+                    return false;
+                }
+                if ('undefined' === typeof stateParam[`${key.substr(1)}`]) {
+                    throw new Error(`Slug "${key}" is missing in param`);
+                }
+                return true;
+            },
+        );
         Object.keys(stateParam).forEach((key) => {
             if (-1 === route.path.indexOf(`:${key}`)) {
-                throw new Error(
-                    `Navigation param "${key}" not found in "${route.path}"`,
-                );
+                throw new Error(`Param "${key}" is missing in "${route.path}"`);
             }
         });
         let { path } = route;
