@@ -68,7 +68,7 @@ export const RouteService = new class RouteService extends Service {
         const explosedRoute = route.path.split('/');
         try {
             if (explosedPath.length !== explosedRoute.length) {
-                throw new Error('Location path length is different of route path length');
+                throw new Error('Location path length is different to route path length');
             }
             Object.keys(explosedPath).forEach((key) => {
                 const routePart = explosedRoute[`${key}`];
@@ -76,12 +76,12 @@ export const RouteService = new class RouteService extends Service {
                 if (':' === routePart[0]) {
                     param[routePart.replace(':', '')] = pathPart;
                 } else if (pathPart !== routePart) {
-                    throw new Error('Route path slug not found and is different from Location path part');
+                    throw new Error(`Route part "${routePart}" not found and is different to Location part`);
                 }
             });
             Object.keys(param).forEach((key) => {
                 if (`:${key}` === param[`${key}`]) {
-                    throw new Error(`The parameter ${key} is not populated`);
+                    throw new Error(`Route slug "${key}" is not populated`);
                 }
             });
         } catch (error) {
