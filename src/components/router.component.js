@@ -149,12 +149,9 @@ export const RouterComponent = new class RouterComponent extends Component {
         if (!paramName) {
             return this.route;
         }
-        // @ts-ignore
         const param = RouterService.get().param[`${paramName}`];
         if (!param) {
-            throw new ReferenceError(
-                `There is no "${paramName}" param in the curent state`,
-            );
+            throw new ReferenceError(`There is no "${paramName}" param in the curent state`);
         }
         return param;
     }
@@ -167,9 +164,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         if (false === this.lifeCycle('onBack')) {
             const state = RouterService.get();
             RouteService.get().some((route) => {
-                // @ts-ignore
                 if (route.name === state.name) {
-                    // @ts-ignore
                     RouterService.post(route, state.param);
                     return true;
                 }
