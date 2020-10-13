@@ -1,5 +1,6 @@
 import { Service } from "./service";
 import { Route } from "appable";
+import { State } from "../models/state.model";
 
 export const RouterService = new class RouterService extends Service {
 
@@ -22,6 +23,6 @@ export const RouterService = new class RouterService extends Service {
     /**
      * Retrieve state
      */
-    get(): Object;
+    get(): State;
 
 }
