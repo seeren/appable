@@ -3,13 +3,13 @@ declare module "appable" {
     export class Component {
 
         row: number;
-
+    
         selector: string;
-
+    
         template: string;
-
+    
         components: [];
-
+    
         /**
          * @param option 
          */
@@ -18,7 +18,7 @@ declare module "appable" {
             template: string,
             components?: Component[],
         });
-
+    
         /**
          * Attach a child component
          * 
@@ -31,7 +31,7 @@ declare module "appable" {
          * @throws {ReferenceError} for already attached
          */
         attach(component: Component): Component;
-
+    
         /**
          * Detach a child component
          * 
@@ -44,7 +44,7 @@ declare module "appable" {
          * @throws {ReferenceError} for not attached
          */
         detach(component: Component): Component;
-
+    
         /**
          * Update the component template
          * 
@@ -57,7 +57,7 @@ declare module "appable" {
          * @throws {ReferenceError} for not found selector
          */
         update(): HTMLElement;
-
+    
         /**
          * Trigger life cycle hook
          * 
@@ -69,28 +69,7 @@ declare module "appable" {
          * @param hookName
          */
         lifeCycle(hookName: string): boolean
-
-    }
-
-    export class Route {
-
-        path: string;
-
-        name: string;
-
-        component: Component;
-
-        /**
-         * @param path 
-         * @param name 
-         * @param component 
-         */
-        constructor(
-            path: string,
-            name: string,
-            component: Component
-        );
-
+    
     }
 
     export const RouterComponent = new class RouterComponent extends Component {
@@ -114,7 +93,7 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for existing path or name
          */
-        add(path: string, name: string, component: Component | Function): RouterComponent;
+        add(path: string, name: string, component: Component): RouterComponent;
 
         /**
          * Run the entry point
@@ -143,7 +122,7 @@ declare module "appable" {
          *
          *  @example
          * 
-         * RouterComponent.navigate("foo, { id: 3 })
+         * RouterComponent.navigate("foo", { id: 3 })
          * 
          * @param name 
          * @param param
@@ -164,14 +143,14 @@ declare module "appable" {
          * 
          * @throws {ReferenceError} for not found parameter name
          */
-        get(paramName: string): Route | any;
+        get(paramName: string = null): Route | *;
 
         /**
          * PopStateEvent event handler
          * 
          * @param event
          */
-        onPopstate(event: Object): boolean;
+        onPopstate(event: Object): bool;
 
         /**
          * Cancel parent component to update template evants
@@ -189,7 +168,7 @@ declare module "appable" {
          * @param param 
          */
         put(route: Route, param: Object = null): void;
-
+    
         /**
          * Add entry in history
          * 
@@ -197,18 +176,47 @@ declare module "appable" {
          * @param param 
          */
         post(route: Route, param: Object = null): void;
-
+    
         /**
          * Retrieve state
          */
-        get(): Object;
+        get(): State;
+    
+    }
 
+    export class Route {
+    
+        path: string;
+    
+        name: string;
+    
+        component: Component;
+    
+        /**
+         * @param path 
+         * @param name 
+         * @param component 
+         */
+        constructor(
+            path: string,
+            name: string,
+            component: Component
+        );
+    
+    }
+
+    export class State {
+
+        name: string;
+    
+        param: Object;
+    
     }
 
     export class Service {
 
         constructor();
-
+    
         /**   
          * Attach a callable
          * 
@@ -220,7 +228,7 @@ declare module "appable" {
          * @param callable 
          */
         attach(callable: Function): Service;
-
+    
         /**   
          * Detach a callable
          * 
@@ -232,15 +240,16 @@ declare module "appable" {
          * @param callable 
          */
         detach(callable: Function): Service;
-
+    
         /**
          * Call attached callables
          * 
          * @example
+         * 
          * FooService.notify()
          */
         notify(): Service;
-
+    
     }
 
 }
