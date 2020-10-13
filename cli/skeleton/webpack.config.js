@@ -42,14 +42,14 @@ module.exports = {
     },
     watchOptions: {
         ignored: [
-            /\.nyc_output/,
-            /coverage/,
-            /node_modules/,
-            /platforms/,
-            /plugins/,
-            /resources/,
-            /test/,
-            /www/,
+            '/.nyc_output/',
+            '/coverage/',
+            '/node_modules/',
+            '/platforms/',
+            '/plugins/',
+            '/resources/',
+            '/test/',
+            '/www/',
         ],
     },
     plugins: [
