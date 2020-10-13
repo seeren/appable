@@ -51,7 +51,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      *
      *  @example
      * 
-     * RouterComponent.navigate("foo, { id: 3 })
+     * RouterComponent.navigate("foo", { id: 3 })
      * 
      * @param name 
      * @param param

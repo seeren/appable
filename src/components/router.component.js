@@ -54,12 +54,12 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {String} path Route path
-     * @param {String} name Route name
-     * @param {Component} component Component class or instance
+     * @param {String} path
+     * @param {String} name
+     * @param {Component} component
      * @returns {RouterComponent}
      *
-     * @throws {ReferenceError} for existing path or name
+     * @throws {ReferenceError}
      */
     add(path, name, component) {
         RouteService.post(`${this.basePath}${path}`, name, component);
@@ -67,7 +67,7 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {Component} component Component instance
+     * @param {Component} component
      * @returns {RouterComponent}
      */
     run(component) {
@@ -110,10 +110,10 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {string} name Route name
-     * @param {Object} [param] Route param
+     * @param {String} name
+     * @param {Object} [param]
      *
-     * @throws {ReferenceError} for not found route
+     * @throws {ReferenceError}
      */
     navigate(name, param) {
         try {
@@ -140,10 +140,10 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * @param {String} [paramName]
+     * @param {String} paramName
      * @returns {Route|*}
      *
-     * @throws {ReferenceError} for not found parameter name
+     * @throws {ReferenceError}
      */
     get(paramName = null) {
         if (!paramName) {
