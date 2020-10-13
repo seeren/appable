@@ -160,7 +160,9 @@ declare module "appable" {
     }
 
     export const RouterService = new class RouterService extends Service {
-
+    
+        state: State;
+    
         /**
          * Replace entry in history
          * 

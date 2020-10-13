@@ -4,6 +4,8 @@ import { State } from "../models/state.model";
 
 export const RouterService = new class RouterService extends Service {
 
+    state: State;
+
     /**
      * Replace entry in history
      * 
