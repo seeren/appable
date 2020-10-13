@@ -1,7 +1,7 @@
 <h1 align="center">Appable</h2>
 
 <p align="center">
-Appable is JavaScript Library for building user interfaces and scale them effectively
+Appable is JavaScript Framework to build user interfaces and scale them effectively
 </p>
 
 <p align="center">
@@ -16,24 +16,14 @@ Appable is JavaScript Library for building user interfaces and scale them effect
 ## Installation
 
 ```bash
-npm install -g appable
+npm install appable
 
-appable new my-app
+npx appable new my-app
 
 cd my-app
 
 npm start
 ```
-
-___
-
-## Introduction
-
-**Building**: create, build and test app on web and mobile.
-
-**User Interface**: generate views with interpollation, event binding, hooks and auto-rendering.
-
-**Scale**: encapsulate components, share data with services and associate url.
 
 ___
 
