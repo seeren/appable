@@ -1,7 +1,7 @@
 <h1 align="center">Appable</h2>
 
 <p align="center">
-Appable is JavaScript Framework to build user interfaces and scale them effectively
+Appable is a JavaScript Framework to Build user interfaces and Scale them effectively
 </p>
 
 <p align="center">
@@ -17,11 +17,17 @@ Appable is JavaScript Framework to build user interfaces and scale them effectiv
 
 ```bash
 npm install appable
+```
 
+```bash
 npx appable new my-app
+```
 
+```bash
 cd my-app
+```
 
+```bash
 npm start
 ```
 
@@ -29,13 +35,13 @@ ___
 
 ## Example
 
-Generate a component
+* Generate a counter component:
 
 ```bash
 appable generate component counter
 ```
 
-Template is auto rendered, use interpolation and event binding:
+* Template is auto rendered:
 
 `src/app/counter/counter.component.html`
 
@@ -43,7 +49,7 @@ Template is auto rendered, use interpolation and event binding:
 <button onclick="increment()">${counter}</button>
 ```
 
-Component handle interaction, data and use life cycle:
+* Component use life cycle:
 
 `src/app/counter/counter.component.js`
 
@@ -65,7 +71,7 @@ export class CounterComponent extends Component {
 }
 ```
 
-Associate component to url:
+* Route component:
 
 `src/index.js`
 
@@ -78,13 +84,7 @@ ___
 
 ## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
 
-Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, component encapsulation, service, router and other details.
-
-___
-
-## Motivation
-
-Curious about reduce complexity in component rendering and communication the project think about web and mobile app who have to make the job and take care about dependencie size.
+Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, component, template,service and router.
 
 ___
 
