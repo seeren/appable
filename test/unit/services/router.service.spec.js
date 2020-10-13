@@ -7,6 +7,7 @@ import { Route } from '../../../src/models/route.model';
 
 describe('RouterService', () => {
 
+    // @ts-ignore
     const historySpy = spy(RouterService, 'history');
     // @ts-ignore
     const staticRoute = new Route('/foo', 'foo');
@@ -44,37 +45,44 @@ describe('RouterService', () => {
 
     describe('history', () => {
         it('replace at true call history.replaceState', () => {
+            // @ts-ignore
             assert.isFalse(RouterService.history(staticRoute, {}, true));
         });
         it('replace at false call history.pushState', () => {
+            // @ts-ignore
             assert.isTrue(RouterService.history(staticRoute, {}, false));
         });
         it('state name is route name', () => {
+            // @ts-ignore
             RouterService.history(dynamicRoute, param);
             assert.equal(RouterService.state.name, dynamicRoute.name);
         });
         it('state param is route param', () => {
+            // @ts-ignore
             RouterService.history(dynamicRoute, param);
             assert.equal(RouterService.state.param.bar, 7);
         });
         it('location is route path dynamised', () => {
+            // @ts-ignore
             RouterService.history(dynamicRoute, param);
             assert.equal(window.location.pathname, '/bar/7/baz/77');
         });
         it('throw Error for param not found', () => {
+            // @ts-ignore
             expect(() => RouterService.history(
                 dynamicRoute,
                 { bar: 7, baz: 77, qux: 777 },
             )).to.throw(
-                'Navigation param "qux" not found in "/bar/:bar/baz/:baz',
+                'Param "qux" is missing in "/bar/:bar/baz/:baz',
             );
         });
         it('throw Error for missing param', () => {
+            // @ts-ignore
             expect(() => RouterService.history(
                 dynamicRoute,
                 { bar: 7 },
             )).to.throw(
-                'Navigation route part ":baz" is missing in param',
+                'Slug ":baz" is missing in param',
             );
         });
     });
