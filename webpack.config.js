@@ -1,18 +1,21 @@
 module.exports = {
-    entry: './src/index.js',
+    entry: './src/index.ts',
     output: {
         path: `${__dirname}/dist`,
-        filename: 'index.js',
+        filename: 'appable.js',
         libraryTarget: 'umd',
     },
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.ts$/,
                 exclude: /node_modules/,
-                use: 'babel-loader',
+                use: 'ts-loader',
             },
         ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
     },
     watchOptions: {
         ignored: /node_modules/,

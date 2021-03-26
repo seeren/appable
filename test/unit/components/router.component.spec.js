@@ -7,7 +7,7 @@ import { RouterComponent } from '../../../src/components/router.component';
 import { Component } from '../../../src/components/component';
 import { Route } from '../../../src/models/route.model';
 import { RouteService } from '../../../src/services/route.service';
-import { RouterService } from '../../../src/services/router.service';
+import { RouterService } from '../../../src/services/state.service';
 
 describe('RouterComponent', () => {
 

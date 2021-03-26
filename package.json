@@ -1,6 +1,6 @@
 {
   "name": "appable",
-  "description": "Appable is JavaScript Library for building user interfaces and scale them effectively",
+  "description": "Appable is a Javascript Micro Framework to build and scale user interfaces",
   "version": "1.2.4",
   "keywords": [
     "appable",
@@ -31,12 +31,6 @@
     "appable": "cli/index.js"
   },
   "devDependencies": {
-    "@babel/cli": "latest",
-    "@babel/core": "latest",
-    "@babel/preset-env": "latest",
-    "@babel/register": "latest",
-    "babel-loader": "latest",
-    "babel-plugin-istanbul": "latest",
     "chai": "latest",
     "coveralls": "latest",
     "cross-env": "latest",
@@ -46,15 +40,15 @@
     "jsdom": "latest",
     "mocha": "latest",
     "mocha-lcov-reporter": "latest",
+    "npm": "latest",
     "nyc": "latest",
     "sinon": "latest",
+    "ts-loader": "latest",
+    "typescript": "latest",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
   "engines": {
-    "node": ">=8"
-  },
-  "dependencies": {
-    "npm": "latest"
+    "node": ">=10"
   }
 }

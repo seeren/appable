@@ -2,7 +2,7 @@ import { describe, it } from 'mocha';
 import { assert, expect } from 'chai';
 import { spy } from 'sinon';
 import { window } from '../../window';
-import { RouterService } from '../../../src/services/router.service';
+import { RouterService } from '../../../src/services/state.service';
 import { Route } from '../../../src/models/route.model';
 
 describe('RouterService', () => {

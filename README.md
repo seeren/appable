@@ -1,7 +1,7 @@
 <h1 align="center">Appable</h2>
 
 <p align="center">
-Appable is a JavaScript Framework to Build user interfaces and Scale them effectively
+Appable is a Javascript Micro Framework to build and scale user interfaces
 </p>
 
 <p align="center">
