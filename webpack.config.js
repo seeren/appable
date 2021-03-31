@@ -1,5 +1,5 @@
 module.exports = {
-    entry: './src/index.ts',
+    entry: './src/appable.ts',
     output: {
         path: `${__dirname}/dist`,
         filename: 'appable.js',
