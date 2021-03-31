@@ -4,15 +4,15 @@ import { Route } from '../models/route.model';
 
 import { ComponentInterface } from '../components/component.interface';
 
-export const RouteService = new class RouteService extends Service {
+const routes: Route[] = [];
 
-    private routes: Route[] = [];
+export const RouteService = new class RouteService extends Service {
 
     /**
      * @returns {Route[]}
      */
     public get(): Route[] {
-        return this.routes;
+        return routes;
     }
 
     /**
@@ -26,7 +26,7 @@ export const RouteService = new class RouteService extends Service {
         path: string,
         name: string,
         component: ComponentInterface): void {
-        this.routes.forEach((route: Route) => {
+        routes.forEach((route: Route) => {
             if (path === route.path) {
                 throw new ReferenceError(`Can't add route: path "${path}" already exists`);
             }
@@ -34,7 +34,7 @@ export const RouteService = new class RouteService extends Service {
                 throw new ReferenceError(`Can't add route: name "${name}" already exists`);
             }
         });
-        this.routes.push({ path, name, component });
+        routes.push({ path, name, component });
     }
 
     /**

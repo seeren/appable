@@ -7,11 +7,11 @@ import { RouteService } from '../services/route.service';
 import { StateService } from '../services/state.service';
 import { State } from '../models/state.model';
 
+let includePath: string = '';
+
+let activeRoute: Route;
+
 export const RouterComponent = new class RouterComponent extends Component {
-
-    private includePath: string = '';
-
-    private route: Route;
 
     constructor() {
         super('router');
@@ -19,7 +19,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         Object.keys(scripts).some((key) => {
             const script = scripts[parseInt(key)];
             if (script.src && -1 !== script.src.indexOf('dist/appable.js')) {
-                this.includePath = script.src
+                includePath = script.src
                     .replace('/dist/appable.js', '')
                     .replace(window.location.origin, '');
                 return true;
@@ -38,7 +38,7 @@ export const RouterComponent = new class RouterComponent extends Component {
         path: string,
         name: string,
         component: ComponentInterface): RouterComponent {
-        RouteService.post(`${this.includePath}${path}`, name, component);
+        RouteService.post(`${includePath}${path}`, name, component);
         return this;
     }
 
@@ -122,7 +122,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      */
     public get(name?: string): Route | string | number {
         if (!name) {
-            return this.route;
+            return activeRoute;
         }
         const param = StateService.get().param[`${name}`];
         if (!param) {
@@ -135,12 +135,12 @@ export const RouterComponent = new class RouterComponent extends Component {
      * @param route 
      * @returns {ThisType}
      */
-    private attachRoute(route: Route): ComponentInterface {
+    public attachRoute(route: Route): ComponentInterface {
         if (route.component instanceof window.Function) {
             const Attachable = route.component;
             route.component = new (Attachable as any)();
         }
-        this.route = route;
+        activeRoute = route;
         return this.attach(route.component);
     }
 
@@ -148,7 +148,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      * @param event 
      * @returns {boolean}
      */
-    private onPopstate(event: PopStateEvent): boolean {
+    public onPopstate(event: PopStateEvent): boolean {
         if (false === this.emit('onBack')) {
             const state: State = StateService.get();
             RouteService.get().some((route: Route) => {
@@ -178,7 +178,7 @@ export const RouterComponent = new class RouterComponent extends Component {
     /**
      * @returns {ThisType}
      */
-    protected updateEvents(): ComponentInterface {
+    public updateEvents(): ComponentInterface {
         return this;
     }
 

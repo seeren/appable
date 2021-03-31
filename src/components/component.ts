@@ -2,7 +2,7 @@ import { ComponentInterface } from "./component.interface";
 
 export abstract class Component implements ComponentInterface {
 
-    private row: number = 0;
+    public row: number = 0;
 
     public components: ComponentInterface[] = [];
 
@@ -131,7 +131,7 @@ export abstract class Component implements ComponentInterface {
      * @param properties 
      * @returns {ThisType}
      */
-     protected updateEvents(
+     public updateEvents(
         htmlElement: HTMLElement,
         properties: string[]): ComponentInterface {
         let match: RegExpExecArray;
@@ -155,7 +155,7 @@ export abstract class Component implements ComponentInterface {
      * @param args 
      * @returns {ThisType}
      */
-     protected registerEvent(
+     public registerEvent(
         htmlElement: HTMLElement,
         type: string,
         propertie: string,

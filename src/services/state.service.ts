@@ -3,15 +3,15 @@ import { Service } from './service';
 import { State } from '../models/state.model';
 import { Route } from '../models/route.model';
 
-export const StateService = new class StateService extends Service {
+const state: State = new State();
 
-    private state: State = new State();
+export const StateService = new class StateService extends Service {
 
     /**
      * @returns {State}
      */
     public get(): State {
-        return this.state;
+        return state;
     }
 
     /**
@@ -58,17 +58,17 @@ export const StateService = new class StateService extends Service {
             }
         });
         let { path } = route;
-        this.state.name = route.name;
-        this.state.param = param;
-        Object.keys(this.state.param).forEach(
-            (key: string) => path = path.replace(`:${key}`, `${this.state.param[key]}`)
+        state.name = route.name;
+        state.param = param;
+        Object.keys(state.param).forEach(
+            (key: string) => path = path.replace(`:${key}`, `${state.param[key]}`)
         );
         if (replace) {
-            window.history.replaceState(this.state, route.name, path);
+            window.history.replaceState(state, route.name, path);
             this.notify();
             return false;
         }
-        window.history.pushState(this.state, route.name, path);
+        window.history.pushState(state, route.name, path);
         this.notify();
         return true;
     }
