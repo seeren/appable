@@ -23,12 +23,13 @@
     "build": "webpack --mode production",
     "test": "mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
-    "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
+    "type": "tsc --emitDeclarationOnly --outDir src -d"
   },
-  "main": "dist/index.js",
-  "types": "src/index.d.ts",
+  "main": "dist/appable.js",
+  "types": "src/appable.d.ts",
   "bin": {
-    "appable": "cli/index.js"
+    "appable": "cli/appable.js"
   },
   "devDependencies": {
     "chai": "latest",
@@ -44,7 +45,7 @@
     "nyc": "latest",
     "sinon": "latest",
     "ts-loader": "latest",
-    "typescript": "latest",
+    "typescript": "^4.2.3",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
