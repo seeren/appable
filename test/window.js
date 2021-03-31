@@ -1,7 +1,6 @@
-import jsdom from 'jsdom';
+import * as jsdom from 'jsdom';
 
 export const window = (() => {
-
     const { JSDOM } = jsdom;
     global.window = new JSDOM('<!doctype html>', {
         url: 'http://localhost/',
@@ -16,8 +15,7 @@ export const window = (() => {
     const otherScript = global.window.document.createElement('script');
     global.window.document.body.appendChild(otherScript);
     global.window.document.body.appendChild(script);
-    script.src = '/dist/index.js';
+    script.src = '/dist/appable.js';
     otherScript.src = '/other/index.js';
     return global.window;
-
 })();
