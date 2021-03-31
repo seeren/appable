@@ -22,16 +22,28 @@ export abstract class Component implements ComponentInterface {
     }
 
     /**
+     * @param type 
+     * @returns {ThisType}
+     */
+    public emit(type: string): boolean | void {
+        let returnValue: boolean | void = null;
+        if ((this as any)[type]) {
+            returnValue = (this as any)[type]();
+        }
+        this.components.forEach((component) => false === returnValue 
+            ? component.emit(type)
+            : returnValue = component.emit(type)
+        );
+        return returnValue;
+    }
+    
+    /**
      * @param component 
      * @returns {ThisType}
      * 
      * @throws {ReferenceError} Component already attached
      */
     public attach(component: ComponentInterface): ComponentInterface {
-        
-        console.log(component);
-            
-        // console.log(this.components);
         const selector: string = component.selector.split('[')[0];
         if (-1 !== this.components.indexOf(component)) {
             throw new ReferenceError(`Can't attach "${selector}": is already attached`);
@@ -43,12 +55,7 @@ export abstract class Component implements ComponentInterface {
             const partialTag: string = match[0].substring(0, match[0].length - 2);
             this.template = this.template.replace(`${partialTag}>`, `${partialTag} ${attribute}>`);
         } else {
-            // console.log(this);
-            
-            // console.log(this.components);
-            
-            (this as ComponentInterface).onInit && (this as ComponentInterface).onInit();
-            // this.components.forEach((component: ComponentInterface) => component.onInit || component.onInit());
+            component.emit('onInit');
             this.template += `<${selector} ${attribute}></${selector}>`;
         }
         this.components.push(component);
@@ -73,11 +80,10 @@ export abstract class Component implements ComponentInterface {
         const selector: string = selectorSplitSpace[selectorSplitSpace.length - 1];
         const attributes: string = `${selectorSplitHook[selectorSplitHook.length - 1].replace(']', '')}`;
         const match: RegExpExecArray = new RegExp(`<${selector}+(.)+${attributes}+><`).exec(this.template);
-        (this as ComponentInterface).onDestroy && (this as ComponentInterface).onDestroy();
-        this.components.forEach((component: ComponentInterface) => component.onDestroy && component.onDestroy());
         this.template = this.template.replace(`${match[0]}/${selector}>`, '');
         this.components.splice(index, 1);
         this.row -= 1;
+        component.emit('onDestroy');
         component.selector = `${selector}`;
         return this;
     }

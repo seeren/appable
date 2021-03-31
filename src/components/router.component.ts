@@ -48,14 +48,8 @@ export const RouterComponent = new class RouterComponent extends Component {
      */
     public run(component: Component): RouterComponent {
         window.addEventListener('popstate', (event: PopStateEvent) => this.onPopstate(event));
-        window.document.addEventListener('pause', () => {
-            (component as ComponentInterface).onPause && (component as ComponentInterface).onPause();
-            this.components.forEach((component: ComponentInterface) => component.onPause && component.onPause());
-        });
-        window.document.addEventListener('resume', () => {
-            (component as ComponentInterface).onResume && (component as ComponentInterface).onResume();
-            this.components.forEach((component: ComponentInterface) => component.onResume && component.onResume());
-        });
+        window.document.addEventListener('pause', () => this.emit('onPause'));
+        window.document.addEventListener('resume', () => () => this.emit('onResume'));
         let param: { [key: string]: string | number };
         const routes: Route[] = RouteService.get();
         try {
@@ -91,7 +85,6 @@ export const RouterComponent = new class RouterComponent extends Component {
     }
 
     /**
-     * 
      * @param name 
      * @param param 
      * 
@@ -114,7 +107,7 @@ export const RouterComponent = new class RouterComponent extends Component {
                 this.detach(this.components[0]);
             }
             StateService.post(route, param);
-            this.attach(route);
+            this.attachRoute(route);
             this.update();
             return;
         }
@@ -156,13 +149,7 @@ export const RouterComponent = new class RouterComponent extends Component {
      * @returns {boolean}
      */
     private onPopstate(event: PopStateEvent): boolean {
-        let navigateBack: boolean;
-        this.components.forEach((component: ComponentInterface) => {
-            if (component.onBack && false === component.onBack()) {
-                navigateBack = false;
-            }
-        });
-        if (false === navigateBack) {
+        if (false === this.emit('onBack')) {
             const state: State = StateService.get();
             RouteService.get().some((route: Route) => {
                 if (route.name === state.name) {

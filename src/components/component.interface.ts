@@ -6,6 +6,8 @@ export interface ComponentInterface {
 
     components: ComponentInterface[];
 
+    emit(type: string): boolean | void;
+
     onInit?(): void;
 
     onUpdate?(element: HTMLElement): void;
