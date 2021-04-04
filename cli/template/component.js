@@ -5,24 +5,21 @@
 module.exports = (filename, className) => `import { Component } from 'appable';
 
 // @ts-ignore
-import template from './${filename}.component.html';
+import template from './${ filename }.component.html';
 
 // @ts-ignore
-import './${filename}.component.scss';
+import './${ filename }.component.scss';
 
 /**
- * @type {${className}Component}
+ * @type {${ className }Component}
  */
-export class ${className}Component extends Component {
+export class ${ className }Component extends Component {
 
     /**
      * @constructor
      */
     constructor() {
-        super({
-            selector: '${filename}',
-            template,
-        });
+        super('${ filename }', template);
     }
 
     /**

@@ -19,9 +19,7 @@ module.exports = {
         try {
             fs.writeFileSync(filename, output);
         } catch (e) {
-            console.error(
-                '\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`,
-            );
+            console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`);
             return false;
         }
         console.warn('\x1b[32m', '\u2713', '\x1b[0m', filename);
@@ -37,9 +35,7 @@ module.exports = {
         try {
             output = fs.readFileSync(filename);
         } catch (e) {
-            console.error(
-                '\x1b[31m', '\u00D7', '\x1b[0m', `Read error: ${e.message}`,
-            );
+            console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Read error: ${e.message}`);
         }
         return output;
     },
@@ -57,9 +53,7 @@ module.exports = {
                     fs.mkdirSync(currentDir);
                 }
             } catch (e) {
-                console.error(
-                    '\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`,
-                );
+                console.error('\x1b[31m', '\u00D7', '\x1b[0m', `Generate error: ${e.message}`);
                 return false;
             }
         }
@@ -72,9 +66,7 @@ module.exports = {
      */
     className(filename) {
         let className = '';
-        filename.split('/').pop().split('-').forEach(
-            (elem) => { className += elem[0].toUpperCase() + elem.slice(1); },
-        );
+        filename.split('/').pop().split('-').forEach((elem) => className += elem[0].toUpperCase() + elem.slice(1));
         return className;
     },
 
