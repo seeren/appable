@@ -1,14 +1,14 @@
 {
   "name": "appable",
-  "description": "Appable is a Javascript Micro Framework to build and scale user interfaces",
-  "version": "1.2.4",
+  "description": "Appable is a Javascript Micro Framework to Build and Scale User Interfaces",
+  "version": "2.0.0",
   "keywords": [
     "appable",
+    "hybrid",
+    "app",
     "component",
     "route",
-    "service",
-    "hybrid",
-    "app"
+    "service"
   ],
   "author": "Cyril Ichti",
   "homepage": "https://github.com/seeren/appable/wiki",
