@@ -152,14 +152,14 @@ const DEPLOY = [
             file.write(
                 `${projectName}/${filename}`,
                 output.toString().replace(
-                    /{projectName}/g,
+                    /{ projectName }/g,
                     'config.xml' !== filename ? projectName : projectName.replace(/-/g, ''),
                 ),
             );
         });
         file.write(`${projectName}/.gitignore`, IGNORE);
         console.warn('\x1b[36m', 'Installing packages');
-        return npm.load({ loaded: false }, () => {
+        return npm.load(() => {
             npm.prefix = projectName;
             npm.commands.install(packages, () => { });
         });
