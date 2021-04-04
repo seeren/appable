@@ -1,7 +1,7 @@
-<h1 align="center">Appable</h2>
+<h1 align="center">Appable</h1>
 
 <p align="center">
-Appable is a Javascript Micro Framework to build and scale user interfaces
+Appable is a Javascript Micro Framework to Build and Scale User Interfaces
 </p>
 
 <p align="center">
@@ -35,29 +35,33 @@ ___
 
 ## Example
 
-* Generate a counter component:
+* Generate Component
 
 ```bash
 appable generate component counter
 ```
 
-* Template is auto rendered:
+* Interpolate and Bind
 
 `src/app/counter/counter.component.html`
 
 ```html
-<button onclick="increment()">${counter}</button>
+<button onclick="increment()">${ counter }</button>
 ```
 
-* Component use life cycle:
+* Use Life Cycle
 
 `src/app/counter/counter.component.js`
 
 ```js
+import { Component } from "appable";
+
+import template from "./counter.component.html";
+
 export class CounterComponent extends Component {
 
   constructor() {
-    super({ selector: "counter", template });
+    super('counter', template);
   }
 
   onInit() {
@@ -71,7 +75,7 @@ export class CounterComponent extends Component {
 }
 ```
 
-* Route component:
+* Associate URL
 
 `src/index.js`
 
@@ -80,14 +84,15 @@ RouterComponent
   .add('/count', 'counter', CounterComponent)
   .run(new AppComponent)
 ```
+
 ___
 
-## 📘 [Documentation](https://github.com/seeren/appable/wiki/)
+## 📘 Documentation
 
-Read the [documentation](https://github.com/seeren/appable/wiki) to learn about build, component, template,service and router.
+Read the documentation to learn about build, component, template,service and router usages: [https://github.com/seeren/appable/wiki](https://github.com/seeren/appable/wiki)
 
 ___
 
 ## ©️ License
 
-[MIT](LICENSE) Copyright 2020 Seeren
+[MIT](LICENSE) Copyright Seeren
