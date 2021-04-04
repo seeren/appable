@@ -4,6 +4,7 @@ module.exports = {
         path: `${__dirname}/dist`,
         filename: 'appable.js',
         libraryTarget: 'umd',
+        globalObject: 'this',
     },
     module: {
         rules: [
