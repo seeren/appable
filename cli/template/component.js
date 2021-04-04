@@ -4,15 +4,8 @@
  */
 module.exports = (filename, className) => `import { Component } from 'appable';
 
-// @ts-ignore
 import template from './${ filename }.component.html';
 
-// @ts-ignore
-import './${ filename }.component.scss';
-
-/**
- * @type {${ className }Component}
- */
 export class ${ className }Component extends Component {
 
     /**
