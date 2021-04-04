@@ -1,83 +1,63 @@
 import { describe, it } from 'mocha';
+
 import { assert, expect } from 'chai';
+
 import { window } from '../../window';
+
 import { Route } from '../../../src/models/route.model';
+
 import { RouteService } from '../../../src/services/route.service';
 
 describe('RouteService', () => {
 
-    // @ts-ignore
+    global.window = window;
+
     const entryRoute = new Route('/', 'entry');
-    // @ts-ignore
+
     const dynamicRoute = new Route('/bar/:bar/baz/:baz', 'bar');
 
-    describe('routes', () => {
-        it('is an array', () => assert.isArray(RouteService.routes));
-    });
-
-    describe('get', () => {
-        it('retrieve routes', () => assert.equal(
-            RouteService.routes,
-            RouteService.get(),
-        ));
-    });
+    describe('routes', () => it('is an array', () => assert.isArray(RouteService.get())));
 
     describe('post', () => {
         it('add a route', () => {
-            const lengthBefore = RouteService.routes.length;
-            // @ts-ignore
+            const lengthBefore = RouteService.get().length;
             RouteService.post('/foo', 'foo');
-            assert.equal(lengthBefore + 1, RouteService.routes.length);
+            assert.equal(lengthBefore + 1, RouteService.get().length);
         });
-        it('throw ReferenceError for existing path', () => expect(() => {
-            // @ts-ignore
-            RouteService.post('/foo', 'fail');
-        }).to.throw(
-            'Can\'t add route: path "/foo" already exists',
-        ));
+        it('throw ReferenceError for existing path', () => expect(() =>
+            RouteService.post('/foo', 'fail')
+        ).to.throw('Can\'t add route: path "/foo" already exists',));
         it('throw ReferenceError for existing name', () => expect(() => {
-            // @ts-ignore
             RouteService.post('/fail', 'foo');
-        }).to.throw(
-            'Can\'t add route: name "foo" already exists',
-        ));
+        }).to.throw('Can\'t add route: name "foo" already exists'));
     });
 
-    describe('matchLocation', () => {
-        it('is route path equal window.location', () => {
-            // @ts-ignore
-            assert.isTrue(RouteService.constructor.matchLocation(entryRoute));
-        });
-    });
+    describe('matchLocation', () =>
+        it('is route path equal window.location', () => assert.isTrue(RouteService.matchLocation(new Route(window.location.pathname, 'foo'))))
+    );
 
-    describe('hasParam', () => {
+    describe('hasParam', () =>
         it('has route dynamic param', () => {
-            // @ts-ignore
-            assert.isFalse(RouteService.constructor.hasParam(entryRoute));
-            // @ts-ignore
-            assert.isTrue(RouteService.constructor.hasParam(dynamicRoute));
-        });
-    });
+            assert.isFalse(RouteService.hasParam(entryRoute));
+            assert.isTrue(RouteService.hasParam(dynamicRoute));
+        })
+    );
 
     describe('getParam', () => {
-        it('false when path length are different', () => {
-            // @ts-ignore
-            assert.isFalse(RouteService.constructor.getParam(dynamicRoute));
-        });
-        it('false for static path part is different from location', () => {
+        it('throw Error when length are differents', () => expect(() => RouteService.getParam(dynamicRoute))
+            .throw('Location path length is different to route path length')
+        );
+        it('throw Error when path part not found', () => expect(() => {
             window.history.replaceState({}, 'test', '/bar/7/test/77');
-            // @ts-ignore
-            assert.isFalse(RouteService.constructor.getParam(dynamicRoute));
-        });
-        it('false when route path parts are not dynamised', () => {
+            assert.isFalse(RouteService.getParam(dynamicRoute));
+        }).throw('Route part "baz" not found'));
+        it('throw Error when slug is not populated', () => expect(() => {
             window.history.replaceState({}, 'test', '/bar/7/baz/:baz');
-            // @ts-ignore
-            assert.isFalse(RouteService.constructor.getParam(dynamicRoute));
-        });
+            assert.isFalse(RouteService.getParam(dynamicRoute));
+        }).throw('Route slug "baz" is not populated'));
         it('param when route path parts are dynamised', () => {
             window.history.replaceState({}, 'test', '/bar/7/baz/77');
-            // @ts-ignore
-            assert.isObject(RouteService.constructor.getParam(dynamicRoute));
+            assert.isObject(RouteService.getParam(dynamicRoute));
         });
     });
 

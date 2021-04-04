@@ -1,13 +1,14 @@
-const callables: Function[] = [];
 
 export class Service {
+
+    public callables: Function[] = [];
 
     /**
      * @param callable 
      * @returns {ThisType}
      */
     public attach(callable: Function): Service {
-        callables.push(callable);
+        this.callables.push(callable);
         return this;
     }
 
@@ -16,9 +17,9 @@ export class Service {
      * @returns {ThisType}
      */
     public detach(callable: Function): Service {
-        const index = callables.indexOf(callable);
+        const index = this.callables.indexOf(callable);
         if (-1 !== index) {
-            callables.splice(index, 1);
+            this.callables.splice(index, 1);
         }
         return this;
     }
@@ -27,7 +28,7 @@ export class Service {
      * @returns {ThisType}
      */
     public notify(): Service {
-        callables.forEach((callable: Function) => callable(this));
+        this.callables.forEach((callable: Function) => callable(this));
         return this;
     }
 

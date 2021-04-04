@@ -16,7 +16,7 @@ export abstract class Component implements ComponentInterface {
         public template: string = '',
         components: ComponentInterface[] = []) {
         this.selector = selector;
-        this.template = template;
+        this.template = template;        
         components.forEach((component: ComponentInterface) => this.attach(component));
         window.document.createElement(this.selector);
     }

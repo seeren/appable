@@ -1,7 +1,7 @@
 export class State {
 
-    public name: string;
+    public name: string = '';
 
-    public param: { [key: string]: string | number };
+    public param: { [key: string]: string | number } = {};
 
 }
