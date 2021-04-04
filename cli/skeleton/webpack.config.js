@@ -8,7 +8,8 @@ module.exports = {
     ],
     output: {
         path: `${__dirname}/www/dist`,
-        filename: 'index.js',
+        filename: 'app.js',
+        globalObject: 'this',
     },
     module: {
         rules: [
@@ -53,7 +54,7 @@ module.exports = {
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: 'index.css' }),
+        new MiniCssExtractPlugin({ filename: 'app.css' }),
         new BrowserSyncPlugin({
             host: 'localhost',
             port: 3000,

@@ -6,6 +6,5 @@ import { AppComponent } from './app/app.component';
     ? window.document.addEventListener('deviceready', run)
     : window.addEventListener('load', run))
 )(() => RouterComponent
-//  TODO Add routes
-
+    //  TODO Add routes
     .run(new AppComponent()));
