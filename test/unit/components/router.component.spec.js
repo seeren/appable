@@ -93,7 +93,6 @@ describe('RouterComponent', () => {
     });
 
     describe('get', () => {
-        console.log(StateService.get());
         expect(() => RouterComponent.get('id')).to.throw('There is no param "id" in the curent state');
         it('retrieve current route', () => {
             RouterComponent.add(route.path, route.name, route.component);
