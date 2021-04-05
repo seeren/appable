@@ -22,7 +22,7 @@
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "test": "mocha -r ts-node/register --recursive test/unit",
-    "test:coverage": "cross-env NODE_ENV=test nyc mocha -r ts-node/register --recursive test/unit",
+    "test:coverage": "cross-env NODE_ENV=test nyc npm test",
     "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls",
     "type": "tsc --emitDeclarationOnly --outDir src -d"
   },
