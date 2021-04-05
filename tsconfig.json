@@ -5,7 +5,8 @@
     "module": "commonjs",
     "target": "es5",
     "declaration": false,
-    "allowJs": true
+    "allowJs": true,
+    "sourceMap": true
   },
   "include": ["src/**/*"],
 }
