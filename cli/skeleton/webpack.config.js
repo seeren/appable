@@ -7,7 +7,7 @@ module.exports = {
         './src/index.scss',
     ],
     output: {
-        path: `${__dirname}/www/dist`,
+        path: `${__dirname}/www`,
         filename: 'app.js',
         globalObject: 'this',
     },
@@ -27,7 +27,7 @@ module.exports = {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'production' !== process.env.NODE_ENV ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
                     'sass-loader',
                 ],
@@ -55,16 +55,15 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: 'app.css' }),
-        new BrowserSyncPlugin({
-            host: 'localhost',
-            port: 3000,
-            files: ['www/index.html'],
-            server: {
-                baseDir: 'www',
-                middleware: (req, res, next) => (-1 === req.url.indexOf('.') && '/' !== req.url
-                    ? res.end(res.writeHead(302, { Location: '/' }))
-                    : next()),
-            },
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
         }),
     ],
+    devServer: {
+        contentBase: './src/',
+        https: false,
+        host: 'localhost',
+        port: 8080,
+        historyApiFallback: true,
+    },
 };
