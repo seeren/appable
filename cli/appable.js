@@ -66,7 +66,6 @@ const DEPLOY = [
     'test/unit/app-component.spec.js',
     'test/window.js',
     '.eslintrc.js',
-    '.gitignore',
     '.nycrc',
     '.travis.yml',
     'babel.config.json',
