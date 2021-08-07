@@ -3,14 +3,7 @@
  */
 module.exports = (className) => `import { Service } from 'appable';
 
-export const ${ className }Service = new class ${ className }Service extends Service {
-
-    /**
-     * @constructor
-     */
-    constructor() {
-        super();
-    }
+export const ${ className }Service = new class extends Service {
 
 }();
 `;
