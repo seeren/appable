@@ -53,36 +53,23 @@ const COMPONENT = 'component';
 const SERVICE = 'service';
 
 /**
- * @type {String}
- */
-const IGNORE = `/.nyc_output/
-/.vscode/
-/coverage/
-/node_modules/
-/platforms/
-/plugins/
-/resources/android/
-/www/dist/index.*
-package-lock.json`;
-
-/**
  * @type {Array}
  */
 const DEPLOY = [
-    'assets/.gitkeep',
     'src/app/app.component.html',
     'src/app/app.component.js',
     'src/app/app.component.scss',
+    'src/favicon.ico',
+    'src/index.html',
     'src/index.js',
     'src/index.scss',
     'test/unit/app-component.spec.js',
     'test/window.js',
-    'www/dist/.gitkeep',
-    'www/index.html',
-    '.babelrc',
     '.eslintrc.js',
+    '.gitignore',
     '.nycrc',
     '.travis.yml',
+    'babel.config.json',
     'config.xml',
     'package.json',
     'POLICY',
@@ -157,7 +144,6 @@ const DEPLOY = [
                 ),
             );
         });
-        file.write(`${projectName}/.gitignore`, IGNORE);
         console.warn('\x1b[36m', 'Installing packages');
         return npm.load(() => {
             npm.prefix = projectName;
