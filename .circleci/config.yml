@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.1
-  coveralls: coveralls/coveralls@1.0.4
+  coveralls: coveralls/coveralls@1.0.6
 
 jobs:
   build-and-test:  
@@ -13,13 +13,5 @@ jobs:
       - node/install-packages
       - run:
           name: Pass tests
-          command: npm test
-
-workflows:
-  build: 
-    jobs:
-      - build-and-test:
-          post-steps:
-            - run:
-              - coveralls/upload:
-                  path_to_lcov: ./coverage/lcov.info
+          command: npm run test:coverage
+      - coveralls/upload
