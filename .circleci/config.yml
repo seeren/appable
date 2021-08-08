@@ -15,6 +15,9 @@ jobs:
           command: npm test
 
 workflows:
-  sample: 
+  build: 
     jobs:
       - build-and-test
+          post-steps:
+            - run:
+                command: npm run test:coveralls
