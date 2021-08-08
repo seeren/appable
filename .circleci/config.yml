@@ -15,3 +15,7 @@ jobs:
           name: Pass tests
           command: npm run test:coverage
       - coveralls/upload
+workflows:
+  sample: 
+    jobs:
+      - build-and-test
