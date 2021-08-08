@@ -9,8 +9,8 @@
     "android:build": "npm run build & npm run android",
     "android:install": "cordova platform add android",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register --recursive test/unit",
-    "test:coverage": "cross-env NODE_ENV=test nyc mocha --recursive test/unit",
-    "test:coveralls": "npm run test:coverage -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
+    "test:coverage": "cross-env NODE_ENV=test nyc --reporter=lcovonly --reporter=text npm test",
+    "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | coveralls"
   },
   "sass": "src/index",
   "main": "src/index",
