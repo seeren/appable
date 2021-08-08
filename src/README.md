@@ -1,14 +1,14 @@
 <h1 align="center">Project</h1>
 
-  * [Creation](#creation)
-  * [Build](#build)
-  * [Test](#test)
+*  [Creation](#creation)
+*  [Build](#build)
+*  [Test](#test)
 
 ___
 
 ## Creation
 
-For *global* installation
+For global installation
 
 ```bash
 appable new my-app
@@ -20,7 +20,7 @@ For *local* installation using npx
 npx appable new my-app
 ```
 
-For *local* installation using script
+For local installation using script
 
 ```bash
 npm run appable new my-app
@@ -36,35 +36,35 @@ ___
 
 ## Build
 
-  * Web Browser
+*  Web Browser
 
-*Build and serve*
+Serve
 
 ```
 npm run start
 ```
 
-*Build*
+Build
 
 ```
 npm run build
 ```
 
-  * Device
+*  Device
 
-*Install android*
+Install android
 
 ```bash
 npm run android:install
 ```
 
-*Build then run on device*
+Build then run on device
 
 ```bash
 npm run android:build
 ```
 
-*Run on device*
+Run on device
 
 ```bash
 npm run android
@@ -76,7 +76,7 @@ ___
 
 ## Test
 
-  * Pass tests
+*  Pass tests
 
 ```bash
 npm test
@@ -87,7 +87,7 @@ npm test
 npm run test:coverage
 ```
 
-  * Send coverage report to coveralls
+*  Send coverage report to coveralls
 
 ```bash
 npm run test:coveralls
@@ -95,7 +95,8 @@ npm run test:coveralls
 
 ___
 
-[Travis](https://travis-ci.org/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
+[CircleCI](https://app.circleci.com/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
+
 ___
 
 ## ©️ License MIT

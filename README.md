@@ -5,7 +5,7 @@ Appable is a Javascript Micro Framework to Build and Scale User Interfaces
 </p>
 
 <p align="center">
-<a href="https://travis-ci.org/seeren/appable"><img src="https://travis-ci.org/seeren/appable.svg?branch=master" alt="Build"></a>
+<a href="https://app.circleci.com/pipelines/github/seeren/appable"><img src="https://circleci.com/gh/seeren/appable.svg?style=shield" alt="Build"></a>
 <a href="https://coveralls.io/github/seeren/appable?branch=master"><img src="https://coveralls.io/repos/github/seeren/appable/badge.svg?branch=master" alt="Coverage"></a>
 <a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/dt/appable.svg" alt="Download"></a>
 <a href="https://www.npmjs.com/package/appable"><img src="https://img.shields.io/npm/v/appable.svg" alt="Version"></a>
