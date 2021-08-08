@@ -1,25 +1,25 @@
 <h1 align="center">Services</h1>
 
-  * [Creation](#creation)
-  * [Usage](#usage)
+*  [Creation](#creation)
+*  [Usage](#usage)
 
 ___
 
 ## Creation
 
-For *global* installation
+For global installation
 
 ```bash
 appable generate service foo
 ```
 
-For *local* installation using npx
+For local installation using npx
 
 ```bash
 npx appable generate service foo
 ```
 
-For *local* installation using script
+For local installation using script
 
 ```bash
 npm run appable generate service foo
@@ -27,7 +27,7 @@ npm run appable generate service foo
 
 Following files have been generated in app/foo
 
-  * foo.service.js
+*  foo.service.js
 
 ___
 
@@ -35,33 +35,30 @@ ___
 
 > Service share data and can notify for changes
 
-  * Handle data
+*  Handle data
 
 ```js
 import { Service } from  'appable';
 
 export const FooService = new class extends Service {
 
-  constructor() {
-    super();
-    this.data = [];
-  }
+  fooList = [];
 
-  post(data){
-    this.data.push(data);
+  post(foo){
+    this.fooList.push(foo);
     this.notify();
   }
 
 }();
 ```
 
-  * Notify for changes
+*  Notify for changes
 
 ```js
 FooService.notify();
 ```
 
-  * Subscribe/Unsubscribe for changes
+*  Subscribe/Unsubscribe for changes
 
 Service can **attach** or **detach** functions who are called when **notiy** is call
 
@@ -73,7 +70,7 @@ export class FooComponent extends Component {
     }
 
     observer(service) {
-        alert(`BazService has ${service.data.length} items`)
+        alert(`FooService has ${service.fooList.length} items`)
     }
 
     onInit() { 

@@ -1,11 +1,11 @@
 <h1 align="center">Components</h1>
 
-  * [Creation](#creation)
-  * [Usage](#usage)
-      * [Encapsulation](#encapsulation)
-      * [Template](#template)
-      * [Hook](#hook)
-  * [Router](#router)
+*  [Creation](#creation)
+*  [Usage](#usage)
+    *  [Encapsulation](#encapsulation)
+      *  [Template](#template)
+      *  [Hook](#hook)
+*  [Router](#router)
 
 ___
 
@@ -13,29 +13,29 @@ ___
 
 > Components can be generated using the CLI.
 
-  * For **global** installation
+*  For global installation
 
 ```bash
 appable generate component foo
 ```
 
-  * For **local** installation using npx
+*  For local installation using npx
 
 ```bash
 npx appable generate component foo
 ```
 
-  * For **local** installation using script
+*  For local installation using script
 
 ```bash
 npm run appable generate component foo
 ```
 
-Following files have been generated in *app/foo*
+Following files have been generated in "app/foo"
 
-  * foo.component.js
-  * foo.component.html
-  * foo.component.scss
+*  foo.component.js
+*  foo.component.html
+*  foo.component.scss
 
 ___
 
@@ -43,7 +43,7 @@ ___
 
 > To use your component, route it with the RouterComponent or embed it as a child
 
-  * Template
+*  Template
 
 `Template` use es6 strings, he is updated if an event return a value
 
@@ -56,7 +56,7 @@ ___
 </button>
 ```
 
-  * Component
+*  Component
 
 `Component` have a selector, template and style file
 
@@ -69,9 +69,10 @@ import './counter.component.scss';
 
 export class CounterComponent extends Component {
 
+  counter = 0;
+
   constructor() {
     super('counter', template);
-    this.counter = 0;
   }
 
   increment() {
@@ -90,7 +91,7 @@ increment() {
 }
 ```
 
-  * Style
+*  Style
 
 A scss file is linked to component
 
@@ -139,13 +140,13 @@ this.detach(bar);
 
 > Template use es6 syntax
 
-  * Interpollation
+*  Interpollation
 
 ```html
 <h1>${ counter }</h1>
 ```
 
-  * Event binding
+*  Event binding
 
 Template is updated when an event return a value
 
@@ -159,19 +160,19 @@ Use Interpollation to provide argument value
 <h1 onclick="increment(${ counter })">Hello</h1>
 ```
 
-  * Conditionnal: use [ternary](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator=operator)
+*  Conditionnal: use [ternary](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator=operator)
 
 ```html
 ${ increment ? `Incremented` : `` }
 ```
 
-  * Conditionnal: use [logical operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
+*  Conditionnal: use [logical operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_Operators)
 
 ```html
 ${ increment || `Not incremented` }
 ```
 
-  * Loop: use native [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Instance_methods) to iterate
+*  Loop: use native [array methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#Instance_methods) to iterate
 
 ```html
 ${ items.map(item => `
@@ -236,9 +237,9 @@ ___
 
 > Associate a Component to an url
 
-  * Define routes
+*  Define routes
 
-*src/index.js*
+src/index.js
 
 ```js
 RouterComponent
@@ -247,7 +248,7 @@ RouterComponent
   .run(new AppComponent)
 ```
 
-  * Navigate to a component
+*  Navigate to a component
 
 ```js
 RouterComponent.navigate('foo');
@@ -257,23 +258,23 @@ RouterComponent.navigate('foo');
 RouterComponent.navigate('bar', { id: 7 });
 ```
 
-  * Retrieve curent route parameter
+*  Retrieve curent route parameter
 
 ```js
 const id = RouterComponent.get('id');
 ```
 
-  * Retrieve curent route
+*  Retrieve curent route
 
 ```js
 const route = RouterComponent.get();
 ```
 
-  * Run a component
+*  Run a component
 
 You can run the component you want but his selector have to be found in the index.html
 
-*www/index.html*
+src/index.html
 
 ```html
 <html>
@@ -288,7 +289,7 @@ You can run the component you want but his selector have to be found in the inde
 
 Components will be rendered by the `RouterComponent`, `router` tag will be added at the end of the running component by default but he can be declared manually
 
-**src/app.component.js**
+src/app/app.component.js
 
 ```html
 Hello app

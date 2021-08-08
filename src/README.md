@@ -95,7 +95,7 @@ npm run test:coveralls
 
 ___
 
-[CircleCI](https://app.circleci.com/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
+[Travis](https://travis-ci.com/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
 ___
 
