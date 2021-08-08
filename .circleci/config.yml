@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.1
+
+jobs:
+  # Below is the definition of your job to build and test your app, you can rename and customize it as you want.
+  - node/test:
+    version: '15.1'
+  build-and-test:  
+    steps:
+      - checkout
+      - node/install-packages
+      - run:
+          name: Run tests
+          command: npm test
