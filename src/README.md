@@ -1,8 +1,8 @@
 <h1 align="center">Project</h1>
 
-*  [Creation](#creation)
-*  [Build](#build)
-*  [Test](#test)
+  * [Creation](#creation)
+  * [Build](#build)
+  * [Test](#test)
 
 ___
 
@@ -36,7 +36,7 @@ ___
 
 ## Build
 
-*  Web Browser
+  * Web Browser
 
 Serve
 
@@ -50,7 +50,7 @@ Build
 npm run build
 ```
 
-*  Device
+  * Device
 
 Install android
 
@@ -76,7 +76,7 @@ ___
 
 ## Test
 
-*  Pass tests
+  * Pass tests
 
 ```bash
 npm test
@@ -87,7 +87,7 @@ npm test
 npm run test:coverage
 ```
 
-*  Send coverage report to coveralls
+  * Send coverage report to coveralls
 
 ```bash
 npm run test:coveralls
