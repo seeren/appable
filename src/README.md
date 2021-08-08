@@ -40,15 +40,17 @@ cd my-app
 
 Serve
 
-    npm run start
+```bash
+npm run start
+```
 
 Build
 
-    npm run build
+```bash
+npm run build
+```
 
 -   Device
-
-Install android
 
 ```bash
 npm run android:install
