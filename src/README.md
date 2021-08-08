@@ -1,10 +1,10 @@
 <h1 align="center">Project</h1>
 
-  * [Creation](#creation)
-  * [Build](#build)
-  * [Test](#test)
+-   [Creation](#creation)
+-   [Build](#build)
+-   [Test](#test)
 
-___
+* * *
 
 ## Creation
 
@@ -14,7 +14,7 @@ For global installation
 appable new my-app
 ```
 
-For *local* installation using npx
+For _local_ installation using npx
 
 ```bash
 npx appable new my-app
@@ -32,25 +32,21 @@ Then move to created directory
 cd my-app
 ```
 
-___
+* * *
 
 ## Build
 
-  * Web Browser
+-   Web Browser
 
 Serve
 
-```
-npm run start
-```
+    npm run start
 
 Build
 
-```
-npm run build
-```
+    npm run build
 
-  * Device
+-   Device
 
 Install android
 
@@ -72,31 +68,32 @@ npm run android
 
 [Gradle](https://gradle.org/install/) and [SDK build tools](https://androidsdkmanager.azurewebsites.net/Buildtools) must be installed and licenses must be accepted.
 
-___
+* * *
 
 ## Test
 
-  * Pass tests
+-   Pass tests
 
 ```bash
 npm test
 ```
-  * Generate coverage report
+
+-   Generate coverage report
 
 ```bash
 npm run test:coverage
 ```
 
-  * Send coverage report to coveralls
+-   Send coverage report to coveralls
 
 ```bash
 npm run test:coveralls
 ```
 
-___
+* * *
 
 [Travis](https://travis-ci.com/) configuration is setup for pass tests and push report to [Coveralls](https://coveralls.io/) after a build success
 
-___
+* * *
 
 ## ©️ License MIT

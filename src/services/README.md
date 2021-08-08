@@ -1,9 +1,9 @@
 <h1 align="center">Services</h1>
 
-  * [Creation](#creation)
-  * [Usage](#usage)
+-   [Creation](#creation)
+-   [Usage](#usage)
 
-___
+* * *
 
 ## Creation
 
@@ -27,15 +27,15 @@ npm run appable generate service foo
 
 Following files have been generated in app/foo
 
-  * foo.service.js
+-   foo.service.js
 
-___
+* * *
 
 ## Usage
 
 > Service share data and can notify for changes
 
-  * Handle data
+-   Handle data
 
 ```js
 import { Service } from  'appable';
@@ -52,13 +52,13 @@ export const FooService = new class extends Service {
 }();
 ```
 
-  * Notify for changes
+-   Notify for changes
 
 ```js
 FooService.notify();
 ```
 
-  * Subscribe/Unsubscribe for changes
+-   Subscribe/Unsubscribe for changes
 
 Service can **attach** or **detach** functions who are called when **notiy** is call
 
@@ -84,6 +84,6 @@ export class FooComponent extends Component {
 }
 ```
 
-___
+* * *
 
 ## ©️ License MIT

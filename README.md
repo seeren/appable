@@ -35,7 +35,7 @@ cd my-app
 npm start
 ```
 
-___
+* * *
 
 ## Generate Component
 
@@ -91,13 +91,13 @@ RouterComponent
   .run(new AppComponent)
 ```
 
-___
+* * *
 
 ## 📘 Documentation
 
-Read the documentation to learn about build, component, template,service and router usages: [https://github.com/seeren/appable/wiki](https://github.com/seeren/appable/wiki)
+Read the documentation to learn about build, component, template,service and router usages: <https://github.com/seeren/appable/wiki>
 
-___
+* * *
 
 ## ©️ License
 
