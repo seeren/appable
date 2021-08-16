@@ -10,6 +10,7 @@ module.exports = {
         path: `${__dirname}/www`,
         filename: 'app.js',
         globalObject: 'this',
+        assetModuleFilename: '[name][ext]',
     },
     module: {
         rules: [
@@ -34,10 +35,7 @@ module.exports = {
             },
             {
                 test: /\.(jpg|png|woff|woff2|eot|ttf|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]',
-                },
+                type: 'asset/resource',
             },
         ],
     },
@@ -57,6 +55,7 @@ module.exports = {
         new MiniCssExtractPlugin({ filename: 'app.css' }),
         new HtmlWebpackPlugin({
             template: './src/index.html',
+            publicPath: '/',
         }),
     ],
     devServer: {

@@ -45,7 +45,6 @@
     "eslint": "latest",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "latest",
-    "file-loader": "latest",
     "html-webpack-plugin": "latest",
     "mini-css-extract-plugin": "latest",
     "mocha": "latest",
