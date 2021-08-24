@@ -56,6 +56,6 @@
     "webpack-cli": "latest"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=15"
   }
 }
