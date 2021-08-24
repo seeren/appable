@@ -1,7 +1,7 @@
 os: linux
 language: node_js
 node_js:
-  - 15
+  - '15'
 cache:
   npm: false
 before_script:
@@ -9,4 +9,4 @@ before_script:
 script:
   - npm test
 after_success:
-  - npm run test:coveralls
+  - 'npm run test:coveralls'
