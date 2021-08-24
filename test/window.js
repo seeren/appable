@@ -1,4 +1,5 @@
 import * as jsdom from 'jsdom';
+import { TextEncoder }from 'util';
 
 export const window = (() => {
     const { JSDOM } = jsdom;
@@ -10,6 +11,7 @@ export const window = (() => {
     global.window.JSON = JSON;
     global.window.Object = Object;
     global.window.RegExp = RegExp;
+    global.window.TextEncoder = TextEncoder;
     global.window.parseInt = parseInt;
     const script = global.window.document.createElement('script');
     const otherScript = global.window.document.createElement('script');
