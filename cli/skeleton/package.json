@@ -5,9 +5,9 @@
     "start": "npm run dev",
     "dev": "cross-env NODE_ENV=development webpack serve --open --mode development",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "android": "cordova run android --device",
-    "android:build": "npm run build & npm run android",
+    "android": "cordova run android --device",    
     "android:install": "cordova platform add android",
+    "android:run": "npm run build & npm run android",
     "test": "cross-env NODE_ENV=test mocha --require @babel/register --recursive test/unit",
     "test:coverage": "cross-env NODE_ENV=test nyc --reporter=lcovonly --reporter=text npm test",
     "test:coveralls": "npm run test:coverage && cat ./coverage/lcov.info | coveralls"

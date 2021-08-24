@@ -54,8 +54,9 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({ filename: 'app.css' }),
         new HtmlWebpackPlugin({
-            template: './src/index.html',
-            publicPath: '/',
+            template: './src/index.html',      
+            publicPath: 'production' !== process.env.NODE_ENV ? '/' : '',
+
         }),
     ],
     devServer: {
