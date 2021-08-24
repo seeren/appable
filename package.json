@@ -52,6 +52,7 @@
     "ts-loader": "latest",
     "ts-node": "latest",
     "typescript": "latest",
+    "util": "^0.12.4",
     "webpack": "latest",
     "webpack-cli": "latest"
   },
