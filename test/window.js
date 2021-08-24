@@ -11,7 +11,7 @@ export const window = (() => {
     global.window.JSON = JSON;
     global.window.Object = Object;
     global.window.RegExp = RegExp;
-    global.window.TextEncoder = TextEncoder;
+    global.TextEncoder = TextEncoder;
     global.window.parseInt = parseInt;
     const script = global.window.document.createElement('script');
     const otherScript = global.window.document.createElement('script');
