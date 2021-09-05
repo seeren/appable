@@ -10,7 +10,7 @@ module.exports = {
         path: `${__dirname}/www`,
         filename: 'app.js',
         globalObject: 'this',
-        assetModuleFilename: '[name][ext]',
+        assetModuleFilename: 'assets/[name][ext]',
     },
     module: {
         rules: [
