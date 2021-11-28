@@ -69,6 +69,7 @@ const DEPLOY = [
     '.nycrc',
     '.travis.yml',
     'babel.config.json',
+    'build.dist.json',
     'config.xml',
     'package.json',
     'POLICY',
