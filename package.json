@@ -53,6 +53,6 @@
     "webpack-cli": "latest"
   },
   "engines": {
-    "node": ">=15"
+    "node": ">=14"
   }
 }
