@@ -31,9 +31,6 @@
   "bin": {
     "appable": "cli/appable.js"
   },
-  "dependencies": {
-    "npm": "latest"
-  },
   "devDependencies": {
     "@types/chai": "latest",
     "@types/jsdom": "latest",
