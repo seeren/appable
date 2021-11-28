@@ -3,7 +3,7 @@ import { RouterComponent } from 'appable';
 import { AppComponent } from './app/app.component';
 
 ((main) => (window.cordova
-    ? window.document.addEventListener('deviceready', run)
+    ? window.document.addEventListener('deviceready', main)
     : window.addEventListener('load', main))
 )(() => RouterComponent
 
