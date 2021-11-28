@@ -3,9 +3,9 @@
 const [, , ...args] = process.argv;
 
 /**
- * @type {Object}
+ * @type {Function}
  */
-const npm = require('npm');
+const { exec } = require('child_process');
 
 /**
  * @type {Object}
@@ -144,10 +144,9 @@ const DEPLOY = [
             );
         });
         console.warn('\x1b[36m', 'Installing packages');
-        return npm.load(() => {
-            npm.prefix = projectName;
-            npm.commands.install(packages, () => { });
-        });
+        return exec(`cd ${projectName} | npm install ${packages.join(' ')}`, {
+            cwd: projectName
+        }, (err, stdout, stderr) => console.log('\x1b[32m', '\u2713', '\x1b[0m', stdout));
     }
     return false;
 }());
