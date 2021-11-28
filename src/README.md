@@ -50,22 +50,44 @@ Build
 npm run build
 ```
 
--   Device
+-   Devices
+
+You can install and build for Android and Ios, therefore you should use build.json by rename build.dist.json. This file is disabled by default to allow dummy build but you should configure your keystore for Android and your profile for Ios.
+
+-   Android
 
 ```bash
 npm run android:install
-```
-
-Build then run on device
-
-```bash
-npm run android:build
 ```
 
 Run on device
 
 ```bash
 npm run android
+```
+
+Build for production
+
+```bash
+npm run android:build
+```
+
+-   Ios
+
+```bash
+npm run ios:install
+```
+
+Run on device
+
+```bash
+npm run ios
+```
+
+Build for production
+
+```bash
+npm run ios:build
 ```
 
 [Gradle](https://gradle.org/install/) and [SDK build tools](https://androidsdkmanager.azurewebsites.net/Buildtools) must be installed and licenses must be accepted.
