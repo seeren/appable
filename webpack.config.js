@@ -19,6 +19,6 @@ module.exports = {
         extensions: ['.tsx', '.ts', '.js'],
     },
     watchOptions: {
-        ignored: /node_modules/,
+        ignored: 'node_modules',
     },
 };
