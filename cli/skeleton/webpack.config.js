@@ -61,6 +61,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: './src/index.html',
             publicPath: 'production' !== process.env.NODE_ENV ? '/' : '',
+            scriptLoading: 'blocking',
         }),
         new webpack.DefinePlugin({
             'process.env': `'${process.env.NODE_ENV}'`
