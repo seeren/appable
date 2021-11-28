@@ -1,5 +1,8 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const webpack = require('webpack');
 
 module.exports = {
     entry: [
@@ -25,7 +28,7 @@ module.exports = {
                 use: 'raw-loader',
             },
             {
-                test: /\.scss$/,
+                test: /\.(css|scss)$/,
                 exclude: /node_modules/,
                 use: [
                     'production' !== process.env.NODE_ENV ? 'style-loader' : MiniCssExtractPlugin.loader,
@@ -41,25 +44,33 @@ module.exports = {
     },
     watchOptions: {
         ignored: [
-            '/.nyc_output/',
-            '/coverage/',
-            '/node_modules/',
-            '/platforms/',
-            '/plugins/',
-            '/resources/',
-            '/test/',
-            '/www/',
+            '.nyc_output',
+            'coverage',
+            'node_modules',
+            'platforms',
+            'plugins',
+            'resources',
+            'test',
+            'www',
         ],
     },
     plugins: [
-        new MiniCssExtractPlugin({ filename: 'app.css' }),
+        new MiniCssExtractPlugin({
+            filename: 'app.css'
+        }),
         new HtmlWebpackPlugin({
-            template: './src/index.html',      
+            template: './src/index.html',
             publicPath: 'production' !== process.env.NODE_ENV ? '/' : '',
         }),
+        new webpack.DefinePlugin({
+            'process.env': `'${process.env.NODE_ENV}'`
+        }),
     ],
+    infrastructureLogging: {
+        level: 'error',
+    },
     devServer: {
-        contentBase: './src/',
+        static: './src/',
         https: false,
         host: 'localhost',
         port: 8080,
