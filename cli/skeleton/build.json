@@ -1,14 +1,36 @@
 {
+    "android": {
+      "debug": {
+        "keystore": "./{ projectName }.keystore",
+        "storePassword": "",
+        "alias": "",
+        "password": "",
+        "keystoreType": "",
+        "packageType": "apk"
+      },
+      "release": {
+        "keystore": "./{ projectName }.keystore",
+        "storePassword": "",
+        "alias": "",
+        "password": "",
+        "keystoreType": "",
+        "packageType": "bundle"
+      }
+    },
     "ios": {
-        "debug": {
-            "codeSignIdentity": "iPhone Developer",
-            "developmentTeam": "TEAM_ID",
-            "packageType": "development",
-            "automaticProvisioning": true
-        },
-        "release": {
-            "codeSignIdentity": "iPhone Developer",
-            "developmentTeam": "TEAM_ID"
-        }
+      "debug": {
+        "codeSignIdentity": "iPhone Developer",
+        "developmentTeam": "",
+        "packageType": "development",
+        "automaticProvisioning": false,
+        "provisioningProfile": ""
+      },
+      "release": {
+        "codeSignIdentity": "iPhone Developer",
+        "developmentTeam": "",
+        "packageType": "app-store",
+        "automaticProvisioning": false,
+        "provisioningProfile": ""
+      }
     }
-}
+  }
