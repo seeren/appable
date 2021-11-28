@@ -2,9 +2,15 @@ import { RouterComponent } from 'appable';
 
 import { AppComponent } from './app/app.component';
 
-((run) => (window.cordova
+((main) => (window.cordova
     ? window.document.addEventListener('deviceready', run)
-    : window.addEventListener('load', run))
+    : window.addEventListener('load', main))
 )(() => RouterComponent
-    //  TODO Add routes
+
+    /**
+     * TODO Add routes
+     * 
+     * @example: .add('/home', 'home', HomeComponent)
+     */
+
     .run(new AppComponent()));
