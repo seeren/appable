@@ -36,5 +36,5 @@ module.exports = {
         'no-await-in-loop': 0,
         'no-empty': 0,
     },
-    parser: 'babel-eslint',
+    parser: '@babel/eslint-parser',
 };
